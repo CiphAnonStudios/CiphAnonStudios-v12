@@ -1,0 +1,2412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CiphAnon Studios</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f1f0eb;
+    color: #121212;
+    font-family: "DM Sans", sans-serif;
+    overflow-x: hidden;
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font: inherit;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.nav {
+    position: absolute;
+    z-index: 100;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 88px;
+
+    padding: 0 6%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -.6px;
+}
+
+.brand img {
+    width: 42px;
+    height: 42px;
+
+    object-fit: contain;
+
+    transition:
+        transform .35s cubic-bezier(.2,.8,.2,1);
+}
+
+.brand:hover img {
+    transform: rotate(-8deg) translateY(-2px);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-links a {
+    font-size: 13px;
+    font-weight: 600;
+
+    transition:
+        opacity .2s ease;
+}
+
+.nav-links a:hover {
+    opacity: .45;
+}
+
+.nav-youtube {
+    padding: 11px 17px;
+
+    border: 1px solid #151515;
+}
+
+.menu-button {
+    display: none;
+
+    width: 40px;
+    height: 40px;
+
+    border: 0;
+    background: transparent;
+
+    cursor: pointer;
+
+    font-size: 23px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    position: relative;
+
+    min-height: 100vh;
+
+    padding: 155px 6% 100px;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+.hero-background {
+    position: absolute;
+    z-index: 0;
+
+    width: 650px;
+    height: 650px;
+
+    right: -180px;
+    top: 80px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #dedbd2 0%,
+            #e8e6df 38%,
+            transparent 70%
+        );
+}
+
+.hero-lines {
+    position: absolute;
+    z-index: 0;
+
+    right: 8%;
+    top: 19%;
+
+    width: 390px;
+    height: 390px;
+
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 50%;
+}
+
+.hero-lines::before,
+.hero-lines::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 35px;
+
+    border: 1px solid rgba(0,0,0,.07);
+    border-radius: 50%;
+}
+
+.hero-lines::after {
+    inset: 75px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 5;
+
+    width: 100%;
+}
+
+.hero-top {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    margin-bottom: 27px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+}
+
+.hero-top::before {
+    content: "";
+
+    width: 34px;
+    height: 1px;
+
+    background: #111;
+}
+
+.hero-title {
+    max-width: 1080px;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(64px, 10.2vw, 148px);
+
+    line-height: .84;
+
+    letter-spacing: -8px;
+
+    font-weight: 700;
+}
+
+.hero-title .muted {
+    color: #88857e;
+}
+
+.hero-bottom {
+    max-width: 940px;
+
+    margin-top: 60px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 50px;
+}
+
+.hero-copy {
+    max-width: 420px;
+
+    color: #66645e;
+
+    font-size: 15px;
+    line-height: 1.75;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.button {
+    padding: 15px 22px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        color .25s ease;
+}
+
+.button-dark {
+    background: #111;
+    color: #fff;
+}
+
+.button-dark:hover {
+    transform: translateY(-3px);
+}
+
+.button-outline {
+    border: 1px solid #b8b5ae;
+}
+
+.button-outline:hover {
+    background: #111;
+    border-color: #111;
+    color: #fff;
+}
+
+
+/* =========================================================
+   MASOC HERO CHARACTER
+========================================================= */
+
+.masoc-hero {
+    position: absolute;
+    z-index: 4;
+
+    right: 8%;
+    bottom: 8%;
+
+    width: min(25vw, 330px);
+
+    pointer-events: none;
+
+    animation: masocFloat 5s ease-in-out infinite;
+}
+
+.masoc-hero img {
+    width: 100%;
+    height: auto;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(0 25px 25px rgba(0,0,0,.12));
+}
+
+@keyframes masocFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(2deg);
+    }
+
+    50% {
+        transform: translateY(-12px) rotate(-2deg);
+    }
+
+}
+
+
+/* =========================================================
+   MARQUEE
+========================================================= */
+
+.marquee {
+    background: #111;
+    color: #fff;
+
+    overflow: hidden;
+
+    padding: 17px 0;
+
+    white-space: nowrap;
+}
+
+.marquee-track {
+    width: max-content;
+
+    display: flex;
+    align-items: center;
+
+    animation: marquee 27s linear infinite;
+}
+
+.marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+
+    margin: 0 28px;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    letter-spacing: 2px;
+}
+
+.marquee-item b {
+    color: #777;
+    font-weight: 500;
+}
+
+@keyframes marquee {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+
+}
+
+
+/* =========================================================
+   SECTION BASICS
+========================================================= */
+
+section {
+    padding: 135px 6%;
+}
+
+.section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    gap: 40px;
+
+    margin-bottom: 70px;
+}
+
+.section-label {
+    margin-bottom: 17px;
+
+    color: #87847d;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.section-title {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(45px, 6vw, 78px);
+
+    line-height: .9;
+
+    letter-spacing: -4px;
+}
+
+.section-description {
+    max-width: 350px;
+
+    color: #68665f;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   PROJECT WALL
+========================================================= */
+
+.work {
+    position: relative;
+
+    overflow: hidden;
+
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.work .section-head {
+    padding-left: 6%;
+    padding-right: 6%;
+}
+
+.project-area {
+    position: relative;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    padding: 30px 0 75px;
+}
+
+.project-row {
+    width: max-content;
+
+    display: flex;
+    align-items: center;
+
+    gap: 25px;
+
+    margin-bottom: 30px;
+
+    will-change: transform;
+}
+
+.project-row.one {
+    animation: rowLeft 34s linear infinite;
+}
+
+.project-row.two {
+    animation: rowRight 39s linear infinite;
+}
+
+.project-row.three {
+    animation: rowLeft 43s linear infinite;
+}
+
+@keyframes rowLeft {
+
+    from {
+        transform: translateX(-2%);
+    }
+
+    to {
+        transform: translateX(-31%);
+    }
+
+}
+
+@keyframes rowRight {
+
+    from {
+        transform: translateX(-31%);
+    }
+
+    to {
+        transform: translateX(-2%);
+    }
+
+}
+
+
+/* =========================================================
+   PROJECT TILES
+========================================================= */
+
+.project {
+    position: relative;
+
+    width: 245px;
+    height: 245px;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    border-radius: 31px;
+
+    background: #222;
+
+    transform: rotate(var(--tilt));
+
+    box-shadow:
+        0 16px 35px rgba(0,0,0,.09);
+
+    transition:
+        transform .5s cubic-bezier(.2,.8,.2,1),
+        box-shadow .5s ease;
+}
+
+.project.big {
+    width: 295px;
+    height: 295px;
+}
+
+.project:hover {
+    z-index: 20;
+
+    transform:
+        rotate(0deg)
+        scale(1.08);
+
+    box-shadow:
+        0 30px 55px rgba(0,0,0,.2);
+}
+
+.project-image {
+    position: absolute;
+    inset: 0;
+
+    background-size: cover;
+    background-position: center;
+
+    transition:
+        transform .7s cubic-bezier(.2,.8,.2,1);
+}
+
+.project:hover .project-image {
+    transform: scale(1.09);
+}
+
+
+/* IMAGE SOURCES */
+
+.project-pet {
+    background-image:
+        linear-gradient(
+            180deg,
+            transparent 35%,
+            rgba(0,0,0,.8)
+        ),
+        url("Images/PetClicker.png");
+}
+
+.project-geometry {
+    background-image:
+        linear-gradient(
+            180deg,
+            transparent 35%,
+            rgba(0,0,0,.82)
+        ),
+        url("Images/MyGeometryDash.png");
+}
+
+.project-masoc {
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.05),
+            rgba(0,0,0,.82)
+        ),
+        url("Images/Masoc.png");
+
+    background-color: #171717;
+}
+
+.project-scripts {
+    background:
+        linear-gradient(
+            135deg,
+            #181818,
+            #3d3d3d
+        );
+}
+
+.project-code {
+    background:
+        linear-gradient(
+            135deg,
+            #222,
+            #666
+        );
+}
+
+.project-experiment {
+    background:
+        linear-gradient(
+            135deg,
+            #151515,
+            #4b4b4b
+        );
+}
+
+
+/* TILE CONTENT */
+
+.project-overlay {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    padding: 25px;
+
+    color: #fff;
+
+    opacity: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent 25%,
+            rgba(0,0,0,.86)
+        );
+
+    transition: opacity .3s ease;
+}
+
+.project:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-category {
+    margin-bottom: 6px;
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+
+    opacity: .65;
+}
+
+.project-name {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 24px;
+
+    letter-spacing: -1px;
+}
+
+.project-arrow {
+    position: absolute;
+
+    top: 18px;
+    right: 18px;
+
+    width: 38px;
+    height: 38px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid rgba(255,255,255,.5);
+
+    border-radius: 50%;
+
+    color: white;
+
+    font-size: 15px;
+
+    opacity: 0;
+
+    transition: opacity .3s ease;
+}
+
+.project:hover .project-arrow {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   WORK FOOTER
+========================================================= */
+
+.work-footer {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 10px;
+}
+
+.work-footer span {
+    padding: 12px 19px;
+
+    border: 1px solid #c5c2ba;
+    border-radius: 100px;
+
+    color: #77746e;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1.7px;
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about {
+    background: #121212;
+
+    color: #fff;
+}
+
+.about .section-label {
+    color: #777;
+}
+
+.about .section-description {
+    color: #999;
+}
+
+.about-grid {
+    display: grid;
+
+    grid-template-columns: 1.1fr .9fr;
+
+    gap: 110px;
+}
+
+.about-heading {
+    max-width: 700px;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(38px, 5vw, 69px);
+
+    line-height: .98;
+
+    letter-spacing: -3.5px;
+}
+
+.about-heading span {
+    color: #777;
+}
+
+.about-copy {
+    max-width: 490px;
+
+    color: #999;
+
+    font-size: 16px;
+
+    line-height: 1.85;
+}
+
+.about-copy p + p {
+    margin-top: 27px;
+}
+
+
+/* =========================================================
+   MASOC FEATURE
+========================================================= */
+
+.masoc-section {
+    position: relative;
+
+    min-height: 570px;
+
+    background: #dedbd3;
+
+    overflow: hidden;
+}
+
+.masoc-section-inner {
+    position: relative;
+    z-index: 3;
+}
+
+.masoc-section-title {
+    max-width: 700px;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(55px, 8vw, 110px);
+
+    line-height: .85;
+
+    letter-spacing: -6px;
+}
+
+.masoc-section-title span {
+    color: #7e7b74;
+}
+
+.masoc-description {
+    max-width: 400px;
+
+    margin-top: 35px;
+
+    color: #65635e;
+
+    line-height: 1.7;
+
+    font-size: 14px;
+}
+
+.masoc-large {
+    position: absolute;
+
+    right: 7%;
+    bottom: -20px;
+
+    width: min(32vw, 430px);
+
+    z-index: 2;
+
+    animation: masocLarge 6s ease-in-out infinite;
+}
+
+.masoc-large img {
+    width: 100%;
+
+    filter:
+        drop-shadow(0 30px 25px rgba(0,0,0,.14));
+}
+
+@keyframes masocLarge {
+
+    0%,
+    100% {
+        transform: rotate(4deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(-3deg) translateY(-14px);
+    }
+
+}
+
+
+/* =========================================================
+   SERVICES
+========================================================= */
+
+.services {
+    background: #f1f0eb;
+}
+
+.services-list {
+    border-top: 1px solid #bdbbb4;
+}
+
+.service {
+    display: grid;
+
+    grid-template-columns: 65px 1fr 1fr;
+
+    align-items: center;
+
+    gap: 35px;
+
+    padding: 31px 0;
+
+    border-bottom: 1px solid #bdbbb4;
+}
+
+.service-number {
+    color: #89867f;
+
+    font-size: 11px;
+}
+
+.service-title {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 28px;
+
+    letter-spacing: -1px;
+}
+
+.service-description {
+    max-width: 390px;
+
+    color: #6d6a63;
+
+    font-size: 14px;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.stats {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.stat {
+    padding: 70px 25px;
+
+    border-left: 1px solid #cfccc4;
+}
+
+.stat:last-child {
+    border-right: 1px solid #cfccc4;
+}
+
+.stat-number {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 70px;
+
+    letter-spacing: -5px;
+}
+
+.stat-label {
+    margin-top: 7px;
+
+    color: #79766f;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.cta {
+    position: relative;
+
+    min-height: 650px;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    background: #121212;
+
+    color: #fff;
+}
+
+.cta::after {
+    content: "";
+
+    position: absolute;
+
+    width: 550px;
+    height: 550px;
+
+    right: -200px;
+    bottom: -250px;
+
+    border: 1px solid #2d2d2d;
+
+    border-radius: 50%;
+}
+
+.cta-content {
+    position: relative;
+    z-index: 3;
+}
+
+.cta-label {
+    margin-bottom: 25px;
+
+    color: #777;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 2px;
+}
+
+.cta h2 {
+    max-width: 1000px;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(65px, 10vw, 145px);
+
+    line-height: .84;
+
+    letter-spacing: -7px;
+}
+
+.cta h2 span {
+    color: #666;
+}
+
+.cta-link {
+    display: inline-block;
+
+    margin-top: 58px;
+
+    padding-bottom: 9px;
+
+    border-bottom: 1px solid #555;
+
+    color: #fff;
+
+    font-size: 14px;
+
+    transition:
+        border-color .2s ease;
+}
+
+.cta-link:hover {
+    border-color: #fff;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 32px 6%;
+
+    background: #121212;
+
+    color: #fff;
+
+    border-top: 1px solid #292929;
+}
+
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.footer-brand img {
+    width: 30px;
+    height: 30px;
+
+    object-fit: contain;
+}
+
+.footer-links {
+    display: flex;
+    gap: 24px;
+}
+
+.footer-links a {
+    color: #777;
+
+    font-size: 11px;
+
+    transition: color .2s ease;
+}
+
+.footer-links a:hover {
+    color: #fff;
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(30px);
+
+    transition:
+        opacity .8s ease,
+        transform .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.reveal.visible {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 850px) {
+
+    .nav {
+        height: 72px;
+
+        padding: 0 5%;
+    }
+
+    .brand {
+        font-size: 14px;
+    }
+
+    .brand img {
+        width: 37px;
+        height: 37px;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+
+        top: 0;
+        right: -100%;
+
+        width: 80%;
+        height: 100vh;
+
+        padding: 110px 35px 40px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 25px;
+
+        background: #111;
+        color: #fff;
+
+        transition: right .35s ease;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links a {
+        color: #fff;
+
+        font-size: 19px;
+    }
+
+    .nav-youtube {
+        border-color: #444;
+    }
+
+
+    .hero {
+        min-height: 850px;
+
+        padding:
+            130px
+            5%
+            80px;
+    }
+
+    .hero-title {
+        font-size: clamp(58px, 16vw, 100px);
+
+        letter-spacing: -5px;
+    }
+
+    .hero-bottom {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 32px;
+
+        margin-top: 50px;
+    }
+
+    .masoc-hero {
+        width: 190px;
+
+        right: -15px;
+        bottom: 5%;
+    }
+
+    .hero-background {
+        width: 480px;
+        height: 480px;
+
+        right: -280px;
+    }
+
+    .hero-lines {
+        display: none;
+    }
+
+
+    section {
+        padding: 100px 5%;
+    }
+
+
+    .section-head {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        margin-bottom: 55px;
+    }
+
+
+    .project {
+        width: 190px;
+        height: 190px;
+
+        border-radius: 23px;
+    }
+
+    .project.big {
+        width: 225px;
+        height: 225px;
+    }
+
+    .project-row {
+        gap: 17px;
+
+        margin-bottom: 20px;
+    }
+
+
+    .about-grid {
+        grid-template-columns: 1fr;
+
+        gap: 55px;
+    }
+
+
+    .masoc-section {
+        min-height: 650px;
+    }
+
+    .masoc-section-title {
+        font-size: clamp(52px, 14vw, 85px);
+
+        letter-spacing: -5px;
+    }
+
+    .masoc-large {
+        width: 290px;
+
+        right: -20px;
+        bottom: -10px;
+    }
+
+
+    .service {
+        grid-template-columns: 40px 1fr;
+
+        gap: 18px;
+    }
+
+    .service-description {
+        grid-column: 2;
+    }
+
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .stat {
+        border-right: 1px solid #cfccc4;
+    }
+
+
+    .cta {
+        min-height: 530px;
+    }
+
+    .cta h2 {
+        letter-spacing: -5px;
+    }
+
+
+    footer {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 24px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =======================================================
+     NAV
+======================================================= -->
+
+<nav class="nav">
+
+    <a href="index.html" class="brand">
+
+        <img
+            src="Images/Masoc.png"
+            alt="Masoc"
+        >
+
+        CIPHANON STUDIOS
+
+    </a>
+
+
+    <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Open menu"
+    >
+        ☰
+    </button>
+
+
+    <div class="nav-links" id="navLinks">
+
+        <a href="#work">
+            Work
+        </a>
+
+        <a href="#about">
+            About
+        </a>
+
+        <a href="scripts.html">
+            Scripts
+        </a>
+
+        <a href="Gm.html">
+            Games
+        </a>
+
+        <a
+            href="https://youtube.com/@ItsToonyTime"
+            target="_blank"
+            class="nav-youtube"
+        >
+            YouTube ↗
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =======================================================
+     HERO
+======================================================= -->
+
+<header class="hero">
+
+    <div class="hero-background"></div>
+
+    <div class="hero-lines"></div>
+
+
+    <div class="hero-content reveal">
+
+        <div class="hero-top">
+            CiphAnon Studios
+        </div>
+
+
+        <h1 class="hero-title">
+
+            BUILDING<br>
+
+            <span class="muted">
+                WHAT'S
+            </span><br>
+
+            NEXT.
+
+        </h1>
+
+
+        <div class="hero-bottom">
+
+            <p class="hero-copy">
+
+                Games, websites, scripts and experiments.
+                CiphAnon Studios is where ideas turn into
+                things you can actually use, play and explore.
+
+            </p>
+
+
+            <div class="hero-actions">
+
+                <a
+                    href="#work"
+                    class="button button-dark"
+                >
+                    See our work
+                </a>
+
+                <a
+                    href="Gm.html"
+                    class="button button-outline"
+                >
+                    Enter the games
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- MASOC -->
+
+    <div class="masoc-hero">
+
+        <img
+            src="Images/Masoc.png"
+            alt="Masoc"
+        >
+
+    </div>
+
+</header>
+
+
+
+<!-- =======================================================
+     MARQUEE
+======================================================= -->
+
+<div class="marquee">
+
+    <div class="marquee-track">
+
+        <div class="marquee-item">
+            GAMES <b>•</b>
+            WEB <b>•</b>
+            SCRIPTS <b>•</b>
+            EXPERIMENTS <b>•</b>
+            CREATIVITY <b>•</b>
+        </div>
+
+        <div class="marquee-item">
+            GAMES <b>•</b>
+            WEB <b>•</b>
+            SCRIPTS <b>•</b>
+            EXPERIMENTS <b>•</b>
+            CREATIVITY <b>•</b>
+        </div>
+
+        <div class="marquee-item">
+            GAMES <b>•</b>
+            WEB <b>•</b>
+            SCRIPTS <b>•</b>
+            EXPERIMENTS <b>•</b>
+            CREATIVITY <b>•</b>
+        </div>
+
+        <div class="marquee-item">
+            GAMES <b>•</b>
+            WEB <b>•</b>
+            SCRIPTS <b>•</b>
+            EXPERIMENTS <b>•</b>
+            CREATIVITY <b>•</b>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =======================================================
+     WORK
+======================================================= -->
+
+<section class="work" id="work">
+
+
+    <div class="section-head reveal">
+
+        <div>
+
+            <div class="section-label">
+                01 / THE PLAYGROUND
+            </div>
+
+            <h2 class="section-title">
+                Made to<br>
+                be explored.
+            </h2>
+
+        </div>
+
+
+        <p class="section-description">
+
+            A constantly changing collection of games,
+            experiments, tools and projects from
+            CiphAnon Studios.
+
+        </p>
+
+    </div>
+
+
+
+    <div class="project-area">
+
+
+        <!-- ROW 1 -->
+
+        <div class="project-row one">
+
+
+            <a
+                href="Gm.html"
+                class="project big"
+                style="--tilt:-5deg"
+            >
+
+                <div class="project-image project-pet"></div>
+
+                <div class="project-overlay">
+
+                    <div class="project-category">
+                        Game
+                    </div>
+
+                    <div class="project-name">
+                        Pet Clicker
+                    </div>
+
+                </div>
+
+                <div class="project-arrow">
+                    ↗
+                </div>
+
+            </a>
+
+
+
+            <a
+                href="Gm.html"
+                class="project"
+                style="--tilt:4deg"
+            >
+
+                <div class="project-image project-geometry"></div>
+
+                <div class="project-overlay">
+
+                    <div class="project-category">
+                        Game
+                    </div>
+
+                    <div class="project-name">
+                        Geometry Dash
+                    </div>
+
+                </div>
+
+                <div class="project-arrow">
+                    ↗
+                </div>
+
+            </a>
+
+
+
+            <a
+                href="scripts.html"
+                class="project"
+                style="--tilt:-3deg"
+            >
+
+                <div class="project-image project-scripts"></div>
+
+                <div class="project-overlay">
+
+                    <div class="project-category">
+                        Scripts
+                    </div>
+
+                    <div class="project-name">
+                        Script Library
+                    </div>
+
+                </div>
+
+                <div class="project-arrow">
+                    ↗
+                </div>
+
+            </a>
+
+
+
+            <a
+                href="Gm.html"
+                class="project big"
+                style="--tilt:5deg"
+            >
+
+                <div class="project-image project-masoc"></div>
+
+                <div class="project-overlay">
+
+                    <div class="project-category">
+                        Character
+                    </div>
+
+                    <div class="project-name">
+                        Masoc
+                    </div>
+
+                </div>
+
+                <div class="project-arrow">
+                    ↗
+                </div>
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- ROW 2 -->
+
+        <div class="project-row two">
+
+
+            <a
+                href="scripts.html"
+                class="project"
+                style="--tilt:4deg"
+            >
+
+                <div class="project-image project-code"></div>
+
+                <div class="project-overlay">
+
+                    <div class="project-category">
+                        Development
+                    </div>
+
+                    <div class="project-name">
+                        Creative Code
+                    </div>
+
+                </div>
+
+                <div class="project-arrow">
+                    ↗
+                </div>
+
+            </a>
+
+
+
+            <a
+                href="Gm.html"
+                class="project big"
+                style="--tilt:-4deg"
+            >
+
+                <div class="project-image project-pet"></div>
+
+                <div class="project-overlay">
+
+                    <div class="project-category">
+                        Games
+                    </div>
+
+                    <div class="project-name">
+                        More Games
+                    </div>
+
+                </div>
+
+                <div class="project-arrow">
+                    ↗
+                </div>
+
+            </a>
+
+
+
+            <a
+                href="Gm.html"
+                class="project"
+                style="--tilt:6deg"
+            >
+
+                <div class="project-image project-experiment"></div>
+
+                <div class="project-overlay">
+
+                    <div class="project-category">
+                        Experiment
+                    </div>
+
+                    <div class="project-name">
+                        Experiments
+                    </div>
+
+                </div>
+
+                <div class="project-arrow">
+                    ↗
+                </div>
+
+            </a>
+
+
+
+            <a
+                href="scripts.html"
+                class="project"
+                style="--tilt:-5deg"
+            >
+
+                <div class="project-image project-scripts"></div>
+
+                <div class="project-overlay">
+
+                    <div class="project-category">
+                        Tools
+                    </div>
+
+                    <div class="project-name">
+                        Scripts
+                    </div>
+
+                </div>
+
+                <div class="project-arrow">
+                    ↗
+                </div>
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- ROW 3 -->
+
+        <div class="project-row three">
+
+
+            <a
+                href="Gm.html"
+                class="project"
+                style="--tilt:-4deg"
+            >
+
+                <div class="project-image project-masoc"></div>
+
+                <div class="project-overlay">
+
+                    <div class="project-category">
+                        CiphAnon
+                    </div>
+
+                    <div class="project-name">
+                        Masoc
+                    </div>
+
+                </div>
+
+                <div class="project-arrow">
+                    ↗
+                </div>
+
+            </a>
+
+
+
+            <a
+                href="Gm.html"
+                class="project big"
+                style="--tilt:5deg"
+            >
+
+                <div class="project-image project-geometry"></div>
+
+                <div class="project-overlay">
+
+                    <div class="project-category">
+                        Game
+                    </div>
+
+                    <div class="project-name">
+                        Projects
+                    </div>
+
+                </div>
+
+                <div class="project-arrow">
+                    ↗
+                </div>
+
+            </a>
+
+
+
+            <a
+                href="scripts.html"
+                class="project"
+                style="--tilt:-6deg"
+            >
+
+                <div class="project-image project-code"></div>
+
+                <div class="project-overlay">
+
+                    <div class="project-category">
+                        Code
+                    </div>
+
+                    <div class="project-name">
+                        Tools
+                    </div>
+
+                </div>
+
+                <div class="project-arrow">
+                    ↗
+                </div>
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="work-footer reveal">
+
+        <span>
+            HOVER TO DISCOVER
+        </span>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =======================================================
+     ABOUT
+======================================================= -->
+
+<section class="about" id="about">
+
+
+    <div class="section-head reveal">
+
+        <div>
+
+            <div class="section-label">
+                02 / WHO WE ARE
+            </div>
+
+            <h2 class="section-title">
+                Small studio.<br>
+                Big ideas.
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="about-grid">
+
+
+        <div class="about-heading reveal">
+
+            CiphAnon is built around
+            <span>making things</span>
+            instead of just talking
+            about them.
+
+        </div>
+
+
+        <div class="about-copy reveal">
+
+            <p>
+                CiphAnon Studios is an independent creative
+                studio focused on building games, websites,
+                scripts and experimental projects.
+            </p>
+
+            <p>
+                Some projects are polished. Some start as
+                completely ridiculous ideas. That's part
+                of the fun.
+            </p>
+
+            <p>
+                The goal is simple: build things that are
+                fun to use, interesting to look at and
+                worth coming back to.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     MASOC
+======================================================= -->
+
+<section class="masoc-section">
+
+
+    <div class="masoc-section-inner reveal">
+
+        <div class="section-label">
+            03 / THE FACE OF CIPHANON
+        </div>
+
+
+        <h2 class="masoc-section-title">
+
+            MEET<br>
+
+            <span>MASOC.</span>
+
+        </h2>
+
+
+        <p class="masoc-description">
+
+            The pumpkin behind CiphAnon Studios.
+            Masoc isn't just a logo — he's part of
+            the world we're building.
+
+        </p>
+
+    </div>
+
+
+    <div class="masoc-large">
+
+        <img
+            src="Images/Masoc.png"
+            alt="Masoc the pumpkin character"
+        >
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     SERVICES
+======================================================= -->
+
+<section class="services">
+
+
+    <div class="section-head reveal">
+
+        <div>
+
+            <div class="section-label">
+                04 / WHAT WE BUILD
+            </div>
+
+            <h2 class="section-title">
+                More than<br>
+                one thing.
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="services-list">
+
+
+        <div class="service reveal">
+
+            <div class="service-number">
+                01
+            </div>
+
+            <div class="service-title">
+                Games
+            </div>
+
+            <div class="service-description">
+                Small games, experiments and interactive
+                experiences built to be played.
+            </div>
+
+        </div>
+
+
+
+        <div class="service reveal">
+
+            <div class="service-number">
+                02
+            </div>
+
+            <div class="service-title">
+                Websites
+            </div>
+
+            <div class="service-description">
+                Custom websites with their own identity,
+                rather than another generic template.
+            </div>
+
+        </div>
+
+
+
+        <div class="service reveal">
+
+            <div class="service-number">
+                03
+            </div>
+
+            <div class="service-title">
+                Scripts
+            </div>
+
+            <div class="service-description">
+                Useful scripts and tools collected in
+                the CiphAnon Script Library.
+            </div>
+
+        </div>
+
+
+
+        <div class="service reveal">
+
+            <div class="service-number">
+                04
+            </div>
+
+            <div class="service-title">
+                Experiments
+            </div>
+
+            <div class="service-description">
+                Strange ideas, prototypes and projects
+                that don't fit neatly anywhere else.
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     STATS
+======================================================= -->
+
+<section class="stats">
+
+
+    <div class="stat reveal">
+
+        <div class="stat-number">
+            01
+        </div>
+
+        <div class="stat-label">
+            Independent studio
+        </div>
+
+    </div>
+
+
+
+    <div class="stat reveal">
+
+        <div class="stat-number">
+            ∞
+        </div>
+
+        <div class="stat-label">
+            Ideas to build
+        </div>
+
+    </div>
+
+
+
+    <div class="stat reveal">
+
+        <div class="stat-number">
+            24/7
+        </div>
+
+        <div class="stat-label">
+            Always creating
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =======================================================
+     CTA
+======================================================= -->
+
+<section class="cta">
+
+
+    <div class="cta-content reveal">
+
+        <div class="cta-label">
+            CIPHANON STUDIOS
+        </div>
+
+
+        <h2>
+
+            SEE WHAT<br>
+
+            <span>WE'RE MAKING.</span>
+
+        </h2>
+
+
+        <a
+            href="Gm.html"
+            class="cta-link"
+        >
+            Explore the studio ↗
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     FOOTER
+======================================================= -->
+
+<footer>
+
+
+    <div class="footer-brand">
+
+        <img
+            src="Images/Masoc.png"
+            alt="Masoc"
+        >
+
+        CiphAnon Studios
+
+    </div>
+
+
+    <div class="footer-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="scripts.html">
+            Scripts
+        </a>
+
+        <a href="Gm.html">
+            Games
+        </a>
+
+        <a
+            href="https://youtube.com/@ItsToonyTime"
+            target="_blank"
+        >
+            YouTube ↗
+        </a>
+
+    </div>
+
+</footer>
+
+
+
+<script>
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+const menuButton =
+    document.getElementById("menuButton");
+
+const navLinks =
+    document.getElementById("navLinks");
+
+
+menuButton.addEventListener("click", () => {
+
+    navLinks.classList.toggle("active");
+
+});
+
+
+document.querySelectorAll(".nav-links a")
+.forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        navLinks.classList.remove("active");
+
+    });
+
+});
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+const revealObserver =
+    new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("visible");
+
+                    revealObserver.unobserve(
+                        entry.target
+                    );
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: .12
+        }
+
+    );
+
+
+document
+    .querySelectorAll(".reveal")
+    .forEach(element => {
+
+        revealObserver.observe(element);
+
+    });
+
+
+/* =========================================================
+   PROJECT ROW PAUSE
+========================================================= */
+
+document
+    .querySelectorAll(".project-row")
+    .forEach(row => {
+
+        row.addEventListener("mouseenter", () => {
+
+            row.style.animationPlayState = "paused";
+
+        });
+
+
+        row.addEventListener("mouseleave", () => {
+
+            row.style.animationPlayState = "running";
+
+        });
+
+    });
+
+</script>
+
+
+</body>
+</html>
