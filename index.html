@@ -7,6 +7,7 @@
 <title>CiphAnon Studios</title>
 
 <style>
+
 /* =========================================================
    RESET
 ========================================================= */
@@ -23,8 +24,8 @@ html {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #ffffff;
-    color: #111111;
+    background: #fff;
+    color: #111;
     overflow-x: hidden;
 }
 
@@ -47,6 +48,7 @@ header {
     position: fixed;
     top: 0;
     left: 0;
+
     width: 100%;
     height: 78px;
 
@@ -56,7 +58,7 @@ header {
 
     padding: 0 42px;
 
-    background: rgba(255, 255, 255, 0.94);
+    background: rgba(255,255,255,.94);
     backdrop-filter: blur(14px);
 
     border-bottom: 1px solid #e8e8e8;
@@ -65,18 +67,19 @@ header {
 
     transition:
         height .35s ease,
-        box-shadow .35s ease,
-        background .35s ease;
+        box-shadow .35s ease;
 }
 
 header.scrolled {
     height: 64px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, .07);
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.07);
 }
 
 .logo {
     font-size: 20px;
-    font-weight: 800;
+    font-weight: 900;
     letter-spacing: -.5px;
 }
 
@@ -86,18 +89,16 @@ header.scrolled {
 
 .nav {
     display: flex;
-    align-items: center;
     gap: 30px;
 }
 
 .nav a {
     position: relative;
 
+    color: #555;
+
     font-size: 13px;
     font-weight: 700;
-    letter-spacing: .5px;
-
-    color: #555;
 
     transition: color .25s ease;
 }
@@ -106,6 +107,7 @@ header.scrolled {
     content: "";
 
     position: absolute;
+
     left: 0;
     bottom: -7px;
 
@@ -140,6 +142,7 @@ header.scrolled {
 
     display: flex;
     flex-direction: column;
+
     gap: 8px;
 
     z-index: 900;
@@ -156,7 +159,7 @@ header.scrolled {
     border: 1px solid #dedede;
     border-radius: 12px;
 
-    background: #ffffff;
+    background: #fff;
 
     color: #555;
 
@@ -177,17 +180,18 @@ header.scrolled {
     transform: translateX(6px);
 
     background: #111;
-    color: #ffffff;
+    color: #fff;
 
     border-color: #111;
 
-    box-shadow: 0 8px 25px rgba(0, 0, 0, .15);
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.15);
 }
 
 .side-button.active {
     background: #ff6a00;
     border-color: #ff6a00;
-    color: #ffffff;
+    color: #fff;
 }
 
 
@@ -204,36 +208,99 @@ header.scrolled {
     align-items: center;
     justify-content: center;
 
-    padding:
-        135px
-        25px
-        125px;
+    padding: 130px 25px 120px;
 
     overflow: hidden;
 
-    background: #ffffff;
+    background: #111;
 }
 
-.hero-grid {
+
+/* =========================================================
+   HERO BACKGROUND IMAGE
+   CiphAnon Studios.png is now part of the background.
+========================================================= */
+
+.hero-background {
     position: absolute;
+
     inset: 0;
 
     background-image:
-        linear-gradient(#eeeeee 1px, transparent 1px),
-        linear-gradient(90deg, #eeeeee 1px, transparent 1px);
+        url("CiphAnon Studios.png");
+
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    z-index: 0;
+
+    pointer-events: none;
+}
+
+
+/* Dark/white overlay so the text stays readable */
+
+.hero-background::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(255,255,255,.15),
+            rgba(255,255,255,.48)
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   HERO GRID
+========================================================= */
+
+.hero-grid {
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.12) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.12) 1px,
+            transparent 1px
+        );
 
     background-size: 55px 55px;
 
     opacity: .45;
 
-    mask-image: linear-gradient(
-        to bottom,
-        transparent,
-        black 20%,
-        black 70%,
-        transparent
-    );
+    z-index: 1;
+
+    pointer-events: none;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            transparent,
+            black 20%,
+            black 75%,
+            transparent
+        );
 }
+
+
+/* =========================================================
+   ORANGE LIGHT
+========================================================= */
 
 .hero-orb {
     position: absolute;
@@ -242,28 +309,40 @@ header.scrolled {
     height: 500px;
 
     right: -180px;
-    top: 100px;
+    top: 80px;
 
     border-radius: 50%;
 
     background: #ff6a00;
 
-    opacity: .07;
+    opacity: .09;
 
-    filter: blur(5px);
+    filter: blur(15px);
+
+    z-index: 1;
+
+    pointer-events: none;
 
     animation: orbFloat 8s ease-in-out infinite;
 }
 
 @keyframes orbFloat {
-    0%, 100% {
-        transform: translateY(0) scale(1);
+
+    0%,
+    100% {
+        transform: translateY(0);
     }
 
     50% {
-        transform: translateY(-25px) scale(1.05);
+        transform: translateY(-20px);
     }
+
 }
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
 
 .hero-content {
     position: relative;
@@ -273,8 +352,13 @@ header.scrolled {
 
     text-align: center;
 
-    z-index: 2;
+    z-index: 5;
 }
+
+
+/* =========================================================
+   LABEL
+========================================================= */
 
 .hero-label {
     display: inline-block;
@@ -283,21 +367,36 @@ header.scrolled {
 
     padding: 8px 14px;
 
-    border: 1px solid #dedede;
+    border:
+        1px solid
+        rgba(255,255,255,.55);
+
     border-radius: 100px;
 
-    color: #777;
+    background:
+        rgba(255,255,255,.25);
+
+    backdrop-filter: blur(8px);
+
+    color: #111;
 
     font-size: 10px;
-    font-weight: 800;
+    font-weight: 900;
 
     letter-spacing: 2px;
 
-    animation: fadeUp .8s ease both;
+    animation:
+        fadeUp .8s ease both;
 }
 
+
+/* =========================================================
+   TITLE
+========================================================= */
+
 .hero h1 {
-    font-size: clamp(52px, 9vw, 115px);
+    font-size:
+        clamp(52px, 9vw, 115px);
 
     line-height: .9;
 
@@ -305,157 +404,108 @@ header.scrolled {
 
     font-weight: 900;
 
-    animation: fadeUp .8s ease .1s both;
+    color: #111;
+
+    text-shadow:
+        0 3px 25px rgba(255,255,255,.7);
+
+    animation:
+        fadeUp .8s ease .1s both;
 }
 
 .hero h1 span {
     color: #ff6a00;
 }
 
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
 .hero-description {
     max-width: 620px;
 
-    margin: 30px auto 0;
+    margin:
+        30px auto 0;
 
-    color: #666;
+    color: #222;
 
     font-size: 16px;
+
     line-height: 1.7;
 
-    animation: fadeUp .8s ease .2s both;
+    font-weight: 500;
+
+    text-shadow:
+        0 2px 15px rgba(255,255,255,.8);
+
+    animation:
+        fadeUp .8s ease .2s both;
 }
 
 
 /* =========================================================
-   HERO BUTTONS
+   SIX BUTTONS
 ========================================================= */
 
 .hero-buttons {
     display: flex;
+
     justify-content: center;
+
     flex-wrap: wrap;
 
     gap: 10px;
 
     margin-top: 34px;
 
-    animation: fadeUp .8s ease .3s both;
+    animation:
+        fadeUp .8s ease .3s both;
 }
 
 .hero-button {
-    position: relative;
-
     min-width: 105px;
 
     padding: 13px 19px;
 
-    border: 1px solid #dcdcdc;
+    border:
+        1px solid
+        rgba(255,255,255,.7);
+
     border-radius: 10px;
 
-    background: #ffffff;
+    background:
+        rgba(255,255,255,.72);
 
-    color: #222;
+    backdrop-filter: blur(10px);
+
+    color: #111;
 
     font-size: 12px;
     font-weight: 800;
 
     cursor: pointer;
 
-    overflow: hidden;
-
     transition:
         transform .25s ease,
+        background .25s ease,
         color .25s ease,
         border-color .25s ease,
         box-shadow .25s ease;
 }
 
-.hero-button::before {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    bottom: 0;
-
-    width: 100%;
-    height: 0;
-
-    background: #ff6a00;
-
-    z-index: -1;
-
-    transition: height .25s ease;
-}
-
 .hero-button:hover {
     transform: translateY(-4px);
 
-    color: #ffffff;
+    background: #ff6a00;
+
+    color: #fff;
 
     border-color: #ff6a00;
 
     box-shadow:
-        0 10px 25px rgba(255, 106, 0, .18);
-}
-
-.hero-button:hover::before {
-    height: 100%;
-}
-
-
-/* =========================================================
-   STUDIO IMAGE
-========================================================= */
-
-.studio-image {
-    width: min(900px, 100%);
-
-    margin: 55px auto 0;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    position: relative;
-
-    animation: studioImageIn 1s ease .55s both;
-}
-
-.studio-image img {
-    display: block;
-
-    width: min(900px, 100%);
-
-    height: auto;
-
-    max-height: 300px;
-
-    object-fit: contain;
-    object-position: center;
-
-    transition:
-        transform .5s ease,
-        filter .5s ease;
-}
-
-.studio-image:hover img {
-    transform: translateY(-5px) scale(1.015);
-
-    filter:
-        drop-shadow(0 15px 25px rgba(0, 0, 0, .10));
-}
-
-@keyframes studioImageIn {
-    from {
-        opacity: 0;
-        transform: translateY(35px) scale(.97);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+        0 10px 30px
+        rgba(255,106,0,.25);
 }
 
 
@@ -466,31 +516,39 @@ header.scrolled {
 .scroll-indicator {
     position: absolute;
 
-    bottom: 28px;
     left: 50%;
+    bottom: 28px;
 
     transform: translateX(-50%);
 
     display: flex;
     flex-direction: column;
+
     align-items: center;
+
     gap: 8px;
 
-    color: #999;
+    color: #222;
 
     font-size: 9px;
-    font-weight: 800;
+    font-weight: 900;
 
     letter-spacing: 2px;
 
-    animation: fadeUp .8s ease .9s both;
+    z-index: 6;
+
+    animation:
+        fadeUp .8s ease .7s both;
 }
 
 .scroll-wheel {
     width: 18px;
     height: 30px;
 
-    border: 1px solid #bbb;
+    border:
+        1px solid
+        rgba(0,0,0,.5);
+
     border-radius: 20px;
 
     position: relative;
@@ -507,19 +565,24 @@ header.scrolled {
     width: 3px;
     height: 6px;
 
-    transform: translateX(-50%);
+    transform:
+        translateX(-50%);
 
     border-radius: 5px;
 
     background: #ff6a00;
 
-    animation: scrollDot 1.5s ease infinite;
+    animation:
+        scrollDot 1.5s ease infinite;
 }
 
 @keyframes scrollDot {
+
     0% {
         opacity: 0;
-        transform: translate(-50%, 0);
+
+        transform:
+            translate(-50%,0);
     }
 
     30% {
@@ -528,8 +591,71 @@ header.scrolled {
 
     100% {
         opacity: 0;
-        transform: translate(-50%, 10px);
+
+        transform:
+            translate(-50%,10px);
     }
+
+}
+
+
+/* =========================================================
+   EMPTY SQUARE PATTERN
+========================================================= */
+
+.pattern-section {
+    padding:
+        100px 7vw;
+
+    background: #fafafa;
+
+    overflow: hidden;
+}
+
+.square-grid {
+    width: 100%;
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(6, minmax(70px,1fr));
+
+    gap: 15px;
+}
+
+.square {
+    aspect-ratio: 1 / 1;
+
+    border:
+        1px solid
+        #e5e5e5;
+
+    border-radius: 18px;
+
+    background: #fff;
+
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+}
+
+.square:hover {
+    transform:
+        translateY(-8px)
+        rotate(1deg);
+
+    border-color:
+        #ff6a00;
+
+    box-shadow:
+        0 0 0 1px #ff6a00,
+        0 15px 35px
+        rgba(255,106,0,.13);
 }
 
 
@@ -540,9 +666,10 @@ header.scrolled {
 .section {
     position: relative;
 
-    padding: 120px 7vw;
+    padding:
+        120px 7vw;
 
-    background: #ffffff;
+    background: #fff;
 }
 
 .section.gray {
@@ -567,7 +694,8 @@ header.scrolled {
 }
 
 .section-heading h2 {
-    font-size: clamp(38px, 6vw, 70px);
+    font-size:
+        clamp(38px,6vw,70px);
 
     line-height: .95;
 
@@ -586,62 +714,6 @@ header.scrolled {
 
 
 /* =========================================================
-   EMPTY SQUARE PATTERN
-========================================================= */
-
-.pattern-section {
-    padding: 100px 7vw;
-
-    background: #fafafa;
-
-    overflow: hidden;
-}
-
-.square-grid {
-    width: 100%;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(6, minmax(70px, 1fr));
-
-    gap: 15px;
-
-    max-width: 1200px;
-
-    margin: auto;
-}
-
-.square {
-    aspect-ratio: 1 / 1;
-
-    border: 1px solid #e5e5e5;
-
-    border-radius: 18px;
-
-    background: #ffffff;
-
-    transition:
-        transform .35s ease,
-        border-color .35s ease,
-        box-shadow .35s ease,
-        background .35s ease;
-}
-
-.square:hover {
-    transform:
-        translateY(-8px)
-        rotate(1deg);
-
-    border-color: #ff6a00;
-
-    box-shadow:
-        0 0 0 1px #ff6a00,
-        0 15px 35px rgba(255, 106, 0, .13);
-}
-
-
-/* =========================================================
    CARDS
 ========================================================= */
 
@@ -649,7 +721,7 @@ header.scrolled {
     display: grid;
 
     grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+        repeat(3,minmax(0,1fr));
 
     gap: 18px;
 }
@@ -661,10 +733,13 @@ header.scrolled {
 
     padding: 30px;
 
-    border: 1px solid #e3e3e3;
+    border:
+        1px solid
+        #e3e3e3;
+
     border-radius: 20px;
 
-    background: #ffffff;
+    background: #fff;
 
     overflow: hidden;
 
@@ -674,37 +749,16 @@ header.scrolled {
         box-shadow .35s ease;
 }
 
-.card::after {
-    content: "";
-
-    position: absolute;
-
-    width: 120px;
-    height: 120px;
-
-    right: -60px;
-    bottom: -60px;
-
-    border-radius: 50%;
-
-    background: #ff6a00;
-
-    opacity: 0;
-
-    transition: opacity .35s ease;
-}
-
 .card:hover {
-    transform: translateY(-8px);
+    transform:
+        translateY(-8px);
 
-    border-color: #ff6a00;
+    border-color:
+        #ff6a00;
 
     box-shadow:
-        0 18px 40px rgba(0, 0, 0, .08);
-}
-
-.card:hover::after {
-    opacity: .08;
+        0 18px 40px
+        rgba(0,0,0,.08);
 }
 
 .card-number {
@@ -757,24 +811,23 @@ header.scrolled {
     display: grid;
 
     grid-template-columns:
-        repeat(4, minmax(0, 1fr));
+        repeat(4,minmax(0,1fr));
 
     gap: 18px;
 }
 
 .youtube-card {
-    position: relative;
-
     min-height: 230px;
 
     padding: 28px;
 
-    border: 1px solid #e3e3e3;
+    border:
+        1px solid
+        #e3e3e3;
+
     border-radius: 20px;
 
-    background: #ffffff;
-
-    overflow: hidden;
+    background: #fff;
 
     transition:
         transform .35s ease,
@@ -783,12 +836,15 @@ header.scrolled {
 }
 
 .youtube-card:hover {
-    transform: translateY(-8px);
+    transform:
+        translateY(-8px);
 
-    border-color: #ff6a00;
+    border-color:
+        #ff6a00;
 
     box-shadow:
-        0 18px 40px rgba(0, 0, 0, .08);
+        0 18px 40px
+        rgba(0,0,0,.08);
 }
 
 .youtube-icon {
@@ -802,7 +858,8 @@ header.scrolled {
     border-radius: 12px;
 
     background: #111;
-    color: #ffffff;
+
+    color: #fff;
 
     font-size: 13px;
     font-weight: 900;
@@ -813,9 +870,12 @@ header.scrolled {
 }
 
 .youtube-card:hover .youtube-icon {
-    background: #ff6a00;
+    background:
+        #ff6a00;
 
-    transform: rotate(-5deg) scale(1.05);
+    transform:
+        rotate(-5deg)
+        scale(1.05);
 }
 
 .youtube-card h3 {
@@ -858,16 +918,15 @@ header.scrolled {
     min-height: 300px;
 
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: center;
 
     padding: 55px;
 
     border-radius: 25px;
 
-    background: #111111;
+    background: #111;
 
-    color: #ffffff;
+    color: #fff;
 
     overflow: hidden;
 }
@@ -883,13 +942,18 @@ header.scrolled {
     right: -120px;
     top: -150px;
 
-    border: 1px solid rgba(255, 106, 0, .6);
+    border:
+        1px solid
+        rgba(255,106,0,.6);
 
     border-radius: 50%;
 
     box-shadow:
-        0 0 0 40px rgba(255, 106, 0, .05),
-        0 0 0 80px rgba(255, 106, 0, .03);
+        0 0 0 40px
+        rgba(255,106,0,.05),
+
+        0 0 0 80px
+        rgba(255,106,0,.03);
 }
 
 .library-banner::after {
@@ -933,7 +997,8 @@ header.scrolled {
 .library-banner h2 {
     margin-top: 15px;
 
-    font-size: clamp(35px, 5vw, 60px);
+    font-size:
+        clamp(35px,5vw,60px);
 
     letter-spacing: -2px;
 }
@@ -947,16 +1012,18 @@ header.scrolled {
 }
 
 .library-button {
-    width: fit-content;
-
     margin-top: 25px;
 
-    padding: 13px 20px;
+    padding:
+        13px 20px;
 
-    border: 1px solid #444;
+    border:
+        1px solid
+        #444;
+
     border-radius: 10px;
 
-    background: #ffffff;
+    background: #fff;
 
     color: #111;
 
@@ -972,11 +1039,13 @@ header.scrolled {
 }
 
 .library-button:hover {
-    background: #ff6a00;
+    background:
+        #ff6a00;
 
-    color: #ffffff;
+    color: #fff;
 
-    transform: translateY(-3px);
+    transform:
+        translateY(-3px);
 }
 
 
@@ -987,7 +1056,8 @@ header.scrolled {
 .about-box {
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
     gap: 60px;
 
@@ -995,7 +1065,8 @@ header.scrolled {
 }
 
 .about-large {
-    font-size: clamp(28px, 4vw, 52px);
+    font-size:
+        clamp(28px,4vw,52px);
 
     line-height: 1;
 
@@ -1005,7 +1076,8 @@ header.scrolled {
 }
 
 .about-large span {
-    color: #ff6a00;
+    color:
+        #ff6a00;
 }
 
 .about-text {
@@ -1026,19 +1098,25 @@ header.scrolled {
 ========================================================= */
 
 footer {
-    padding: 55px 7vw;
+    padding:
+        55px 7vw;
 
-    background: #111111;
+    background:
+        #111;
 
-    color: #ffffff;
+    color:
+        #fff;
 
-    border-top: 1px solid #222;
+    border-top:
+        1px solid
+        #222;
 }
 
 .footer-inner {
     display: flex;
 
     align-items: center;
+
     justify-content: space-between;
 
     gap: 30px;
@@ -1050,11 +1128,13 @@ footer {
 }
 
 .footer-logo span {
-    color: #ff6a00;
+    color:
+        #ff6a00;
 }
 
 .footer-copy {
-    color: #777;
+    color:
+        #777;
 
     font-size: 11px;
 }
@@ -1066,16 +1146,19 @@ footer {
 }
 
 .footer-links a {
-    color: #aaa;
+    color:
+        #aaa;
 
     font-size: 11px;
     font-weight: 700;
 
-    transition: color .25s ease;
+    transition:
+        color .25s ease;
 }
 
 .footer-links a:hover {
-    color: #ff6a00;
+    color:
+        #ff6a00;
 }
 
 
@@ -1096,12 +1179,17 @@ footer {
     align-items: center;
     justify-content: center;
 
-    border: 1px solid #ddd;
+    border:
+        1px solid
+        #ddd;
+
     border-radius: 50%;
 
-    background: #ffffff;
+    background:
+        #fff;
 
-    color: #111;
+    color:
+        #111;
 
     font-size: 15px;
     font-weight: 900;
@@ -1111,7 +1199,8 @@ footer {
     z-index: 1000;
 
     box-shadow:
-        0 8px 25px rgba(0,0,0,.12);
+        0 8px 25px
+        rgba(0,0,0,.12);
 
     transition:
         transform .25s ease,
@@ -1120,11 +1209,14 @@ footer {
 }
 
 .info-button:hover {
-    transform: scale(1.08);
+    transform:
+        scale(1.08);
 
-    background: #ff6a00;
+    background:
+        #ff6a00;
 
-    color: #ffffff;
+    color:
+        #fff;
 }
 
 .info-box {
@@ -1137,17 +1229,23 @@ footer {
 
     padding: 24px;
 
-    border: 1px solid #ddd;
+    border:
+        1px solid
+        #ddd;
+
     border-radius: 18px;
 
-    background: #ffffff;
+    background:
+        #fff;
 
     box-shadow:
-        0 20px 50px rgba(0,0,0,.15);
+        0 20px 50px
+        rgba(0,0,0,.15);
 
     z-index: 999;
 
     opacity: 0;
+
     visibility: hidden;
 
     transform:
@@ -1186,13 +1284,14 @@ footer {
 
 
 /* =========================================================
-   REVEAL ANIMATIONS
+   REVEAL
 ========================================================= */
 
 .reveal {
     opacity: 0;
 
-    transform: translateY(35px);
+    transform:
+        translateY(35px);
 
     transition:
         opacity .7s ease,
@@ -1202,10 +1301,12 @@ footer {
 .reveal.visible {
     opacity: 1;
 
-    transform: translateY(0);
+    transform:
+        translateY(0);
 }
 
 @keyframes fadeUp {
+
     from {
         opacity: 0;
 
@@ -1219,6 +1320,7 @@ footer {
         transform:
             translateY(0);
     }
+
 }
 
 
@@ -1230,22 +1332,23 @@ footer {
 
     .square-grid {
         grid-template-columns:
-            repeat(4, minmax(70px, 1fr));
+            repeat(4,minmax(70px,1fr));
     }
 
     .cards {
         grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+            repeat(2,minmax(0,1fr));
     }
 
     .youtube-grid {
         grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+            repeat(2,minmax(0,1fr));
     }
 
     .about-box {
         grid-template-columns: 1fr;
     }
+
 }
 
 
@@ -1254,7 +1357,8 @@ footer {
     header {
         height: 68px;
 
-        padding: 0 20px;
+        padding:
+            0 20px;
     }
 
     header.scrolled {
@@ -1278,13 +1382,12 @@ footer {
 
     .hero {
         padding:
-            110px
-            20px
-            110px;
+            110px 20px 110px;
     }
 
     .hero h1 {
-        letter-spacing: -4px;
+        letter-spacing:
+            -4px;
     }
 
     .hero-description {
@@ -1299,23 +1402,14 @@ footer {
         min-width: 95px;
     }
 
-    .studio-image {
-        margin-top: 40px;
-    }
-
-    .studio-image img {
-        max-height: 210px;
-    }
-
     .pattern-section {
         padding:
-            70px
-            55px;
+            70px 55px;
     }
 
     .square-grid {
         grid-template-columns:
-            repeat(3, minmax(55px, 1fr));
+            repeat(3,minmax(55px,1fr));
 
         gap: 10px;
     }
@@ -1326,8 +1420,7 @@ footer {
 
     .section {
         padding:
-            80px
-            25px;
+            80px 25px;
     }
 
     .cards {
@@ -1354,8 +1447,10 @@ footer {
         right: 15px;
         bottom: 75px;
 
-        width: calc(100% - 30px);
+        width:
+            calc(100% - 30px);
     }
+
 }
 
 
@@ -1373,15 +1468,16 @@ footer {
         min-width: 90px;
 
         padding:
-            12px
-            14px;
+            12px 14px;
     }
 
     .square-grid {
         grid-template-columns:
-            repeat(3, 1fr);
+            repeat(3,1fr);
     }
+
 }
+
 </style>
 </head>
 
@@ -1419,7 +1515,7 @@ footer {
 
 
 <!-- =======================================================
-     LEFT SIDE BAR
+     LEFT BAR
 ======================================================= -->
 
 <div class="side-bar">
@@ -1483,10 +1579,23 @@ footer {
     class="hero"
     id="home">
 
+
+    <!-- ACTUAL BACKGROUND -->
+
+    <div class="hero-background"></div>
+
+
+    <!-- GRID OVER BACKGROUND -->
+
     <div class="hero-grid"></div>
+
+
+    <!-- ORANGE LIGHT -->
 
     <div class="hero-orb"></div>
 
+
+    <!-- EVERYTHING BELOW IS IN FRONT -->
 
     <div class="hero-content">
 
@@ -1506,7 +1615,7 @@ footer {
         </p>
 
 
-        <!-- EXACTLY 6 MAIN BUTTONS -->
+        <!-- EXACTLY SIX BUTTONS -->
 
         <div class="hero-buttons">
 
@@ -1548,21 +1657,10 @@ footer {
 
         </div>
 
-
-        <!-- CIPHANON STUDIOS IMAGE -->
-
-        <div class="studio-image">
-
-            <img
-                src="CiphAnon Studios.png"
-                alt="CiphAnon Studios">
-
-        </div>
-
     </div>
 
 
-    <!-- SCROLL INDICATOR -->
+    <!-- SCROLL -->
 
     <div class="scroll-indicator">
 
@@ -1882,7 +1980,7 @@ footer {
 
 
 <!-- =======================================================
-     VIDEOS / YOUTUBE
+     YOUTUBE
 ======================================================= -->
 
 <section
@@ -1924,7 +2022,7 @@ footer {
                 Videos and content from CiphAnon Studios.
             </p>
 
-            <a href="#" target="_blank">
+            <a href="#">
                 YOUTUBE →
             </a>
 
@@ -1945,7 +2043,7 @@ footer {
                 More videos, projects and content.
             </p>
 
-            <a href="#" target="_blank">
+            <a href="#">
                 YOUTUBE →
             </a>
 
@@ -1966,7 +2064,7 @@ footer {
                 Another side of CiphAnon Studios.
             </p>
 
-            <a href="#" target="_blank">
+            <a href="#">
                 YOUTUBE →
             </a>
 
@@ -1987,7 +2085,7 @@ footer {
                 More content and future uploads.
             </p>
 
-            <a href="#" target="_blank">
+            <a href="#">
                 YOUTUBE →
             </a>
 
@@ -2075,10 +2173,10 @@ footer {
         <div class="about-text reveal">
 
             <p>
-                CiphAnon Studios is a personal creative
-                studio focused on building games,
-                websites, tools, scripts, videos and
-                experimental projects.
+                CiphAnon Studios is a creative studio
+                focused on building games, websites,
+                tools, scripts, videos and experimental
+                projects.
             </p>
 
             <p>
@@ -2096,7 +2194,7 @@ footer {
 
 
 <!-- =======================================================
-     CONTACT / EXTRA
+     MORE
 ======================================================= -->
 
 <section
@@ -2165,7 +2263,7 @@ footer {
 
 
 <!-- =======================================================
-     INFO BUTTON
+     INFO
 ======================================================= -->
 
 <button
@@ -2203,7 +2301,8 @@ footer {
 
 function go(id) {
 
-    const element = document.getElementById(id);
+    const element =
+        document.getElementById(id);
 
     if (!element) return;
 
@@ -2211,14 +2310,16 @@ function go(id) {
         behavior: "smooth",
         block: "start"
     });
+
 }
 
 
 /* =========================================================
-   HEADER SCROLL EFFECT
+   HEADER
 ========================================================= */
 
-const header = document.getElementById("header");
+const header =
+    document.getElementById("header");
 
 window.addEventListener("scroll", () => {
 
@@ -2236,7 +2337,7 @@ window.addEventListener("scroll", () => {
 
 
 /* =========================================================
-   REVEAL ON SCROLL
+   REVEAL
 ========================================================= */
 
 const revealElements =
@@ -2250,11 +2351,12 @@ const revealObserver =
 
                 if (entry.isIntersecting) {
 
-                    entry.target.classList.add("visible");
+                    entry.target
+                        .classList
+                        .add("visible");
 
-                    revealObserver.unobserve(
-                        entry.target
-                    );
+                    revealObserver
+                        .unobserve(entry.target);
 
                 }
 
@@ -2307,7 +2409,7 @@ infoButton.addEventListener("click", () => {
 });
 
 
-document.addEventListener("click", (event) => {
+document.addEventListener("click", event => {
 
     if (
         !infoBox.contains(event.target) &&
@@ -2322,12 +2424,11 @@ document.addEventListener("click", (event) => {
 
 
 /* =========================================================
-   ACTIVE SIDE BAR BUTTON
+   ACTIVE SIDE BUTTON
 ========================================================= */
 
-const sections = document.querySelectorAll(
-    "section[id]"
-);
+const sections =
+    document.querySelectorAll("section[id]");
 
 const sideButtons =
     document.querySelectorAll(".side-button");
@@ -2342,7 +2443,9 @@ window.addEventListener("scroll", () => {
         const sectionTop =
             section.offsetTop - 250;
 
-        if (window.scrollY >= sectionTop) {
+        if (
+            window.scrollY >= sectionTop
+        ) {
 
             current = section.id;
 
@@ -2373,37 +2476,6 @@ window.addEventListener("scroll", () => {
     }
 
 });
-
-
-/* =========================================================
-   CARD MICRO ANIMATION
-========================================================= */
-
-document
-    .querySelectorAll(".card, .youtube-card")
-    .forEach((card, index) => {
-
-        card.style.transitionDelay =
-            `${(index % 3) * 60}ms`;
-
-    });
-
-
-/* =========================================================
-   PREVENT PLACEHOLDER YOUTUBE LINKS
-========================================================= */
-
-document
-    .querySelectorAll('.youtube-card a[href="#"]')
-    .forEach(link => {
-
-        link.addEventListener("click", event => {
-
-            event.preventDefault();
-
-        });
-
-    });
 
 </script>
 
