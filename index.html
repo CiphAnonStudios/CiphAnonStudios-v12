@@ -6,239 +6,48 @@
 <title>CiphAnon Studios</title>
 </head>
 
-<body style="
-margin:0;
-background:#000;
-color:#fff;
-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-overflow:hidden;
-font-family:Arial,sans-serif;
-">
+<body style="margin:0; background:black; color:white; height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden;">
 
-<div id="screen" style="
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:30px;
-">
+<div id="screen">
 
-    <div
-        id="counter"
-        style="
-        font-size:70px;
-        font-weight:bold;
-        letter-spacing:5px;
-        position:relative;
-        overflow:hidden;
-        height:90px;
-        min-width:240px;
-        text-align:center;
-        "
-    >
-        <div id="number">000%</div>
-    </div>
-
+    <div id="counter">000%</div>
 
     <button
         id="launch"
         onclick="launch()"
-        style="
-        display:none;
-        padding:12px 28px;
-        font-size:16px;
-        cursor:pointer;
-        "
+        style="display:none;"
     >
         LAUNCH
     </button>
 
 </div>
 
-
 <script>
 
 let number = 0;
 
-const numberElement =
-    document.getElementById("number");
+const counter =
+    document.getElementById("counter");
 
 const launchButton =
     document.getElementById("launch");
 
 
-function animateNumber(value) {
-
-    const oldNumber =
-        numberElement;
-
-    const newNumber =
-        document.createElement("div");
-
-
-    newNumber.textContent =
-        String(value).padStart(3, "0") + "%";
-
-
-    newNumber.style.position =
-        "absolute";
-
-    newNumber.style.left =
-        "0";
-
-    newNumber.style.right =
-        "0";
-
-    newNumber.style.top =
-        "90px";
-
-    newNumber.style.opacity =
-        "0";
-
-    newNumber.style.transform =
-        "scale(1.25)";
-
-
-    numberElement.parentElement.appendChild(
-        newNumber
-    );
-
-
-    let start = null;
-
-    const duration = 120;
-
-
-    function animation(time) {
-
-        if (!start) start = time;
-
-        const progress =
-            Math.min(
-                (time - start) / duration,
-                1
-            );
-
-
-        const eased =
-            1 - Math.pow(1 - progress, 3);
-
-
-        oldNumber.style.transform =
-            `translateY(${-90 * eased}px) scale(${1 - .15 * eased})`;
-
-        oldNumber.style.opacity =
-            String(1 - eased);
-
-
-        newNumber.style.transform =
-            `translateY(${-90 * eased}px) scale(${1.25 - .25 * eased})`;
-
-        newNumber.style.opacity =
-            String(eased);
-
-
-        if (progress < 1) {
-
-            requestAnimationFrame(animation);
-
-        } else {
-
-            oldNumber.remove();
-
-            newNumber.id =
-                "number";
-
-        }
-
-    }
-
-
-    requestAnimationFrame(animation);
-
-}
-
-
-function countUp() {
+function count() {
 
     if (number <= 100) {
 
-        animateNumber(number);
+        counter.textContent =
+            String(number).padStart(3, "0") + "%";
 
         number++;
 
-        let delay = 38;
-
-        if (number > 90) {
-            delay = 55;
-        }
-
-        setTimeout(
-            countUp,
-            delay
-        );
+        setTimeout(count, 35);
 
     } else {
 
-        setTimeout(() => {
-
-            launchButton.style.display =
-                "block";
-
-            launchButton.style.opacity =
-                "0";
-
-            launchButton.style.transform =
-                "translateY(15px)";
-
-
-            let start = null;
-
-
-            function showLaunch(time) {
-
-                if (!start) start = time;
-
-                const progress =
-                    Math.min(
-                        (time - start) / 500,
-                        1
-                    );
-
-
-                const eased =
-                    1 -
-                    Math.pow(
-                        1 - progress,
-                        3
-                    );
-
-
-                launchButton.style.opacity =
-                    eased;
-
-                launchButton.style.transform =
-                    `translateY(${15 - 15 * eased}px)`;
-
-
-                if (progress < 1) {
-
-                    requestAnimationFrame(
-                        showLaunch
-                    );
-
-                }
-
-            }
-
-
-            requestAnimationFrame(
-                showLaunch
-            );
-
-        }, 300);
+        launchButton.style.display =
+            "block";
 
     }
 
@@ -253,7 +62,7 @@ function launch() {
 }
 
 
-countUp();
+count();
 
 </script>
 
