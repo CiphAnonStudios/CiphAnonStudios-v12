@@ -6,100 +6,48 @@
 <title>CiphAnon Studios</title>
 </head>
 
-<body style="margin:0; background:black; color:white; height:100vh; display:flex; align-items:center; justify-content:center; overflow:hidden;">
-
+<body style="
+margin:0;
+background:black;
+color:white;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+font-family:Arial,sans-serif;
+">
+<h1>Best Stydent Education Helper</h1>
 <div id="screen">
-<h1>Best School Learning Tool</h1>
-    <div id="counter">000%</div>
 
     <button
         id="launch"
         onclick="launch()"
-        style="display:none;"
+        style="
+        display:none;
+        padding:10px 25px;
+        cursor:pointer;
+        "
     >
-        Ready To Load School Stuff
+        LAUNCH
     </button>
 
 </div>
 
 <script>
 
-let number = 0;
+setTimeout(() => {
 
-const counter =
-    document.getElementById("counter");
+    document.getElementById("launch").style.display = "block";
 
-const launchButton =
-    document.getElementById("launch");
-
-
-function count() {
-
-    if (number <= 100) {
-
-        counter.textContent =
-            String(number).padStart(3, "0") + "%";
-
-        number++;
-
-        setTimeout(count, 35);
-
-    } else {
-
-        launchButton.style.display = "block";
-
-    }
-
-}
+}, 3000);
 
 
 function launch() {
 
-    const page = window.open("about:blank", "_blank");
-
-    if (!page) {
-        alert("Please allow pop-ups for this site.");
-        return;
-    }
-
-    page.document.open();
-
-    page.document.write(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>CiphAnon Studios</title>
-            <style>
-                html, body {
-                    margin: 0;
-                    width: 100%;
-                    height: 100%;
-                    overflow: hidden;
-                    background: black;
-                }
-
-                iframe {
-                    width: 100%;
-                    height: 100%;
-                    border: none;
-                }
-            </style>
-        </head>
-
-        <body>
-
-            <iframe src="home.html"></iframe>
-
-        </body>
-        </html>
-    `);
-
-    page.document.close();
+    window.location.href = "home.html";
 
 }
-
-
-count();
 
 </script>
 
