@@ -7,10 +7,15 @@
 <title>CiphAnon Studios</title>
 
 <style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 html {
@@ -20,231 +25,432 @@ html {
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: #f7f7f7;
-    color: #151515;
+    color: #111;
+    overflow-x: hidden;
 }
 
-/* =========================
+button,
+a {
+    font-family: inherit;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+body {
+    opacity: 0;
+    animation: pageLoad .8s ease forwards;
+}
+
+@keyframes pageLoad {
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
    HEADER
-========================= */
+========================================================= */
 
 header {
-    height: 70px;
-    width: 100%;
 
     position: fixed;
+
     top: 0;
     left: 0;
 
+    width: 100%;
+    height: 72px;
+
+    background: rgba(255,255,255,.88);
+
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid #e9e9e9;
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     padding: 0 42px;
 
-    background: rgba(255,255,255,.9);
-    backdrop-filter: blur(12px);
+    z-index: 1000;
 
-    border-bottom: 1px solid #e8e8e8;
-
-    z-index: 100;
+    transition:
+        height .3s ease,
+        box-shadow .3s ease;
 }
+
+header.scrolled {
+
+    height: 62px;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.06);
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
 
 .logo {
-    font-size: 18px;
-    font-weight: 700;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 17px;
+
+    font-weight: 800;
+
+    letter-spacing: -.5px;
 }
 
-.logo span {
-    color: #f36b21;
+.logo-dot {
+
+    width: 10px;
+    height: 10px;
+
+    background: #ff6900;
+
+    border-radius: 50%;
+
+    animation: dotPulse 2s infinite;
 }
+
+@keyframes dotPulse {
+
+    0%,100% {
+        box-shadow: 0 0 0 rgba(255,105,0,0);
+    }
+
+    50% {
+        box-shadow:
+            0 0 18px rgba(255,105,0,.45);
+    }
+}
+
+
+/* =========================================================
+   NAV
+========================================================= */
 
 nav {
+
     display: flex;
-    gap: 8px;
+
+    gap: 28px;
 }
 
-nav button {
-    border: none;
-    background: transparent;
-
-    padding: 9px 14px;
-
-    color: #555;
-
-    border-radius: 7px;
-
-    cursor: pointer;
+nav a {
 
     font-size: 13px;
 
-    transition: .2s;
+    color: #666;
+
+    position: relative;
+
+    transition: .25s ease;
 }
 
-nav button:hover {
-    background: #f0f0f0;
+nav a:hover {
+
     color: #111;
 }
 
-/* =========================
-   HERO
-========================= */
+nav a::after {
 
-.hero {
-    min-height: 100vh;
+    content: "";
 
-    padding: 110px 7vw 70px;
+    position: absolute;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    left: 50%;
 
-    text-align: center;
+    bottom: -8px;
+
+    width: 0;
+
+    height: 2px;
+
+    background: #ff6900;
+
+    transform: translateX(-50%);
+
+    transition: .25s ease;
 }
 
-/* =========================
-   BANNER
-========================= */
+nav a:hover::after {
 
-.banner {
     width: 100%;
-    max-width: 1150px;
-    height: 300px;
+}
 
-    position: relative;
 
-    overflow: hidden;
+/* =========================================================
+   LEFT BAR
+========================================================= */
 
-    border-radius: 18px;
+.left-bar {
 
-    background: #eeeeee;
+    position: fixed;
 
-    border: 1px solid #dfdfdf;
+    left: 18px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
 
     display: flex;
-    align-items: center;
-    justify-content: center;
 
-    animation: appear .7s ease;
+    flex-direction: column;
+
+    gap: 7px;
+
+    z-index: 800;
 }
 
-/* simple animated background */
+.left-bar button {
 
-.banner::before {
-    content: "";
+    width: 39px;
 
-    position: absolute;
+    height: 39px;
 
-    width: 450px;
-    height: 450px;
+    background: rgba(255,255,255,.92);
 
-    border-radius: 50%;
+    border: 1px solid #dedede;
 
-    background: #e4e4e4;
+    border-radius: 8px;
 
-    left: -150px;
-    top: -180px;
+    cursor: pointer;
 
-    animation: moveCircle 9s ease-in-out infinite;
-}
+    font-size: 10px;
 
-.banner::after {
-    content: "";
-
-    position: absolute;
-
-    width: 300px;
-    height: 300px;
-
-    border-radius: 50%;
-
-    background: #f1f1f1;
-
-    right: -80px;
-    bottom: -150px;
-
-    animation: moveCircle2 8s ease-in-out infinite;
-}
-
-@keyframes moveCircle {
-    0%,100% {
-        transform: translate(0,0);
-    }
-
-    50% {
-        transform: translate(100px,40px);
-    }
-}
-
-@keyframes moveCircle2 {
-    0%,100% {
-        transform: translate(0,0);
-    }
-
-    50% {
-        transform: translate(-70px,-40px);
-    }
-}
-
-.banner-content {
-    position: relative;
-    z-index: 2;
-}
-
-.banner-content h2 {
-    font-size: clamp(40px, 6vw, 70px);
-    font-weight: 800;
-    letter-spacing: -3px;
-}
-
-.banner-content h2 span {
-    color: #f36b21;
-}
-
-.banner-content p {
-    margin-top: 12px;
+    font-weight: bold;
 
     color: #777;
 
-    font-size: 12px;
-    letter-spacing: 2px;
+    transition:
+        width .25s ease,
+        color .25s ease,
+        border-color .25s ease,
+        transform .25s ease,
+        box-shadow .25s ease;
 }
 
-/* =========================
-   TITLE
-========================= */
+.left-bar button:hover {
+
+    width: 54px;
+
+    color: #ff6900;
+
+    border-color: #ff6900;
+
+    transform: translateX(3px);
+
+    box-shadow:
+        0 0 20px rgba(255,105,0,.14);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+
+    min-height: 100vh;
+
+    background: #fff;
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 120px 25px 100px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   HERO BACKGROUND
+========================================================= */
+
+.hero-grid {
+
+    position: absolute;
+
+    inset: 0;
+
+    opacity: .45;
+
+    background-image:
+
+        linear-gradient(#eee 1px, transparent 1px),
+        linear-gradient(90deg,#eee 1px,transparent 1px);
+
+    background-size: 70px 70px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 85%
+        );
+
+    animation: gridMove 15s linear infinite;
+}
+
+@keyframes gridMove {
+
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(70px);
+    }
+}
+
+
+/* orange light */
+
+.hero-orb {
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    border-radius: 50%;
+
+    background: rgba(255,105,0,.055);
+
+    filter: blur(80px);
+
+    animation: orbMove 8s ease-in-out infinite;
+}
+
+@keyframes orbMove {
+
+    0%,100% {
+        transform: translate(-30px,-20px);
+    }
+
+    50% {
+        transform: translate(40px,30px);
+    }
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 900px;
+}
+
+.hero-label {
+
+    color: #ff6900;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 20px;
+
+    animation: heroIn .8s ease .1s both;
+}
 
 .hero h1 {
-    margin-top: 48px;
 
-    font-size: clamp(38px, 6vw, 62px);
+    font-size: clamp(48px,8vw,88px);
 
-    letter-spacing: -2px;
+    line-height: .95;
 
-    font-weight: 750;
+    letter-spacing: -5px;
 
-    animation: rise .7s .1s both;
+    font-weight: 850;
+
+    margin-bottom: 25px;
+
+    animation: heroIn .8s ease .2s both;
 }
 
 .hero h1 span {
-    color: #f36b21;
+
+    color: #ff6900;
 }
 
 .hero-description {
-    margin-top: 12px;
+
+    max-width: 580px;
+
+    margin: auto;
 
     color: #777;
 
-    font-size: 14px;
+    font-size: 15px;
 
-    animation: rise .7s .2s both;
+    line-height: 1.7;
+
+    animation: heroIn .8s ease .3s both;
 }
 
-/* =========================
+@keyframes heroIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(30px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+    }
+}
+
+
+/* =========================================================
    SIX BUTTONS
-========================= */
+========================================================= */
 
 .hero-buttons {
-    margin-top: 30px;
 
     display: flex;
 
@@ -254,204 +460,496 @@ nav button:hover {
 
     gap: 9px;
 
-    animation: rise .7s .3s both;
+    margin-top: 36px;
+
+    animation: heroIn .8s ease .45s both;
 }
 
-.hero-buttons button {
-    min-width: 110px;
+.hero-button {
 
-    padding: 12px 18px;
+    padding: 13px 21px;
+
+    background: #fff;
+
+    border: 1px solid #dcdcdc;
 
     border-radius: 8px;
 
-    border: 1px solid #dedede;
-
-    background: white;
-
-    color: #444;
+    color: #222;
 
     cursor: pointer;
 
-    font-size: 12px;
-    font-weight: 600;
-
-    transition: .25s;
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease,
+        color .25s ease;
 }
 
-.hero-buttons button:hover {
-    transform: translateY(-3px);
+.hero-button:hover {
 
-    border-color: #f36b21;
+    transform: translateY(-5px);
 
-    color: #f36b21;
+    color: #ff6900;
+
+    border-color: #ff6900;
 
     box-shadow:
-        0 8px 20px rgba(0,0,0,.06);
+        0 12px 28px rgba(255,105,0,.12);
 }
 
-.hero-buttons button:first-child {
-    background: #151515;
+.hero-button:first-child {
+
+    background: #111;
+
+    border-color: #111;
+
     color: white;
-    border-color: #151515;
 }
 
-.hero-buttons button:first-child:hover {
-    background: #f36b21;
-    border-color: #f36b21;
+.hero-button:first-child:hover {
+
+    background: #ff6900;
+
+    border-color: #ff6900;
 }
 
-/* =========================
+
+/* =========================================================
    SCROLL
-========================= */
+========================================================= */
 
-.scroll {
-    margin-top: 55px;
+.scroll-indicator {
 
-    color: #999;
+    position: absolute;
 
-    font-size: 10px;
+    bottom: 27px;
 
-    letter-spacing: 2px;
+    left: 50%;
 
-    animation: bob 2s infinite;
+    transform: translateX(-50%);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color: #aaa;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
 }
 
-.scroll span {
-    display: block;
+.scroll-wheel {
 
-    margin-top: 7px;
+    width: 18px;
 
-    color: #f36b21;
+    height: 30px;
 
-    font-size: 18px;
-}
-
-@keyframes bob {
-    0%,100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(5px);
-    }
-}
-
-/* =========================
-   SIDE PANEL
-========================= */
-
-.side-panel {
-    position: fixed;
-
-    left: 20px;
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    width: 48px;
-
-    padding: 5px;
-
-    background: white;
-
-    border: 1px solid #e1e1e1;
+    border: 1px solid #ccc;
 
     border-radius: 12px;
 
-    box-shadow: 0 8px 30px rgba(0,0,0,.07);
-
-    z-index: 90;
+    position: relative;
 }
 
-.side-panel button {
-    width: 36px;
-    height: 36px;
+.scroll-wheel::after {
 
-    border: none;
+    content: "";
 
-    background: transparent;
+    position: absolute;
 
-    color: #777;
+    left: 50%;
 
-    border-radius: 8px;
+    top: 5px;
 
-    cursor: pointer;
+    width: 2px;
 
-    transition: .2s;
+    height: 6px;
 
-    font-size: 12px;
+    background: #ff6900;
+
+    transform: translateX(-50%);
+
+    border-radius: 2px;
+
+    animation: wheelMove 1.7s infinite;
 }
 
-.side-panel button:hover {
-    background: #fff1e8;
+@keyframes wheelMove {
 
-    color: #f36b21;
+    0% {
+        opacity: 0;
+        transform: translate(-50%,0);
+    }
 
-    transform: translateX(3px);
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%,11px);
+    }
 }
 
-/* =========================
-   CONTENT
-========================= */
 
-.content {
-    padding: 100px 7vw 120px;
+/* =========================================================
+   PATTERN AREA
+========================================================= */
 
-    background: white;
+.pattern-section {
 
-    border-top: 1px solid #e8e8e8;
+    background: #f7f7f7;
+
+    padding: 100px 7% 120px;
+
+    border-top: 1px solid #eee;
+
+    border-bottom: 1px solid #eee;
+
+    position: relative;
 }
 
-.heading {
-    max-width: 1150px;
+.pattern-title {
 
-    margin: 0 auto 40px;
+    text-align: center;
+
+    margin-bottom: 45px;
+
+    opacity: 0;
+
+    transform: translateY(25px);
+
+    transition: .7s ease;
 }
 
-.heading h2 {
-    font-size: 38px;
+.pattern-title.show {
 
-    letter-spacing: -1.5px;
+    opacity: 1;
+
+    transform: translateY(0);
 }
 
-.heading p {
-    margin-top: 8px;
+.pattern-title h2 {
+
+    font-size: 34px;
+
+    letter-spacing: -1px;
+
+    margin-bottom: 8px;
+}
+
+.pattern-title p {
 
     color: #888;
 
     font-size: 13px;
 }
 
-/* =========================
-   BOXES
-========================= */
 
-.grid {
-    max-width: 1150px;
+/* =========================================================
+   SQUARE PATTERN
+========================================================= */
+
+.square-grid {
+
+    max-width: 1250px;
 
     margin: auto;
 
     display: grid;
 
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns:
+        repeat(6, 1fr);
+
+    gap: 13px;
+}
+
+
+/* EMPTY SQUARE */
+
+.square {
+
+    aspect-ratio: 1 / 1;
+
+    border: 1px solid #dedede;
+
+    background: #fff;
+
+    border-radius: 14px;
+
+    position: relative;
+
+    cursor: pointer;
+
+    opacity: 0;
+
+    transform:
+        scale(.85)
+        translateY(20px);
+
+    transition:
+        opacity .6s ease,
+        transform .6s ease,
+        border-color .3s ease,
+        box-shadow .3s ease,
+        background .3s ease;
+}
+
+.square.show {
+
+    opacity: 1;
+
+    transform:
+        scale(1)
+        translateY(0);
+}
+
+.square:hover {
+
+    border-color: #ff6900;
+
+    background: #fff;
+
+    box-shadow:
+        0 0 0 1px #ff6900,
+        0 0 25px rgba(255,105,0,.18);
+
+    transform:
+        translateY(-6px)
+        scale(1.025);
+}
+
+
+/* small hover center */
+
+.square::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 5px;
+
+    height: 5px;
+
+    border-radius: 50%;
+
+    background: #ff6900;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%)
+        scale(0);
+
+    transition: .3s ease;
+}
+
+.square:hover::before {
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.content {
+
+    max-width: 1400px;
+
+    margin: auto;
+
+    padding: 110px 7%;
+}
+
+.section-heading {
+
+    margin-bottom: 40px;
+
+    opacity: 0;
+
+    transform: translateY(25px);
+
+    transition: .7s ease;
+}
+
+.section-heading.show {
+
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+.section-heading small {
+
+    color: #ff6900;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    font-weight: bold;
+}
+
+.section-heading h2 {
+
+    font-size: 38px;
+
+    letter-spacing: -1.5px;
+
+    margin-top: 8px;
+}
+
+
+/* =========================================================
+   CONTENT CARDS
+========================================================= */
+
+.content-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 18px;
+}
+
+.content-card {
+
+    min-height: 260px;
+
+    padding: 28px;
+
+    background: #fff;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 17px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    transform: translateY(30px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+.content-card.show {
+
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+.content-card:hover {
+
+    transform:
+        translateY(-7px);
+
+    border-color: #ff6900;
+
+    box-shadow:
+        0 18px 40px rgba(0,0,0,.06),
+        0 0 25px rgba(255,105,0,.07);
+}
+
+.card-number {
+
+    color: #ff6900;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    margin-bottom: 45px;
+}
+
+.content-card h3 {
+
+    font-size: 21px;
+
+    margin-bottom: 9px;
+}
+
+.content-card p {
+
+    color: #777;
+
+    font-size: 13px;
+
+    line-height: 1.65;
+}
+
+.card-arrow {
+
+    position: absolute;
+
+    right: 25px;
+
+    bottom: 24px;
+
+    color: #aaa;
+
+    font-size: 19px;
+
+    transition: .25s ease;
+}
+
+.content-card:hover .card-arrow {
+
+    color: #ff6900;
+
+    transform:
+        translateX(5px);
+}
+
+
+/* =========================================================
+   YOUTUBE
+========================================================= */
+
+.youtube {
+
+    margin-top: 110px;
+}
+
+.youtube-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
 
     gap: 15px;
 }
 
-.box {
-    min-height: 220px;
+.youtube-card {
 
-    position: relative;
+    background: #fff;
 
-    padding: 22px;
+    border: 1px solid #e5e5e5;
 
-    background: #f8f8f8;
-
-    border: 1px solid #e1e1e1;
-
-    border-radius: 15px;
-
-    cursor: pointer;
+    border-radius: 14px;
 
     overflow: hidden;
 
@@ -461,227 +959,264 @@ nav button:hover {
         box-shadow .3s ease;
 }
 
-.box:hover {
-    transform: translateY(-6px);
+.youtube-card:hover {
 
-    border-color: #f36b21;
+    transform:
+        translateY(-6px);
+
+    border-color: #ff6900;
 
     box-shadow:
-        0 10px 35px rgba(0,0,0,.08),
-        0 0 18px rgba(243,107,33,.1);
+        0 15px 35px rgba(0,0,0,.06);
 }
 
-.box-number {
-    font-size: 10px;
+.youtube-image {
 
-    color: #aaa;
+    height: 145px;
 
-    letter-spacing: 1px;
-}
-
-.box h3 {
-    position: absolute;
-
-    left: 22px;
-    bottom: 48px;
-
-    font-size: 21px;
-
-    font-weight: 700;
-}
-
-.box p {
-    position: absolute;
-
-    left: 22px;
-    bottom: 22px;
-
-    color: #999;
-
-    font-size: 11px;
-}
-
-.box-arrow {
-    position: absolute;
-
-    top: 18px;
-    right: 18px;
-
-    color: #aaa;
-
-    transition: .25s;
-}
-
-.box:hover .box-arrow {
-    color: #f36b21;
-
-    transform: translate(3px,-3px);
-}
-
-/* larger boxes */
-
-.box.large {
-    grid-column: span 2;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    padding: 55px 7vw;
-
-    background: #151515;
-
-    color: white;
-}
-
-.footer {
-    max-width: 1150px;
-
-    margin: auto;
+    background: #eee;
 
     display: flex;
 
     align-items: center;
 
-    justify-content: space-between;
+    justify-content: center;
+
+    color: #aaa;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
 }
 
-.footer-logo {
-    font-size: 18px;
+.youtube-info {
 
-    font-weight: 700;
+    padding: 17px;
 }
 
-.footer-logo span {
-    color: #f36b21;
+.youtube-info h3 {
+
+    font-size: 14px;
+
+    margin-bottom: 5px;
 }
 
-.footer p {
-    margin-top: 7px;
-
-    color: #777;
+.youtube-info p {
 
     font-size: 11px;
-}
-
-.footer-buttons {
-    display: flex;
-    gap: 8px;
-}
-
-.footer-buttons button {
-    border: 1px solid #333;
-
-    background: transparent;
 
     color: #888;
-
-    padding: 9px 13px;
-
-    border-radius: 7px;
-
-    cursor: pointer;
-
-    font-size: 11px;
-
-    transition: .2s;
 }
 
-.footer-buttons button:hover {
-    color: white;
 
-    border-color: #f36b21;
-}
+/* =========================================================
+   SCRIPT LIBRARY
+========================================================= */
 
-/* =========================
-   INFO
-========================= */
+.library {
 
-.info-button {
-    position: fixed;
+    margin-top: 110px;
 
-    right: 22px;
-    bottom: 22px;
+    border: 1px solid #e4e4e4;
 
-    width: 46px;
-    height: 46px;
+    border-radius: 18px;
 
-    border-radius: 50%;
+    padding: 45px;
 
-    border: 1px solid #ddd;
+    display: flex;
 
-    background: white;
+    justify-content: space-between;
 
-    color: #555;
+    align-items: center;
 
-    cursor: pointer;
+    gap: 25px;
 
-    box-shadow: 0 5px 20px rgba(0,0,0,.1);
-
-    transition: .25s;
-
-    z-index: 200;
-}
-
-.info-button:hover {
-    background: #f36b21;
-
-    color: white;
-
-    border-color: #f36b21;
-
-    transform: rotate(10deg);
-}
-
-.info-box {
-    position: fixed;
-
-    right: 22px;
-    bottom: 78px;
-
-    width: 300px;
-
-    padding: 22px;
-
-    background: white;
-
-    border: 1px solid #ddd;
-
-    border-radius: 14px;
-
-    box-shadow: 0 15px 50px rgba(0,0,0,.13);
+    background: #fff;
 
     opacity: 0;
 
-    transform: translateY(12px);
+    transform: translateY(25px);
 
-    pointer-events: none;
-
-    transition: .25s;
-
-    z-index: 190;
+    transition: .7s ease;
 }
 
-.info-box.open {
+.library.show {
+
     opacity: 1;
 
     transform: translateY(0);
+}
 
-    pointer-events: auto;
+.library h2 {
+
+    font-size: 27px;
+
+    margin-bottom: 6px;
+}
+
+.library p {
+
+    color: #888;
+
+    font-size: 13px;
+}
+
+.library button {
+
+    border: none;
+
+    background: #111;
+
+    color: #fff;
+
+    padding: 13px 22px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: .25s ease;
+}
+
+.library button:hover {
+
+    background: #ff6900;
+
+    transform:
+        translateY(-3px);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+
+    border-top: 1px solid #e7e7e7;
+
+    background: #fff;
+
+    padding: 35px 7%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    font-size: 11px;
+
+    color: #888;
+}
+
+.footer-logo {
+
+    color: #111;
+
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   INFO
+========================================================= */
+
+.info-button {
+
+    position: fixed;
+
+    right: 24px;
+
+    bottom: 24px;
+
+    width: 45px;
+
+    height: 45px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #111;
+
+    color: #fff;
+
+    cursor: pointer;
+
+    z-index: 1100;
+
+    transition: .3s ease;
+}
+
+.info-button:hover {
+
+    background: #ff6900;
+
+    transform:
+        scale(1.08)
+        rotate(8deg);
+
+    box-shadow:
+        0 8px 25px rgba(255,105,0,.25);
+}
+
+
+/* =========================================================
+   INFO BOX
+========================================================= */
+
+.info-box {
+
+    position: fixed;
+
+    right: 24px;
+
+    bottom: 78px;
+
+    width: 290px;
+
+    padding: 23px;
+
+    background: #fff;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.12);
+
+    z-index: 1099;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform:
+        translateY(15px)
+        scale(.96);
+
+    transition: .3s ease;
+}
+
+.info-box.open {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        translateY(0)
+        scale(1);
 }
 
 .info-box h3 {
-    font-size: 18px;
-}
 
-.info-box h3 span {
-    color: #f36b21;
+    margin-bottom: 8px;
 }
 
 .info-box p {
-    margin-top: 9px;
 
     color: #777;
 
@@ -690,435 +1225,630 @@ footer {
     line-height: 1.6;
 }
 
-.close {
-    position: absolute;
 
-    right: 13px;
-    top: 10px;
-
-    border: none;
-
-    background: none;
-
-    color: #888;
-
-    cursor: pointer;
-
-    font-size: 18px;
-}
-
-/* =========================
-   ANIMATIONS
-========================= */
-
-@keyframes appear {
-    from {
-        opacity: 0;
-        transform: scale(.98);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes rise {
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* =========================
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
-@media(max-width: 900px) {
+@media (max-width: 1000px) {
 
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .six-buttons {
-        max-width: 600px;
-    }
-}
-
-@media(max-width: 600px) {
-
-    header {
-        padding: 0 18px;
-    }
-
-    nav {
+    .left-bar {
         display: none;
     }
 
-    .hero {
-        padding-left: 20px;
-        padding-right: 20px;
+    .square-grid {
+
+        grid-template-columns:
+            repeat(4,1fr);
     }
 
-    .banner {
-        height: 210px;
+    .content-grid {
+
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
-    .banner-content h2 {
-        font-size: 38px;
+    .youtube-grid {
+
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    header {
+
+        padding: 0 20px;
+    }
+
+    nav {
+
+        display: none;
     }
 
     .hero h1 {
-        font-size: 42px;
+
+        font-size: 51px;
+
+        letter-spacing: -3px;
     }
 
-    .hero-buttons {
-        display: grid;
+    .square-grid {
 
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+            repeat(3,1fr);
 
-        width: 100%;
-    }
-
-    .hero-buttons button {
-        width: 100%;
-    }
-
-    .side-panel {
-        left: 7px;
+        gap: 9px;
     }
 
     .content {
+
         padding-left: 20px;
         padding-right: 20px;
     }
 
-    .grid {
-        grid-template-columns: 1fr;
+    .content-grid,
+    .youtube-grid {
+
+        grid-template-columns:
+            1fr;
     }
 
-    .box.large {
-        grid-column: span 1;
-    }
+    .library {
 
-    .footer {
         flex-direction: column;
 
         align-items: flex-start;
 
-        gap: 25px;
+        padding: 28px;
+    }
+
+    footer {
+
+        flex-direction: column;
+
+        gap: 10px;
+
+        text-align: center;
     }
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- HEADER -->
 
-<header>
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header id="header">
 
     <div class="logo">
-        CiphAnon <span>Studios</span>
+
+        <span class="logo-dot"></span>
+
+        CiphAnon Studios
+
     </div>
 
+
     <nav>
-        <button onclick="scrollToId('home')">Home</button>
-        <button onclick="scrollToId('content')">Explore</button>
-        <button onclick="message('Projects')">Projects</button>
-        <button onclick="message('Contact')">Contact</button>
+
+        <a href="#home">Home</a>
+
+        <a href="#pattern">Explore</a>
+
+        <a href="#projects">Projects</a>
+
+        <a href="#videos">Videos</a>
+
+        <a href="#scripts">Scripts</a>
+
     </nav>
 
 </header>
 
 
-<!-- LEFT PANEL -->
+<!-- =========================================================
+     LEFT BUTTON BAR
+========================================================= -->
 
-<div class="side-panel">
+<div class="left-bar">
 
-    <button onclick="scrollToId('home')" title="Home">H</button>
-    <button onclick="message('Games')" title="Games">G</button>
-    <button onclick="message('Projects')" title="Projects">P</button>
-    <button onclick="message('Videos')" title="Videos">V</button>
-    <button onclick="message('Scripts')" title="Scripts">S</button>
-    <button onclick="message('Community')" title="Community">C</button>
-    <button onclick="message('Downloads')" title="Downloads">D</button>
+    <button onclick="go('home')">H</button>
+
+    <button onclick="go('pattern')">01</button>
+
+    <button onclick="go('projects')">02</button>
+
+    <button onclick="go('games')">03</button>
+
+    <button onclick="go('videos')">04</button>
+
+    <button onclick="go('scripts')">05</button>
+
+    <button onclick="go('about')">06</button>
+
+    <button onclick="go('footer')">07</button>
 
 </div>
 
 
-<!-- HERO -->
+<!-- =========================================================
+     HERO
+========================================================= -->
 
 <section class="hero" id="home">
 
-    <div class="banner">
+    <div class="hero-grid"></div>
 
-        <div class="banner-content">
+    <div class="hero-orb"></div>
 
-            <h2>
-                CiphAnon <span>Studios</span>
-            </h2>
 
-            <p>
-                GAMES · PROJECTS · CREATIVE WORK
-            </p>
+    <div class="hero-content">
+
+        <div class="hero-label">
+            CIPHANON STUDIOS
+        </div>
+
+
+        <h1>
+            CiphAnon <span>Studios</span>
+        </h1>
+
+
+        <p class="hero-description">
+
+            Games, projects, videos, scripts and
+            everything being created under CiphAnon Studios.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <button
+                class="hero-button"
+                onclick="go('projects')">
+                Projects
+            </button>
+
+            <button
+                class="hero-button"
+                onclick="go('games')">
+                Games
+            </button>
+
+            <button
+                class="hero-button"
+                onclick="go('videos')">
+                Videos
+            </button>
+
+            <button
+                class="hero-button"
+                onclick="go('scripts')">
+                Scripts
+            </button>
+
+            <button
+                class="hero-button"
+                onclick="go('arcade')">
+                Arcade
+            </button>
+
+            <button
+                class="hero-button"
+                onclick="go('about')">
+                About
+            </button>
 
         </div>
 
     </div>
 
 
-    <h1>
-        CiphAnon <span>Studios</span>
-    </h1>
+    <div class="scroll-indicator">
 
-    <p class="hero-description">
-        A place for everything created by CiphAnon Studios.
-    </p>
+        SCROLL
 
+        <div class="scroll-wheel"></div>
 
-    <div class="hero-buttons">
-
-        <button onclick="scrollToId('content')">
-            Explore
-        </button>
-
-        <button onclick="message('Games')">
-            Games
-        </button>
-
-        <button onclick="message('Projects')">
-            Projects
-        </button>
-
-        <button onclick="message('Videos')">
-            Videos
-        </button>
-
-        <button onclick="message('Scripts')">
-            Scripts
-        </button>
-
-        <button onclick="message('Community')">
-            Community
-        </button>
-
-    </div>
-
-
-    <div class="scroll">
-        SCROLL DOWN
-        <span>↓</span>
     </div>
 
 </section>
 
 
-<!-- BOXES -->
+<!-- =========================================================
+     EMPTY SQUARE PATTERN
+========================================================= -->
 
-<section class="content" id="content">
+<section class="pattern-section" id="pattern">
 
-    <div class="heading">
+    <div class="pattern-title reveal">
 
-        <h2>
-            Explore
-        </h2>
+        <h2>Explore CiphAnon Studios</h2>
 
         <p>
-            Everything in one place.
+            Discover what's being created.
         </p>
 
     </div>
 
 
-    <div class="grid">
-
-        <div class="box large"
-             onclick="message('Games')">
-
-            <div class="box-number">01</div>
-
-            <h3>Games</h3>
-
-            <p>Games created by CiphAnon Studios</p>
-
-            <div class="box-arrow">↗</div>
-
-        </div>
+    <div class="square-grid">
 
 
-        <div class="box"
-             onclick="message('Projects')">
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
 
-            <div class="box-number">02</div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
 
-            <h3>Projects</h3>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
 
-            <p>Current projects</p>
-
-            <div class="box-arrow">↗</div>
-
-        </div>
-
-
-        <div class="box"
-             onclick="message('Videos')">
-
-            <div class="box-number">03</div>
-
-            <h3>Videos</h3>
-
-            <p>Latest videos</p>
-
-            <div class="box-arrow">↗</div>
-
-        </div>
-
-
-        <div class="box"
-             onclick="message('Scripts')">
-
-            <div class="box-number">04</div>
-
-            <h3>Scripts</h3>
-
-            <p>Scripts and code</p>
-
-            <div class="box-arrow">↗</div>
-
-        </div>
-
-
-        <div class="box large"
-             onclick="message('Experiments')">
-
-            <div class="box-number">05</div>
-
-            <h3>Experiments</h3>
-
-            <p>Ideas and experiments</p>
-
-            <div class="box-arrow">↗</div>
-
-        </div>
-
-
-        <div class="box"
-             onclick="message('Community')">
-
-            <div class="box-number">06</div>
-
-            <h3>Community</h3>
-
-            <p>Join the community</p>
-
-            <div class="box-arrow">↗</div>
-
-        </div>
-
-
-        <div class="box"
-             onclick="message('Downloads')">
-
-            <div class="box-number">07</div>
-
-            <h3>Downloads</h3>
-
-            <p>Available downloads</p>
-
-            <div class="box-arrow">↗</div>
-
-        </div>
-
-
-        <div class="box"
-             onclick="message('About')">
-
-            <div class="box-number">08</div>
-
-            <h3>About</h3>
-
-            <p>About CiphAnon Studios</p>
-
-            <div class="box-arrow">↗</div>
-
-        </div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
+        <div class="square"></div>
 
     </div>
 
 </section>
 
 
-<!-- FOOTER -->
+<!-- =========================================================
+     CONTENT
+========================================================= -->
 
-<footer>
+<main class="content" id="projects">
 
-    <div class="footer">
+
+    <div class="section-heading reveal">
+
+        <small>THE STUDIO</small>
+
+        <h2>Everything CiphAnon.</h2>
+
+    </div>
+
+
+    <div class="content-grid">
+
+
+        <div class="content-card reveal" id="games">
+
+            <div class="card-number">
+                01
+            </div>
+
+            <h3>
+                Games
+            </h3>
+
+            <p>
+                Games and interactive experiences
+                created by CiphAnon Studios.
+            </p>
+
+            <span class="card-arrow">
+                →
+            </span>
+
+        </div>
+
+
+        <div class="content-card reveal">
+
+            <div class="card-number">
+                02
+            </div>
+
+            <h3>
+                Projects
+            </h3>
+
+            <p>
+                Websites, applications, experiments
+                and other things being built.
+            </p>
+
+            <span class="card-arrow">
+                →
+            </span>
+
+        </div>
+
+
+        <div class="content-card reveal" id="arcade">
+
+            <div class="card-number">
+                03
+            </div>
+
+            <h3>
+                CiphAnon Arcade
+            </h3>
+
+            <p>
+                Smaller games and experiments
+                from CiphAnon Arcade.
+            </p>
+
+            <span class="card-arrow">
+                →
+            </span>
+
+        </div>
+
+
+        <div class="content-card reveal" id="scripts">
+
+            <div class="card-number">
+                04
+            </div>
+
+            <h3>
+                Script Library
+            </h3>
+
+            <p>
+                Scripts, tools and development
+                resources created by the studio.
+            </p>
+
+            <span class="card-arrow">
+                →
+            </span>
+
+        </div>
+
+
+        <div class="content-card reveal">
+
+            <div class="card-number">
+                05
+            </div>
+
+            <h3>
+                Experiments
+            </h3>
+
+            <p>
+                Random ideas, prototypes and
+                experimental creations.
+            </p>
+
+            <span class="card-arrow">
+                →
+            </span>
+
+        </div>
+
+
+        <div class="content-card reveal" id="about">
+
+            <div class="card-number">
+                06
+            </div>
+
+            <h3>
+                About
+            </h3>
+
+            <p>
+                Learn more about CiphAnon Studios
+                and what's being created.
+            </p>
+
+            <span class="card-arrow">
+                →
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =====================================================
+         YOUTUBE
+    ===================================================== -->
+
+    <section class="youtube" id="videos">
+
+        <div class="section-heading reveal">
+
+            <small>CONTENT</small>
+
+            <h2>YouTube.</h2>
+
+        </div>
+
+
+        <div class="youtube-grid">
+
+
+            <a href="#" class="youtube-card reveal">
+
+                <div class="youtube-image">
+                    CHANNEL 01
+                </div>
+
+                <div class="youtube-info">
+
+                    <h3>
+                        Channel One
+                    </h3>
+
+                    <p>
+                        YouTube
+                    </p>
+
+                </div>
+
+            </a>
+
+
+            <a href="#" class="youtube-card reveal">
+
+                <div class="youtube-image">
+                    CHANNEL 02
+                </div>
+
+                <div class="youtube-info">
+
+                    <h3>
+                        Channel Two
+                    </h3>
+
+                    <p>
+                        YouTube
+                    </p>
+
+                </div>
+
+            </a>
+
+
+            <a href="#" class="youtube-card reveal">
+
+                <div class="youtube-image">
+                    CHANNEL 03
+                </div>
+
+                <div class="youtube-info">
+
+                    <h3>
+                        Channel Three
+                    </h3>
+
+                    <p>
+                        YouTube
+                    </p>
+
+                </div>
+
+            </a>
+
+
+            <a href="#" class="youtube-card reveal">
+
+                <div class="youtube-image">
+                    CHANNEL 04
+                </div>
+
+                <div class="youtube-info">
+
+                    <h3>
+                        Channel Four
+                    </h3>
+
+                    <p>
+                        YouTube
+                    </p>
+
+                </div>
+
+            </a>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         SCRIPT LIBRARY
+    ===================================================== -->
+
+    <section class="library reveal">
 
         <div>
 
-            <div class="footer-logo">
-                CiphAnon <span>Studios</span>
-            </div>
+            <h2>
+                CiphAnon Studios Script Library
+            </h2>
 
             <p>
-                © 2026 CiphAnon Studios
+                Scripts and development resources.
             </p>
 
         </div>
 
 
-        <div class="footer-buttons">
+        <button>
+            Open Library →
+        </button>
 
-            <button onclick="scrollToId('home')">
-                Home
-            </button>
+    </section>
 
-            <button onclick="scrollToId('content')">
-                Explore
-            </button>
 
-            <button onclick="message('Contact')">
-                Contact
-            </button>
+</main>
 
-        </div>
 
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer id="footer">
+
+    <div class="footer-logo">
+        CiphAnon Studios
+    </div>
+
+    <div>
+        © 2026 CiphAnon Studios
     </div>
 
 </footer>
 
 
-<!-- INFO BUTTON -->
+<!-- =========================================================
+     INFO BUTTON
+========================================================= -->
 
-<button class="info-button"
-        id="infoButton"
-        onclick="toggleInfo()">
+<button
+    class="info-button"
+    id="infoButton">
+
     i
+
 </button>
 
 
-<div class="info-box"
-     id="infoBox">
-
-    <button class="close"
-            onclick="toggleInfo()">
-        ×
-    </button>
+<div
+    class="info-box"
+    id="infoBox">
 
     <h3>
-        CiphAnon <span>Studios</span>
+        CiphAnon Studios
     </h3>
 
     <p>
-        Welcome to CiphAnon Studios. This is the
-        home for games, projects, videos, scripts
-        and other creations.
+        Games, software, videos, scripts,
+        experiments and projects created
+        under the CiphAnon Studios name.
     </p>
 
 </div>
@@ -1126,87 +1856,189 @@ footer {
 
 <script>
 
-function scrollToId(id) {
+/* =========================================================
+   HEADER
+========================================================= */
 
-    const element = document.getElementById(id);
+const header =
+    document.getElementById("header");
 
-    if (element) {
-        element.scrollIntoView({
-            behavior: "smooth"
-        });
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 40) {
+
+        header.classList.add("scrolled");
+
+    } else {
+
+        header.classList.remove("scrolled");
+
     }
 
+});
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function go(id) {
+
+    const element =
+        document.getElementById(id);
+
+    if (!element) return;
+
+    element.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
 }
 
 
-/* Placeholder for your actual pages */
+/* =========================================================
+   REVEAL OBSERVER
+========================================================= */
 
-function message(name) {
-    alert(name + " page coming soon.");
-}
+const revealItems =
+    document.querySelectorAll(".reveal");
+
+const revealObserver =
+    new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("show");
+
+                    revealObserver
+                        .unobserve(entry.target);
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: .12
+        }
+
+    );
 
 
-/* Info popup */
+revealItems.forEach(element => {
 
-function toggleInfo() {
+    revealObserver.observe(element);
 
-    document
-        .getElementById("infoBox")
-        .classList.toggle("open");
-
-}
+});
 
 
-/* Close popup when clicking outside */
+/* =========================================================
+   SQUARE ANIMATION
+========================================================= */
 
-document.addEventListener("click", function(event) {
+const squares =
+    document.querySelectorAll(".square");
 
-    const box =
-        document.getElementById("infoBox");
+const squareObserver =
+    new IntersectionObserver(
 
-    const button =
-        document.getElementById("infoButton");
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    squares.forEach((square, index) => {
+
+                        setTimeout(() => {
+
+                            square.classList.add("show");
+
+                        }, index * 45);
+
+                    });
+
+                    squareObserver
+                        .disconnect();
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: .08
+        }
+
+    );
+
+
+squareObserver.observe(
+    document.querySelector(".square-grid")
+);
+
+
+/* =========================================================
+   INFO WINDOW
+========================================================= */
+
+const infoButton =
+    document.getElementById("infoButton");
+
+const infoBox =
+    document.getElementById("infoBox");
+
+
+infoButton.addEventListener("click", () => {
+
+    infoBox.classList.toggle("open");
+
+});
+
+
+document.addEventListener("click", event => {
 
     if (
-        box.classList.contains("open") &&
-        !box.contains(event.target) &&
-        !button.contains(event.target)
+        !infoBox.contains(event.target) &&
+        !infoButton.contains(event.target)
     ) {
 
-        box.classList.remove("open");
+        infoBox.classList.remove("open");
 
     }
 
 });
 
 
-/* Box mouse glow */
+/* =========================================================
+   CARD STAGGER
+========================================================= */
 
-document.querySelectorAll(".box").forEach(box => {
+document
+    .querySelectorAll(".content-card")
+    .forEach((card,index) => {
 
-    box.addEventListener("mousemove", function(e) {
-
-        const rect = box.getBoundingClientRect();
-
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        box.style.background =
-            `radial-gradient(
-                220px circle at ${x}px ${y}px,
-                rgba(243,107,33,.055),
-                #f8f8f8 55%
-            )`;
+        card.style.transitionDelay =
+            `${(index % 3) * .08}s`;
 
     });
 
-    box.addEventListener("mouseleave", function() {
 
-        box.style.background = "#f8f8f8";
+document
+    .querySelectorAll(".youtube-card")
+    .forEach((card,index) => {
+
+        card.style.transitionDelay =
+            `${index * .08}s`;
 
     });
-
-});
 
 </script>
 
