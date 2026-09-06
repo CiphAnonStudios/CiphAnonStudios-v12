@@ -8,9 +8,9 @@
 
 <style>
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 html {
@@ -19,9 +19,8 @@ html {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #f5f5f3;
-    color: #171717;
-    overflow-x: hidden;
+    background: #f7f7f7;
+    color: #151515;
 }
 
 /* =========================
@@ -29,168 +28,61 @@ body {
 ========================= */
 
 header {
+    height: 70px;
+    width: 100%;
+
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 72px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 45px;
+    padding: 0 42px;
 
-    background: rgba(255,255,255,.82);
-    backdrop-filter: blur(18px);
+    background: rgba(255,255,255,.9);
+    backdrop-filter: blur(12px);
 
-    border-bottom: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e8e8e8;
 
-    z-index: 1000;
-
-    transition: .3s;
-}
-
-header.scrolled {
-    height: 62px;
-    background: rgba(255,255,255,.94);
-    box-shadow: 0 5px 25px rgba(0,0,0,.05);
+    z-index: 100;
 }
 
 .logo {
-    font-size: 20px;
-    font-weight: 800;
-    letter-spacing: -.8px;
+    font-size: 18px;
+    font-weight: 700;
 }
 
 .logo span {
-    color: #ff6900;
+    color: #f36b21;
 }
 
-.header-buttons {
+nav {
     display: flex;
     gap: 8px;
 }
 
-.header-buttons button {
-    border: 0;
+nav button {
+    border: none;
     background: transparent;
 
-    padding: 10px 15px;
-
-    border-radius: 9px;
-
-    cursor: pointer;
+    padding: 9px 14px;
 
     color: #555;
 
-    transition: .25s;
-}
-
-.header-buttons button:hover {
-    background: #eeeeec;
-    color: #111;
-    transform: translateY(-2px);
-}
-
-/* =========================
-   LEFT PANEL
-========================= */
-
-.left-panel {
-    position: fixed;
-
-    left: 20px;
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    width: 58px;
-
-    padding: 7px;
-
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-
-    background: rgba(255,255,255,.85);
-    backdrop-filter: blur(15px);
-
-    border: 1px solid #dedede;
-
-    border-radius: 18px;
-
-    box-shadow:
-        0 10px 40px rgba(0,0,0,.08);
-
-    z-index: 900;
-}
-
-.left-panel button {
-    position: relative;
-
-    width: 42px;
-    height: 42px;
-
-    border: 1px solid #e4e4e4;
-
-    border-radius: 12px;
-
-    background: white;
-
-    color: #777;
+    border-radius: 7px;
 
     cursor: pointer;
 
-    transition:
-        transform .25s,
-        color .25s,
-        border-color .25s,
-        box-shadow .25s;
-}
-
-.left-panel button:hover {
-    transform: translateX(5px) scale(1.05);
-
-    color: #ff6900;
-
-    border-color: #ff6900;
-
-    box-shadow:
-        0 0 18px rgba(255,105,0,.2);
-}
-
-.left-panel button::after {
-    content: attr(data-label);
-
-    position: absolute;
-
-    left: 52px;
-    top: 50%;
-
-    transform: translateY(-50%) translateX(-8px);
-
-    opacity: 0;
-
-    pointer-events: none;
-
-    white-space: nowrap;
-
-    background: #171717;
-    color: white;
-
-    padding: 7px 10px;
-
-    border-radius: 7px;
-
-    font-size: 11px;
+    font-size: 13px;
 
     transition: .2s;
 }
 
-.left-panel button:hover::after {
-    opacity: 1;
-    transform: translateY(-50%) translateX(0);
+nav button:hover {
+    background: #f0f0f0;
+    color: #111;
 }
 
 /* =========================
@@ -200,72 +92,13 @@ header.scrolled {
 .hero {
     min-height: 100vh;
 
-    padding:
-        115px 8vw
-        70px;
+    padding: 110px 7vw 70px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 
     text-align: center;
-
-    position: relative;
-
-    background:
-        radial-gradient(
-            circle at 50% 35%,
-            rgba(255,105,0,.07),
-            transparent 35%
-        );
-}
-
-/* floating circles */
-
-.hero::before,
-.hero::after {
-    content: "";
-
-    position: absolute;
-
-    border-radius: 50%;
-
-    pointer-events: none;
-
-    animation: drift 7s ease-in-out infinite;
-}
-
-.hero::before {
-    width: 180px;
-    height: 180px;
-
-    left: 7%;
-    top: 30%;
-
-    border: 1px solid rgba(255,105,0,.12);
-}
-
-.hero::after {
-    width: 90px;
-    height: 90px;
-
-    right: 10%;
-    top: 22%;
-
-    background: rgba(255,105,0,.05);
-
-    animation-delay: -3s;
-}
-
-@keyframes drift {
-    0%,100% {
-        transform: translate(0,0) rotate(0deg);
-    }
-
-    50% {
-        transform: translate(15px,-20px) rotate(12deg);
-    }
 }
 
 /* =========================
@@ -273,221 +106,198 @@ header.scrolled {
 ========================= */
 
 .banner {
-    width: min(1100px, 94%);
-    height: 245px;
-
-    border-radius: 25px;
+    width: 100%;
+    max-width: 1150px;
+    height: 300px;
 
     position: relative;
+
     overflow: hidden;
+
+    border-radius: 18px;
+
+    background: #eeeeee;
+
+    border: 1px solid #dfdfdf;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    background: white;
-
-    border: 1px solid #dedede;
-
-    box-shadow:
-        0 25px 70px rgba(0,0,0,.08);
-
-    animation: bannerIn 1s ease both;
+    animation: appear .7s ease;
 }
 
-@keyframes bannerIn {
-    from {
-        opacity: 0;
-        transform: translateY(30px) scale(.97);
-    }
+/* simple animated background */
 
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
+.banner::before {
+    content: "";
 
-.banner-grid {
-    position: absolute;
-    inset: 0;
-
-    background-image:
-        linear-gradient(#eeeeec 1px, transparent 1px),
-        linear-gradient(90deg, #eeeeec 1px, transparent 1px);
-
-    background-size: 35px 35px;
-
-    opacity: .7;
-
-    mask-image:
-        linear-gradient(
-            to right,
-            transparent,
-            black,
-            transparent
-        );
-}
-
-.banner-glow {
     position: absolute;
 
-    width: 280px;
-    height: 280px;
+    width: 450px;
+    height: 450px;
 
     border-radius: 50%;
 
-    background: #ff6900;
+    background: #e4e4e4;
 
-    filter: blur(90px);
+    left: -150px;
+    top: -180px;
 
-    opacity: .09;
-
-    animation: pulse 4s ease-in-out infinite;
+    animation: moveCircle 9s ease-in-out infinite;
 }
 
-@keyframes pulse {
+.banner::after {
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    background: #f1f1f1;
+
+    right: -80px;
+    bottom: -150px;
+
+    animation: moveCircle2 8s ease-in-out infinite;
+}
+
+@keyframes moveCircle {
     0%,100% {
-        transform: scale(.8);
-        opacity: .06;
+        transform: translate(0,0);
     }
 
     50% {
-        transform: scale(1.15);
-        opacity: .12;
+        transform: translate(100px,40px);
     }
 }
 
-.banner-text {
+@keyframes moveCircle2 {
+    0%,100% {
+        transform: translate(0,0);
+    }
+
+    50% {
+        transform: translate(-70px,-40px);
+    }
+}
+
+.banner-content {
     position: relative;
     z-index: 2;
 }
 
-.banner-text h2 {
-    font-size: clamp(40px, 7vw, 78px);
-
-    font-weight: 900;
-
-    letter-spacing: -5px;
+.banner-content h2 {
+    font-size: clamp(40px, 6vw, 70px);
+    font-weight: 800;
+    letter-spacing: -3px;
 }
 
-.banner-text h2 span {
-    color: #ff6900;
+.banner-content h2 span {
+    color: #f36b21;
 }
 
-.banner-text p {
+.banner-content p {
     margin-top: 12px;
 
-    color: #888;
+    color: #777;
 
     font-size: 12px;
-
-    letter-spacing: 4px;
+    letter-spacing: 2px;
 }
 
 /* =========================
-   HERO TITLE
+   TITLE
 ========================= */
 
-.hero-title {
-    margin-top: 55px;
+.hero h1 {
+    margin-top: 48px;
 
-    font-size: clamp(45px, 8vw, 92px);
+    font-size: clamp(38px, 6vw, 62px);
 
-    font-weight: 900;
+    letter-spacing: -2px;
 
-    letter-spacing: -6px;
+    font-weight: 750;
 
-    animation: titleIn 1s .2s ease both;
+    animation: rise .7s .1s both;
 }
 
-@keyframes titleIn {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.hero h1 span {
+    color: #f36b21;
 }
 
-.hero-title span {
-    color: #ff6900;
-}
+.hero-description {
+    margin-top: 12px;
 
-.hero-subtitle {
-    color: #888;
+    color: #777;
 
-    margin-top: 14px;
+    font-size: 14px;
 
-    font-size: 15px;
-
-    animation: titleIn 1s .35s ease both;
+    animation: rise .7s .2s both;
 }
 
 /* =========================
    SIX BUTTONS
 ========================= */
 
-.six-buttons {
-    display: grid;
+.hero-buttons {
+    margin-top: 30px;
 
-    grid-template-columns: repeat(6, 1fr);
+    display: flex;
 
-    gap: 10px;
+    justify-content: center;
 
-    width: min(900px, 95%);
+    flex-wrap: wrap;
 
-    margin-top: 32px;
+    gap: 9px;
 
-    animation: titleIn 1s .5s ease both;
+    animation: rise .7s .3s both;
 }
 
-.six-buttons button {
-    height: 52px;
+.hero-buttons button {
+    min-width: 110px;
 
-    background: white;
+    padding: 12px 18px;
+
+    border-radius: 8px;
 
     border: 1px solid #dedede;
 
-    border-radius: 11px;
+    background: white;
 
     color: #444;
 
-    font-weight: 600;
-
     cursor: pointer;
 
-    transition:
-        transform .25s,
-        border-color .25s,
-        box-shadow .25s,
-        background .25s;
+    font-size: 12px;
+    font-weight: 600;
+
+    transition: .25s;
 }
 
-.six-buttons button:hover {
-    transform: translateY(-5px);
+.hero-buttons button:hover {
+    transform: translateY(-3px);
 
-    border-color: #ff6900;
+    border-color: #f36b21;
 
-    background: #fffaf6;
-
-    color: #ff6900;
+    color: #f36b21;
 
     box-shadow:
-        0 10px 25px rgba(255,105,0,.12);
+        0 8px 20px rgba(0,0,0,.06);
 }
 
-.six-buttons button:first-child {
-    background: #171717;
+.hero-buttons button:first-child {
+    background: #151515;
     color: white;
-    border-color: #171717;
+    border-color: #151515;
 }
 
-.six-buttons button:first-child:hover {
-    background: #ff6900;
-    border-color: #ff6900;
+.hero-buttons button:first-child:hover {
+    background: #f36b21;
+    border-color: #f36b21;
 }
 
 /* =========================
@@ -495,235 +305,223 @@ header.scrolled {
 ========================= */
 
 .scroll {
-    margin-top: 60px;
+    margin-top: 55px;
 
     color: #999;
 
-    font-size: 11px;
+    font-size: 10px;
 
-    letter-spacing: 3px;
+    letter-spacing: 2px;
 
-    animation:
-        bounce 2s infinite,
-        fadeIn 1s .8s both;
+    animation: bob 2s infinite;
 }
 
 .scroll span {
     display: block;
 
-    color: #ff6900;
+    margin-top: 7px;
 
-    font-size: 22px;
+    color: #f36b21;
 
-    margin-top: 8px;
+    font-size: 18px;
 }
 
-@keyframes bounce {
+@keyframes bob {
     0%,100% {
         transform: translateY(0);
     }
 
     50% {
-        transform: translateY(8px);
+        transform: translateY(5px);
     }
 }
 
 /* =========================
-   BOX SECTION
+   SIDE PANEL
 ========================= */
 
-.box-section {
-    padding:
-        120px 8vw
-        130px;
+.side-panel {
+    position: fixed;
 
-    background: #ffffff;
+    left: 20px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 48px;
+
+    padding: 5px;
+
+    background: white;
+
+    border: 1px solid #e1e1e1;
+
+    border-radius: 12px;
+
+    box-shadow: 0 8px 30px rgba(0,0,0,.07);
+
+    z-index: 90;
+}
+
+.side-panel button {
+    width: 36px;
+    height: 36px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #777;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+    font-size: 12px;
+}
+
+.side-panel button:hover {
+    background: #fff1e8;
+
+    color: #f36b21;
+
+    transform: translateX(3px);
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.content {
+    padding: 100px 7vw 120px;
+
+    background: white;
 
     border-top: 1px solid #e8e8e8;
 }
 
-.section-title {
-    text-align: center;
+.heading {
+    max-width: 1150px;
 
-    margin-bottom: 55px;
+    margin: 0 auto 40px;
 }
 
-.section-title h2 {
-    font-size: clamp(35px, 5vw, 58px);
+.heading h2 {
+    font-size: 38px;
 
-    letter-spacing: -3px;
+    letter-spacing: -1.5px;
 }
 
-.section-title span {
-    color: #ff6900;
-}
+.heading p {
+    margin-top: 8px;
 
-.section-title p {
-    margin-top: 12px;
+    color: #888;
 
-    color: #999;
+    font-size: 13px;
 }
 
 /* =========================
-   BOX GRID
+   BOXES
 ========================= */
 
-.box-grid {
-    max-width: 1250px;
+.grid {
+    max-width: 1150px;
 
     margin: auto;
 
     display: grid;
 
-    grid-template-columns:
-        repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 
-    gap: 18px;
+    gap: 15px;
 }
 
 .box {
-    height: 240px;
-
-    padding: 25px;
+    min-height: 220px;
 
     position: relative;
 
-    overflow: hidden;
+    padding: 22px;
 
-    background: #f8f8f7;
+    background: #f8f8f8;
 
-    border: 1px solid #dedede;
+    border: 1px solid #e1e1e1;
 
-    border-radius: 20px;
+    border-radius: 15px;
 
     cursor: pointer;
 
+    overflow: hidden;
+
     transition:
-        transform .35s cubic-bezier(.2,.8,.2,1),
-        border-color .35s,
-        box-shadow .35s,
-        background .35s;
-}
-
-.box::before {
-    content: "";
-
-    position: absolute;
-
-    width: 180px;
-    height: 180px;
-
-    border-radius: 50%;
-
-    background: #ff6900;
-
-    left: var(--mouse-x, -100px);
-    top: var(--mouse-y, -100px);
-
-    transform: translate(-50%,-50%);
-
-    filter: blur(70px);
-
-    opacity: 0;
-
-    transition: opacity .35s;
+        transform .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
 }
 
 .box:hover {
-    transform:
-        translateY(-10px)
-        rotateX(2deg)
-        rotateY(-2deg);
+    transform: translateY(-6px);
 
-    border-color: #ff6900;
-
-    background: #fff;
+    border-color: #f36b21;
 
     box-shadow:
-        0 0 0 1px rgba(255,105,0,.12),
-        0 18px 50px rgba(0,0,0,.1),
-        0 0 35px rgba(255,105,0,.12);
-}
-
-.box:hover::before {
-    opacity: .12;
+        0 10px 35px rgba(0,0,0,.08),
+        0 0 18px rgba(243,107,33,.1);
 }
 
 .box-number {
+    font-size: 10px;
+
     color: #aaa;
 
-    font-size: 11px;
-
-    font-weight: bold;
-
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 
 .box h3 {
     position: absolute;
 
-    left: 25px;
-    bottom: 62px;
+    left: 22px;
+    bottom: 48px;
 
-    font-size: 25px;
+    font-size: 21px;
 
-    transition: .3s;
+    font-weight: 700;
 }
 
 .box p {
     position: absolute;
 
-    left: 25px;
-    bottom: 27px;
+    left: 22px;
+    bottom: 22px;
 
     color: #999;
 
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .box-arrow {
     position: absolute;
 
-    right: 22px;
-    top: 22px;
+    top: 18px;
+    right: 18px;
 
-    width: 35px;
-    height: 35px;
+    color: #aaa;
 
-    display: grid;
-    place-items: center;
-
-    border-radius: 50%;
-
-    background: white;
-
-    border: 1px solid #ddd;
-
-    color: #999;
-
-    transition: .3s;
+    transition: .25s;
 }
 
 .box:hover .box-arrow {
-    background: #ff6900;
+    color: #f36b21;
 
-    color: white;
-
-    border-color: #ff6900;
-
-    transform: rotate(45deg);
+    transform: translate(3px,-3px);
 }
 
-/* =========================
-   SPECIAL LARGE BOX
-========================= */
+/* larger boxes */
 
 .box.large {
     grid-column: span 2;
-}
-
-.box.large h3 {
-    font-size: 32px;
 }
 
 /* =========================
@@ -731,258 +529,276 @@ header.scrolled {
 ========================= */
 
 footer {
-    padding: 70px 8vw;
+    padding: 55px 7vw;
 
-    background: #111;
+    background: #151515;
 
     color: white;
 }
 
-.footer-content {
-    max-width: 1250px;
+.footer {
+    max-width: 1150px;
 
     margin: auto;
 
     display: flex;
 
-    justify-content: space-between;
-
     align-items: center;
+
+    justify-content: space-between;
 }
 
 .footer-logo {
-    font-size: 22px;
+    font-size: 18px;
 
-    font-weight: 800;
+    font-weight: 700;
 }
 
 .footer-logo span {
-    color: #ff6900;
+    color: #f36b21;
 }
 
-.footer-copy {
+.footer p {
+    margin-top: 7px;
+
     color: #777;
 
-    font-size: 12px;
-
-    margin-top: 8px;
+    font-size: 11px;
 }
 
-.footer-links {
+.footer-buttons {
     display: flex;
-
     gap: 8px;
 }
 
-.footer-links button {
-    padding: 10px 14px;
-
-    background: transparent;
-
-    color: #777;
-
+.footer-buttons button {
     border: 1px solid #333;
-
-    border-radius: 9px;
-
-    cursor: pointer;
-
-    transition: .25s;
-}
-
-.footer-links button:hover {
-    color: white;
-
-    border-color: #ff6900;
-}
-
-/* =========================
-   INFO BUTTON
-========================= */
-
-.info-button {
-    position: fixed;
-
-    right: 25px;
-    bottom: 24px;
-
-    width: 52px;
-    height: 52px;
-
-    border-radius: 50%;
-
-    border: 1px solid #d5d5d5;
-
-    background: white;
-
-    color: #555;
-
-    font-size: 18px;
-
-    cursor: pointer;
-
-    z-index: 1200;
-
-    box-shadow:
-        0 8px 30px rgba(0,0,0,.12);
-
-    transition: .3s;
-}
-
-.info-button:hover {
-    color: white;
-
-    background: #ff6900;
-
-    border-color: #ff6900;
-
-    transform:
-        rotate(90deg)
-        scale(1.08);
-
-    box-shadow:
-        0 0 30px rgba(255,105,0,.3);
-}
-
-/* =========================
-   INFO PANEL
-========================= */
-
-.info-panel {
-    position: fixed;
-
-    right: 25px;
-    bottom: 88px;
-
-    width: 330px;
-
-    padding: 25px;
-
-    background: rgba(255,255,255,.95);
-
-    backdrop-filter: blur(20px);
-
-    border: 1px solid #ddd;
-
-    border-radius: 18px;
-
-    box-shadow:
-        0 20px 70px rgba(0,0,0,.16);
-
-    z-index: 1100;
-
-    opacity: 0;
-
-    transform:
-        translateY(20px)
-        scale(.95);
-
-    pointer-events: none;
-
-    transition: .3s;
-}
-
-.info-panel.open {
-    opacity: 1;
-
-    transform:
-        translateY(0)
-        scale(1);
-
-    pointer-events: auto;
-}
-
-.info-panel h3 {
-    font-size: 22px;
-}
-
-.info-panel h3 span {
-    color: #ff6900;
-}
-
-.info-panel p {
-    color: #777;
-
-    line-height: 1.7;
-
-    font-size: 13px;
-
-    margin-top: 12px;
-}
-
-.close {
-    position: absolute;
-
-    right: 15px;
-    top: 12px;
-
-    border: 0;
 
     background: transparent;
 
     color: #888;
 
+    padding: 9px 13px;
+
+    border-radius: 7px;
+
     cursor: pointer;
 
-    font-size: 20px;
+    font-size: 11px;
+
+    transition: .2s;
+}
+
+.footer-buttons button:hover {
+    color: white;
+
+    border-color: #f36b21;
+}
+
+/* =========================
+   INFO
+========================= */
+
+.info-button {
+    position: fixed;
+
+    right: 22px;
+    bottom: 22px;
+
+    width: 46px;
+    height: 46px;
+
+    border-radius: 50%;
+
+    border: 1px solid #ddd;
+
+    background: white;
+
+    color: #555;
+
+    cursor: pointer;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,.1);
+
+    transition: .25s;
+
+    z-index: 200;
+}
+
+.info-button:hover {
+    background: #f36b21;
+
+    color: white;
+
+    border-color: #f36b21;
+
+    transform: rotate(10deg);
+}
+
+.info-box {
+    position: fixed;
+
+    right: 22px;
+    bottom: 78px;
+
+    width: 300px;
+
+    padding: 22px;
+
+    background: white;
+
+    border: 1px solid #ddd;
+
+    border-radius: 14px;
+
+    box-shadow: 0 15px 50px rgba(0,0,0,.13);
+
+    opacity: 0;
+
+    transform: translateY(12px);
+
+    pointer-events: none;
+
+    transition: .25s;
+
+    z-index: 190;
+}
+
+.info-box.open {
+    opacity: 1;
+
+    transform: translateY(0);
+
+    pointer-events: auto;
+}
+
+.info-box h3 {
+    font-size: 18px;
+}
+
+.info-box h3 span {
+    color: #f36b21;
+}
+
+.info-box p {
+    margin-top: 9px;
+
+    color: #777;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+.close {
+    position: absolute;
+
+    right: 13px;
+    top: 10px;
+
+    border: none;
+
+    background: none;
+
+    color: #888;
+
+    cursor: pointer;
+
+    font-size: 18px;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: scale(.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* =========================
    MOBILE
 ========================= */
 
-@media(max-width: 1000px) {
+@media(max-width: 900px) {
 
-    .six-buttons {
-        grid-template-columns: repeat(3,1fr);
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .box-grid {
-        grid-template-columns: repeat(2,1fr);
+    .six-buttons {
+        max-width: 600px;
     }
 }
 
-@media(max-width: 650px) {
+@media(max-width: 600px) {
 
     header {
         padding: 0 18px;
     }
 
-    .header-buttons {
+    nav {
         display: none;
     }
 
     .hero {
-        padding-left: 22px;
-        padding-right: 22px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     .banner {
-        height: 200px;
+        height: 210px;
     }
 
-    .banner-text h2 {
-        letter-spacing: -3px;
+    .banner-content h2 {
+        font-size: 38px;
     }
 
-    .hero-title {
-        letter-spacing: -4px;
+    .hero h1 {
+        font-size: 42px;
     }
 
-    .six-buttons {
-        grid-template-columns: repeat(2,1fr);
+    .hero-buttons {
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        width: 100%;
     }
 
-    .left-panel {
-        left: 8px;
+    .hero-buttons button {
+        width: 100%;
     }
 
-    .box-section {
-        padding-left: 22px;
-        padding-right: 22px;
+    .side-panel {
+        left: 7px;
     }
 
-    .box-grid {
+    .content {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .grid {
         grid-template-columns: 1fr;
     }
 
@@ -990,25 +806,12 @@ footer {
         grid-column: span 1;
     }
 
-    .footer-content {
+    .footer {
         flex-direction: column;
 
         align-items: flex-start;
 
         gap: 25px;
-    }
-
-    .info-panel {
-        left: 18px;
-        right: 18px;
-        width: auto;
-    }
-}
-
-@media(max-width: 400px) {
-
-    .six-buttons {
-        grid-template-columns: 1fr;
     }
 }
 </style>
@@ -1016,106 +819,53 @@ footer {
 
 <body>
 
-<!-- =========================
-     HEADER
-========================= -->
+<!-- HEADER -->
 
-<header id="header">
+<header>
 
     <div class="logo">
         CiphAnon <span>Studios</span>
     </div>
 
-    <div class="header-buttons">
-        <button onclick="scrollToSection('home')">
-            Home
-        </button>
-
-        <button onclick="scrollToSection('boxes')">
-            Explore
-        </button>
-
-        <button onclick="showMessage('Projects')">
-            Projects
-        </button>
-
-        <button onclick="showMessage('Contact')">
-            Contact
-        </button>
-    </div>
+    <nav>
+        <button onclick="scrollToId('home')">Home</button>
+        <button onclick="scrollToId('content')">Explore</button>
+        <button onclick="message('Projects')">Projects</button>
+        <button onclick="message('Contact')">Contact</button>
+    </nav>
 
 </header>
 
 
-<!-- =========================
-     LEFT PANEL
-========================= -->
+<!-- LEFT PANEL -->
 
-<div class="left-panel">
+<div class="side-panel">
 
-    <button data-label="Home"
-            onclick="scrollToSection('home')">
-        ⌂
-    </button>
-
-    <button data-label="Games"
-            onclick="showMessage('Games')">
-        ◆
-    </button>
-
-    <button data-label="Projects"
-            onclick="showMessage('Projects')">
-        ◇
-    </button>
-
-    <button data-label="Videos"
-            onclick="showMessage('Videos')">
-        ▶
-    </button>
-
-    <button data-label="Scripts"
-            onclick="showMessage('Scripts')">
-        </>
-    </button>
-
-    <button data-label="Community"
-            onclick="showMessage('Community')">
-        ○
-    </button>
-
-    <button data-label="Downloads"
-            onclick="showMessage('Downloads')">
-        ↓
-    </button>
-
-    <button data-label="Settings"
-            onclick="showMessage('Settings')">
-        ⚙
-    </button>
+    <button onclick="scrollToId('home')" title="Home">H</button>
+    <button onclick="message('Games')" title="Games">G</button>
+    <button onclick="message('Projects')" title="Projects">P</button>
+    <button onclick="message('Videos')" title="Videos">V</button>
+    <button onclick="message('Scripts')" title="Scripts">S</button>
+    <button onclick="message('Community')" title="Community">C</button>
+    <button onclick="message('Downloads')" title="Downloads">D</button>
 
 </div>
 
 
-<!-- =========================
-     HERO
-========================= -->
+<!-- HERO -->
 
 <section class="hero" id="home">
 
     <div class="banner">
 
-        <div class="banner-grid"></div>
-
-        <div class="banner-glow"></div>
-
-        <div class="banner-text">
+        <div class="banner-content">
 
             <h2>
                 CiphAnon <span>Studios</span>
             </h2>
 
             <p>
-                CREATE • BUILD • EXPLORE
+                GAMES · PROJECTS · CREATIVE WORK
             </p>
 
         </div>
@@ -1123,38 +873,38 @@ footer {
     </div>
 
 
-    <h1 class="hero-title">
+    <h1>
         CiphAnon <span>Studios</span>
     </h1>
 
-    <p class="hero-subtitle">
-        Games, projects, experiments and more.
+    <p class="hero-description">
+        A place for everything created by CiphAnon Studios.
     </p>
 
 
-    <div class="six-buttons">
+    <div class="hero-buttons">
 
-        <button onclick="scrollToSection('boxes')">
+        <button onclick="scrollToId('content')">
             Explore
         </button>
 
-        <button onclick="showMessage('Games')">
+        <button onclick="message('Games')">
             Games
         </button>
 
-        <button onclick="showMessage('Projects')">
+        <button onclick="message('Projects')">
             Projects
         </button>
 
-        <button onclick="showMessage('Videos')">
+        <button onclick="message('Videos')">
             Videos
         </button>
 
-        <button onclick="showMessage('Scripts')">
+        <button onclick="message('Scripts')">
             Scripts
         </button>
 
-        <button onclick="showMessage('Community')">
+        <button onclick="message('Community')">
             Community
         </button>
 
@@ -1169,199 +919,133 @@ footer {
 </section>
 
 
-<!-- =========================
-     BOX SECTION
-========================= -->
+<!-- BOXES -->
 
-<section class="box-section" id="boxes">
+<section class="content" id="content">
 
-    <div class="section-title">
+    <div class="heading">
 
         <h2>
-            What are you <span>looking for?</span>
+            Explore
         </h2>
 
         <p>
-            Explore everything in one place.
+            Everything in one place.
         </p>
 
     </div>
 
 
-    <div class="box-grid">
+    <div class="grid">
 
         <div class="box large"
-             onclick="showMessage('Games')">
+             onclick="message('Games')">
 
-            <div class="box-number">
-                01
-            </div>
+            <div class="box-number">01</div>
 
-            <h3>
-                Games
-            </h3>
+            <h3>Games</h3>
 
-            <p>
-                Play CiphAnon creations
-            </p>
+            <p>Games created by CiphAnon Studios</p>
 
-            <div class="box-arrow">
-                ↗
-            </div>
+            <div class="box-arrow">↗</div>
 
         </div>
 
 
         <div class="box"
-             onclick="showMessage('Projects')">
+             onclick="message('Projects')">
 
-            <div class="box-number">
-                02
-            </div>
+            <div class="box-number">02</div>
 
-            <h3>
-                Projects
-            </h3>
+            <h3>Projects</h3>
 
-            <p>
-                Current creations
-            </p>
+            <p>Current projects</p>
 
-            <div class="box-arrow">
-                ↗
-            </div>
+            <div class="box-arrow">↗</div>
 
         </div>
 
 
         <div class="box"
-             onclick="showMessage('Videos')">
+             onclick="message('Videos')">
 
-            <div class="box-number">
-                03
-            </div>
+            <div class="box-number">03</div>
 
-            <h3>
-                Videos
-            </h3>
+            <h3>Videos</h3>
 
-            <p>
-                Watch the latest
-            </p>
+            <p>Latest videos</p>
 
-            <div class="box-arrow">
-                ↗
-            </div>
+            <div class="box-arrow">↗</div>
 
         </div>
 
 
         <div class="box"
-             onclick="showMessage('Scripts')">
+             onclick="message('Scripts')">
 
-            <div class="box-number">
-                04
-            </div>
+            <div class="box-number">04</div>
 
-            <h3>
-                Scripts
-            </h3>
+            <h3>Scripts</h3>
 
-            <p>
-                Code and utilities
-            </p>
+            <p>Scripts and code</p>
 
-            <div class="box-arrow">
-                ↗
-            </div>
+            <div class="box-arrow">↗</div>
 
         </div>
 
 
         <div class="box large"
-             onclick="showMessage('Experiments')">
+             onclick="message('Experiments')">
 
-            <div class="box-number">
-                05
-            </div>
+            <div class="box-number">05</div>
 
-            <h3>
-                Experiments
-            </h3>
+            <h3>Experiments</h3>
 
-            <p>
-                Weird ideas and prototypes
-            </p>
+            <p>Ideas and experiments</p>
 
-            <div class="box-arrow">
-                ↗
-            </div>
+            <div class="box-arrow">↗</div>
 
         </div>
 
 
         <div class="box"
-             onclick="showMessage('Community')">
+             onclick="message('Community')">
 
-            <div class="box-number">
-                06
-            </div>
+            <div class="box-number">06</div>
 
-            <h3>
-                Community
-            </h3>
+            <h3>Community</h3>
 
-            <p>
-                Connect with others
-            </p>
+            <p>Join the community</p>
 
-            <div class="box-arrow">
-                ↗
-            </div>
+            <div class="box-arrow">↗</div>
 
         </div>
 
 
         <div class="box"
-             onclick="showMessage('Resources')">
+             onclick="message('Downloads')">
 
-            <div class="box-number">
-                07
-            </div>
+            <div class="box-number">07</div>
 
-            <h3>
-                Resources
-            </h3>
+            <h3>Downloads</h3>
 
-            <p>
-                Useful stuff
-            </p>
+            <p>Available downloads</p>
 
-            <div class="box-arrow">
-                ↗
-            </div>
+            <div class="box-arrow">↗</div>
 
         </div>
 
 
         <div class="box"
-             onclick="showMessage('About')">
+             onclick="message('About')">
 
-            <div class="box-number">
-                08
-            </div>
+            <div class="box-number">08</div>
 
-            <h3>
-                About
-            </h3>
+            <h3>About</h3>
 
-            <p>
-                About the studio
-            </p>
+            <p>About CiphAnon Studios</p>
 
-            <div class="box-arrow">
-                ↗
-            </div>
+            <div class="box-arrow">↗</div>
 
         </div>
 
@@ -1370,13 +1054,11 @@ footer {
 </section>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- FOOTER -->
 
 <footer>
 
-    <div class="footer-content">
+    <div class="footer">
 
         <div>
 
@@ -1384,23 +1066,24 @@ footer {
                 CiphAnon <span>Studios</span>
             </div>
 
-            <div class="footer-copy">
+            <p>
                 © 2026 CiphAnon Studios
-            </div>
+            </p>
 
         </div>
 
-        <div class="footer-links">
 
-            <button onclick="scrollToSection('home')">
+        <div class="footer-buttons">
+
+            <button onclick="scrollToId('home')">
                 Home
             </button>
 
-            <button onclick="scrollToSection('boxes')">
+            <button onclick="scrollToId('content')">
                 Explore
             </button>
 
-            <button onclick="showMessage('Contact')">
+            <button onclick="message('Contact')">
                 Contact
             </button>
 
@@ -1411,9 +1094,7 @@ footer {
 </footer>
 
 
-<!-- =========================
-     INFO
-========================= -->
+<!-- INFO BUTTON -->
 
 <button class="info-button"
         id="infoButton"
@@ -1422,8 +1103,8 @@ footer {
 </button>
 
 
-<div class="info-panel"
-     id="infoPanel">
+<div class="info-box"
+     id="infoBox">
 
     <button class="close"
             onclick="toggleInfo()">
@@ -1435,9 +1116,9 @@ footer {
     </h3>
 
     <p>
-        Welcome to CiphAnon Studios. This website
-        is the home for games, projects, videos,
-        scripts and other creations.
+        Welcome to CiphAnon Studios. This is the
+        home for games, projects, videos, scripts
+        and other creations.
     </p>
 
 </div>
@@ -1445,170 +1126,85 @@ footer {
 
 <script>
 
-/* =========================
-   SCROLL
-========================= */
+function scrollToId(id) {
 
-function scrollToSection(id) {
+    const element = document.getElementById(id);
 
-    const element =
-        document.getElementById(id);
-
-    if (!element) return;
-
-    element.scrollIntoView({
-        behavior: "smooth"
-    });
+    if (element) {
+        element.scrollIntoView({
+            behavior: "smooth"
+        });
+    }
 
 }
 
 
-/* =========================
-   PLACEHOLDER BUTTONS
-========================= */
+/* Placeholder for your actual pages */
 
-function showMessage(name) {
-
-    alert(name + " section coming soon!");
-
+function message(name) {
+    alert(name + " page coming soon.");
 }
 
 
-/* =========================
-   INFO
-========================= */
+/* Info popup */
 
 function toggleInfo() {
 
-    const panel =
-        document.getElementById("infoPanel");
-
-    panel.classList.toggle("open");
+    document
+        .getElementById("infoBox")
+        .classList.toggle("open");
 
 }
 
 
-/* =========================
-   HEADER SCROLL
-========================= */
+/* Close popup when clicking outside */
 
-window.addEventListener("scroll", () => {
+document.addEventListener("click", function(event) {
 
-    const header =
-        document.getElementById("header");
-
-    if (window.scrollY > 40) {
-        header.classList.add("scrolled");
-    } else {
-        header.classList.remove("scrolled");
-    }
-
-});
-
-
-/* =========================
-   CLOSE INFO OUTSIDE
-========================= */
-
-document.addEventListener("click", event => {
-
-    const panel =
-        document.getElementById("infoPanel");
+    const box =
+        document.getElementById("infoBox");
 
     const button =
         document.getElementById("infoButton");
 
     if (
-        panel.classList.contains("open") &&
-        !panel.contains(event.target) &&
+        box.classList.contains("open") &&
+        !box.contains(event.target) &&
         !button.contains(event.target)
     ) {
 
-        panel.classList.remove("open");
+        box.classList.remove("open");
 
     }
 
 });
 
 
-/* =========================
-   BOX LIGHT FOLLOW
-========================= */
+/* Box mouse glow */
 
 document.querySelectorAll(".box").forEach(box => {
 
-    box.addEventListener("mousemove", event => {
+    box.addEventListener("mousemove", function(e) {
 
-        const rect =
-            box.getBoundingClientRect();
+        const rect = box.getBoundingClientRect();
 
-        const x =
-            event.clientX - rect.left;
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
-        const y =
-            event.clientY - rect.top;
-
-        box.style.setProperty(
-            "--mouse-x",
-            x + "px"
-        );
-
-        box.style.setProperty(
-            "--mouse-y",
-            y + "px"
-        );
+        box.style.background =
+            `radial-gradient(
+                220px circle at ${x}px ${y}px,
+                rgba(243,107,33,.055),
+                #f8f8f8 55%
+            )`;
 
     });
 
-});
+    box.addEventListener("mouseleave", function() {
 
+        box.style.background = "#f8f8f8";
 
-/* =========================
-   REVEAL BOXES
-========================= */
-
-const observer =
-    new IntersectionObserver(
-        entries => {
-
-            entries.forEach(entry => {
-
-                if (entry.isIntersecting) {
-
-                    entry.target.style.opacity = "1";
-                    entry.target.style.transform =
-                        "translateY(0)";
-
-                    observer.unobserve(
-                        entry.target
-                    );
-
-                }
-
-            });
-
-        },
-        {
-            threshold: .12
-        }
-    );
-
-
-document.querySelectorAll(".box").forEach((box, index) => {
-
-    box.style.opacity = "0";
-
-    box.style.transform =
-        "translateY(35px)";
-
-    box.style.transition =
-        `opacity .6s ease ${index * .06}s,
-         transform .6s cubic-bezier(.2,.8,.2,1) ${index * .06}s,
-         border-color .35s,
-         box-shadow .35s,
-         background .35s`;
-
-    observer.observe(box);
+    });
 
 });
 
