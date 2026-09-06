@@ -56,8 +56,11 @@ function count() {
 
 function launch() {
 
-    window.location.href =
-        "home.html";
+    const page = window.open("about:blank", "_blank");
+
+    if (page) {
+        page.location.href = "home.html";
+    }
 
 }
 
