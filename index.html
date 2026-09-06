@@ -7,7 +7,6 @@
 <title>CiphAnon Studios</title>
 
 <style>
-
 /* =========================================================
    RESET
 ========================================================= */
@@ -24,14 +23,14 @@ html {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #f7f7f7;
-    color: #111;
+    background: #ffffff;
+    color: #111111;
     overflow-x: hidden;
 }
 
 button,
 a {
-    font-family: inherit;
+    font: inherit;
 }
 
 a {
@@ -41,226 +40,154 @@ a {
 
 
 /* =========================================================
-   LOADING
-========================================================= */
-
-body {
-    opacity: 0;
-    animation: pageLoad .8s ease forwards;
-}
-
-@keyframes pageLoad {
-    to {
-        opacity: 1;
-    }
-}
-
-
-/* =========================================================
    HEADER
 ========================================================= */
 
 header {
-
     position: fixed;
-
     top: 0;
     left: 0;
-
     width: 100%;
-    height: 72px;
-
-    background: rgba(255,255,255,.88);
-
-    backdrop-filter: blur(18px);
-
-    border-bottom: 1px solid #e9e9e9;
+    height: 78px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
     padding: 0 42px;
 
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(14px);
+
+    border-bottom: 1px solid #e8e8e8;
+
     z-index: 1000;
 
     transition:
-        height .3s ease,
-        box-shadow .3s ease;
+        height .35s ease,
+        box-shadow .35s ease,
+        background .35s ease;
 }
 
 header.scrolled {
-
-    height: 62px;
-
-    box-shadow:
-        0 10px 35px rgba(0,0,0,.06);
+    height: 64px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .07);
 }
 
-
-/* =========================================================
-   LOGO
-========================================================= */
-
 .logo {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    font-size: 17px;
-
+    font-size: 20px;
     font-weight: 800;
-
     letter-spacing: -.5px;
 }
 
-.logo-dot {
-
-    width: 10px;
-    height: 10px;
-
-    background: #ff6900;
-
-    border-radius: 50%;
-
-    animation: dotPulse 2s infinite;
+.logo span {
+    color: #ff6a00;
 }
 
-@keyframes dotPulse {
-
-    0%,100% {
-        box-shadow: 0 0 0 rgba(255,105,0,0);
-    }
-
-    50% {
-        box-shadow:
-            0 0 18px rgba(255,105,0,.45);
-    }
-}
-
-
-/* =========================================================
-   NAV
-========================================================= */
-
-nav {
-
+.nav {
     display: flex;
-
-    gap: 28px;
+    align-items: center;
+    gap: 30px;
 }
 
-nav a {
-
-    font-size: 13px;
-
-    color: #666;
-
+.nav a {
     position: relative;
 
-    transition: .25s ease;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .5px;
+
+    color: #555;
+
+    transition: color .25s ease;
 }
 
-nav a:hover {
-
-    color: #111;
-}
-
-nav a::after {
-
+.nav a::after {
     content: "";
 
     position: absolute;
-
-    left: 50%;
-
-    bottom: -8px;
+    left: 0;
+    bottom: -7px;
 
     width: 0;
-
     height: 2px;
 
-    background: #ff6900;
+    background: #ff6a00;
 
-    transform: translateX(-50%);
-
-    transition: .25s ease;
+    transition: width .25s ease;
 }
 
-nav a:hover::after {
+.nav a:hover {
+    color: #111;
+}
 
+.nav a:hover::after {
     width: 100%;
 }
 
 
 /* =========================================================
-   LEFT BAR
+   LEFT SIDE BAR
 ========================================================= */
 
-.left-bar {
-
+.side-bar {
     position: fixed;
 
-    left: 18px;
-
+    left: 22px;
     top: 50%;
 
     transform: translateY(-50%);
 
     display: flex;
-
     flex-direction: column;
+    gap: 8px;
 
-    gap: 7px;
-
-    z-index: 800;
+    z-index: 900;
 }
 
-.left-bar button {
+.side-button {
+    width: 42px;
+    height: 42px;
 
-    width: 39px;
-
-    height: 39px;
-
-    background: rgba(255,255,255,.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     border: 1px solid #dedede;
+    border-radius: 12px;
 
-    border-radius: 8px;
+    background: #ffffff;
+
+    color: #555;
+
+    font-size: 11px;
+    font-weight: 800;
 
     cursor: pointer;
 
-    font-size: 10px;
-
-    font-weight: bold;
-
-    color: #777;
-
     transition:
-        width .25s ease,
+        transform .25s ease,
+        background .25s ease,
         color .25s ease,
         border-color .25s ease,
-        transform .25s ease,
         box-shadow .25s ease;
 }
 
-.left-bar button:hover {
+.side-button:hover {
+    transform: translateX(6px);
 
-    width: 54px;
+    background: #111;
+    color: #ffffff;
 
-    color: #ff6900;
+    border-color: #111;
 
-    border-color: #ff6900;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .15);
+}
 
-    transform: translateX(3px);
-
-    box-shadow:
-        0 0 20px rgba(255,105,0,.14);
+.side-button.active {
+    background: #ff6a00;
+    border-color: #ff6a00;
+    color: #ffffff;
 }
 
 
@@ -269,322 +196,330 @@ nav a:hover::after {
 ========================================================= */
 
 .hero {
+    position: relative;
 
     min-height: 100vh;
 
-    background: #fff;
-
-    position: relative;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
-    text-align: center;
-
-    padding: 120px 25px 100px;
+    padding:
+        135px
+        25px
+        125px;
 
     overflow: hidden;
+
+    background: #ffffff;
 }
 
-
-/* =========================================================
-   HERO BACKGROUND
-========================================================= */
-
 .hero-grid {
-
     position: absolute;
-
     inset: 0;
+
+    background-image:
+        linear-gradient(#eeeeee 1px, transparent 1px),
+        linear-gradient(90deg, #eeeeee 1px, transparent 1px);
+
+    background-size: 55px 55px;
 
     opacity: .45;
 
-    background-image:
-
-        linear-gradient(#eee 1px, transparent 1px),
-        linear-gradient(90deg,#eee 1px,transparent 1px);
-
-    background-size: 70px 70px;
-
-    mask-image:
-        linear-gradient(
-            to bottom,
-            black,
-            transparent 85%
-        );
-
-    animation: gridMove 15s linear infinite;
+    mask-image: linear-gradient(
+        to bottom,
+        transparent,
+        black 20%,
+        black 70%,
+        transparent
+    );
 }
-
-@keyframes gridMove {
-
-    from {
-        transform: translateY(0);
-    }
-
-    to {
-        transform: translateY(70px);
-    }
-}
-
-
-/* orange light */
 
 .hero-orb {
-
     position: absolute;
 
     width: 500px;
     height: 500px;
 
+    right: -180px;
+    top: 100px;
+
     border-radius: 50%;
 
-    background: rgba(255,105,0,.055);
+    background: #ff6a00;
 
-    filter: blur(80px);
+    opacity: .07;
 
-    animation: orbMove 8s ease-in-out infinite;
+    filter: blur(5px);
+
+    animation: orbFloat 8s ease-in-out infinite;
 }
 
-@keyframes orbMove {
-
-    0%,100% {
-        transform: translate(-30px,-20px);
+@keyframes orbFloat {
+    0%, 100% {
+        transform: translateY(0) scale(1);
     }
 
     50% {
-        transform: translate(40px,30px);
+        transform: translateY(-25px) scale(1.05);
     }
 }
 
-
-/* =========================================================
-   HERO CONTENT
-========================================================= */
-
 .hero-content {
-
     position: relative;
 
-    z-index: 2;
+    width: 100%;
+    max-width: 1100px;
 
-    max-width: 900px;
+    text-align: center;
+
+    z-index: 2;
 }
 
 .hero-label {
+    display: inline-block;
 
-    color: #ff6900;
+    margin-bottom: 18px;
 
-    font-size: 11px;
+    padding: 8px 14px;
 
-    font-weight: bold;
-
-    letter-spacing: 4px;
-
-    margin-bottom: 20px;
-
-    animation: heroIn .8s ease .1s both;
-}
-
-.hero h1 {
-
-    font-size: clamp(48px,8vw,88px);
-
-    line-height: .95;
-
-    letter-spacing: -5px;
-
-    font-weight: 850;
-
-    margin-bottom: 25px;
-
-    animation: heroIn .8s ease .2s both;
-}
-
-.hero h1 span {
-
-    color: #ff6900;
-}
-
-.hero-description {
-
-    max-width: 580px;
-
-    margin: auto;
+    border: 1px solid #dedede;
+    border-radius: 100px;
 
     color: #777;
 
-    font-size: 15px;
+    font-size: 10px;
+    font-weight: 800;
 
-    line-height: 1.7;
+    letter-spacing: 2px;
 
-    animation: heroIn .8s ease .3s both;
+    animation: fadeUp .8s ease both;
 }
 
-@keyframes heroIn {
+.hero h1 {
+    font-size: clamp(52px, 9vw, 115px);
 
-    from {
+    line-height: .9;
 
-        opacity: 0;
+    letter-spacing: -6px;
 
-        transform:
-            translateY(30px);
+    font-weight: 900;
 
-    }
+    animation: fadeUp .8s ease .1s both;
+}
 
-    to {
+.hero h1 span {
+    color: #ff6a00;
+}
 
-        opacity: 1;
+.hero-description {
+    max-width: 620px;
 
-        transform:
-            translateY(0);
+    margin: 30px auto 0;
 
-    }
+    color: #666;
+
+    font-size: 16px;
+    line-height: 1.7;
+
+    animation: fadeUp .8s ease .2s both;
 }
 
 
 /* =========================================================
-   SIX BUTTONS
+   HERO BUTTONS
 ========================================================= */
 
 .hero-buttons {
-
     display: flex;
-
     justify-content: center;
-
     flex-wrap: wrap;
 
-    gap: 9px;
+    gap: 10px;
 
-    margin-top: 36px;
+    margin-top: 34px;
 
-    animation: heroIn .8s ease .45s both;
+    animation: fadeUp .8s ease .3s both;
 }
 
 .hero-button {
+    position: relative;
 
-    padding: 13px 21px;
+    min-width: 105px;
 
-    background: #fff;
+    padding: 13px 19px;
 
     border: 1px solid #dcdcdc;
+    border-radius: 10px;
 
-    border-radius: 8px;
+    background: #ffffff;
 
     color: #222;
 
+    font-size: 12px;
+    font-weight: 800;
+
     cursor: pointer;
+
+    overflow: hidden;
 
     transition:
         transform .25s ease,
+        color .25s ease,
         border-color .25s ease,
-        box-shadow .25s ease,
-        color .25s ease;
+        box-shadow .25s ease;
+}
+
+.hero-button::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 0;
+
+    background: #ff6a00;
+
+    z-index: -1;
+
+    transition: height .25s ease;
 }
 
 .hero-button:hover {
+    transform: translateY(-4px);
 
-    transform: translateY(-5px);
+    color: #ffffff;
 
-    color: #ff6900;
-
-    border-color: #ff6900;
+    border-color: #ff6a00;
 
     box-shadow:
-        0 12px 28px rgba(255,105,0,.12);
+        0 10px 25px rgba(255, 106, 0, .18);
 }
 
-.hero-button:first-child {
-
-    background: #111;
-
-    border-color: #111;
-
-    color: white;
-}
-
-.hero-button:first-child:hover {
-
-    background: #ff6900;
-
-    border-color: #ff6900;
+.hero-button:hover::before {
+    height: 100%;
 }
 
 
 /* =========================================================
-   SCROLL
+   STUDIO IMAGE
+========================================================= */
+
+.studio-image {
+    width: min(900px, 100%);
+
+    margin: 55px auto 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    animation: studioImageIn 1s ease .55s both;
+}
+
+.studio-image img {
+    display: block;
+
+    width: min(900px, 100%);
+
+    height: auto;
+
+    max-height: 300px;
+
+    object-fit: contain;
+    object-position: center;
+
+    transition:
+        transform .5s ease,
+        filter .5s ease;
+}
+
+.studio-image:hover img {
+    transform: translateY(-5px) scale(1.015);
+
+    filter:
+        drop-shadow(0 15px 25px rgba(0, 0, 0, .10));
+}
+
+@keyframes studioImageIn {
+    from {
+        opacity: 0;
+        transform: translateY(35px) scale(.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* =========================================================
+   SCROLL INDICATOR
 ========================================================= */
 
 .scroll-indicator {
-
     position: absolute;
 
-    bottom: 27px;
-
+    bottom: 28px;
     left: 50%;
 
     transform: translateX(-50%);
 
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
+    gap: 8px;
 
-    gap: 9px;
-
-    color: #aaa;
+    color: #999;
 
     font-size: 9px;
+    font-weight: 800;
 
-    letter-spacing: 3px;
+    letter-spacing: 2px;
+
+    animation: fadeUp .8s ease .9s both;
 }
 
 .scroll-wheel {
-
     width: 18px;
-
     height: 30px;
 
-    border: 1px solid #ccc;
-
-    border-radius: 12px;
+    border: 1px solid #bbb;
+    border-radius: 20px;
 
     position: relative;
 }
 
-.scroll-wheel::after {
-
+.scroll-wheel::before {
     content: "";
 
     position: absolute;
 
     left: 50%;
+    top: 6px;
 
-    top: 5px;
-
-    width: 2px;
-
+    width: 3px;
     height: 6px;
-
-    background: #ff6900;
 
     transform: translateX(-50%);
 
-    border-radius: 2px;
+    border-radius: 5px;
 
-    animation: wheelMove 1.7s infinite;
+    background: #ff6a00;
+
+    animation: scrollDot 1.5s ease infinite;
 }
 
-@keyframes wheelMove {
-
+@keyframes scrollDot {
     0% {
         opacity: 0;
-        transform: translate(-50%,0);
+        transform: translate(-50%, 0);
     }
 
     30% {
@@ -593,334 +528,224 @@ nav a:hover::after {
 
     100% {
         opacity: 0;
-        transform: translate(-50%,11px);
+        transform: translate(-50%, 10px);
     }
 }
 
 
 /* =========================================================
-   PATTERN AREA
+   GENERAL SECTIONS
 ========================================================= */
 
-.pattern-section {
-
-    background: #f7f7f7;
-
-    padding: 100px 7% 120px;
-
-    border-top: 1px solid #eee;
-
-    border-bottom: 1px solid #eee;
-
-    position: relative;
-}
-
-.pattern-title {
-
-    text-align: center;
-
-    margin-bottom: 45px;
-
-    opacity: 0;
-
-    transform: translateY(25px);
-
-    transition: .7s ease;
-}
-
-.pattern-title.show {
-
-    opacity: 1;
-
-    transform: translateY(0);
-}
-
-.pattern-title h2 {
-
-    font-size: 34px;
-
-    letter-spacing: -1px;
-
-    margin-bottom: 8px;
-}
-
-.pattern-title p {
-
-    color: #888;
-
-    font-size: 13px;
-}
-
-
-/* =========================================================
-   SQUARE PATTERN
-========================================================= */
-
-.square-grid {
-
-    max-width: 1250px;
-
-    margin: auto;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(6, 1fr);
-
-    gap: 13px;
-}
-
-
-/* EMPTY SQUARE */
-
-.square {
-
-    aspect-ratio: 1 / 1;
-
-    border: 1px solid #dedede;
-
-    background: #fff;
-
-    border-radius: 14px;
-
+.section {
     position: relative;
 
-    cursor: pointer;
+    padding: 120px 7vw;
 
-    opacity: 0;
-
-    transform:
-        scale(.85)
-        translateY(20px);
-
-    transition:
-        opacity .6s ease,
-        transform .6s ease,
-        border-color .3s ease,
-        box-shadow .3s ease,
-        background .3s ease;
+    background: #ffffff;
 }
 
-.square.show {
-
-    opacity: 1;
-
-    transform:
-        scale(1)
-        translateY(0);
-}
-
-.square:hover {
-
-    border-color: #ff6900;
-
-    background: #fff;
-
-    box-shadow:
-        0 0 0 1px #ff6900,
-        0 0 25px rgba(255,105,0,.18);
-
-    transform:
-        translateY(-6px)
-        scale(1.025);
-}
-
-
-/* small hover center */
-
-.square::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 5px;
-
-    height: 5px;
-
-    border-radius: 50%;
-
-    background: #ff6900;
-
-    left: 50%;
-
-    top: 50%;
-
-    transform:
-        translate(-50%,-50%)
-        scale(0);
-
-    transition: .3s ease;
-}
-
-.square:hover::before {
-
-    transform:
-        translate(-50%,-50%)
-        scale(1);
-}
-
-
-/* =========================================================
-   MAIN CONTENT
-========================================================= */
-
-.content {
-
-    max-width: 1400px;
-
-    margin: auto;
-
-    padding: 110px 7%;
+.section.gray {
+    background: #fafafa;
 }
 
 .section-heading {
+    max-width: 750px;
 
-    margin-bottom: 40px;
-
-    opacity: 0;
-
-    transform: translateY(25px);
-
-    transition: .7s ease;
+    margin-bottom: 55px;
 }
 
-.section-heading.show {
+.section-number {
+    margin-bottom: 12px;
 
-    opacity: 1;
+    color: #ff6a00;
 
-    transform: translateY(0);
-}
-
-.section-heading small {
-
-    color: #ff6900;
-
-    font-size: 10px;
+    font-size: 11px;
+    font-weight: 900;
 
     letter-spacing: 2px;
-
-    font-weight: bold;
 }
 
 .section-heading h2 {
+    font-size: clamp(38px, 6vw, 70px);
 
-    font-size: 38px;
+    line-height: .95;
 
-    letter-spacing: -1.5px;
+    letter-spacing: -3px;
+}
 
-    margin-top: 8px;
+.section-heading p {
+    margin-top: 20px;
+
+    max-width: 600px;
+
+    color: #777;
+
+    line-height: 1.7;
 }
 
 
 /* =========================================================
-   CONTENT CARDS
+   EMPTY SQUARE PATTERN
 ========================================================= */
 
-.content-grid {
+.pattern-section {
+    padding: 100px 7vw;
+
+    background: #fafafa;
+
+    overflow: hidden;
+}
+
+.square-grid {
+    width: 100%;
 
     display: grid;
 
     grid-template-columns:
-        repeat(3,1fr);
+        repeat(6, minmax(70px, 1fr));
+
+    gap: 15px;
+
+    max-width: 1200px;
+
+    margin: auto;
+}
+
+.square {
+    aspect-ratio: 1 / 1;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    transition:
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease,
+        background .35s ease;
+}
+
+.square:hover {
+    transform:
+        translateY(-8px)
+        rotate(1deg);
+
+    border-color: #ff6a00;
+
+    box-shadow:
+        0 0 0 1px #ff6a00,
+        0 15px 35px rgba(255, 106, 0, .13);
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
 
     gap: 18px;
 }
 
-.content-card {
+.card {
+    position: relative;
 
     min-height: 260px;
 
-    padding: 28px;
+    padding: 30px;
 
-    background: #fff;
+    border: 1px solid #e3e3e3;
+    border-radius: 20px;
 
-    border: 1px solid #e5e5e5;
-
-    border-radius: 17px;
-
-    position: relative;
+    background: #ffffff;
 
     overflow: hidden;
 
-    opacity: 0;
-
-    transform: translateY(30px);
-
     transition:
-        opacity .7s ease,
-        transform .7s ease,
-        border-color .3s ease,
-        box-shadow .3s ease;
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
 }
 
-.content-card.show {
-
-    opacity: 1;
-
-    transform: translateY(0);
-}
-
-.content-card:hover {
-
-    transform:
-        translateY(-7px);
-
-    border-color: #ff6900;
-
-    box-shadow:
-        0 18px 40px rgba(0,0,0,.06),
-        0 0 25px rgba(255,105,0,.07);
-}
-
-.card-number {
-
-    color: #ff6900;
-
-    font-size: 11px;
-
-    font-weight: bold;
-
-    margin-bottom: 45px;
-}
-
-.content-card h3 {
-
-    font-size: 21px;
-
-    margin-bottom: 9px;
-}
-
-.content-card p {
-
-    color: #777;
-
-    font-size: 13px;
-
-    line-height: 1.65;
-}
-
-.card-arrow {
+.card::after {
+    content: "";
 
     position: absolute;
 
-    right: 25px;
+    width: 120px;
+    height: 120px;
 
-    bottom: 24px;
+    right: -60px;
+    bottom: -60px;
 
-    color: #aaa;
+    border-radius: 50%;
 
-    font-size: 19px;
+    background: #ff6a00;
 
-    transition: .25s ease;
+    opacity: 0;
+
+    transition: opacity .35s ease;
 }
 
-.content-card:hover .card-arrow {
+.card:hover {
+    transform: translateY(-8px);
 
-    color: #ff6900;
+    border-color: #ff6a00;
 
-    transform:
-        translateX(5px);
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, .08);
+}
+
+.card:hover::after {
+    opacity: .08;
+}
+
+.card-number {
+    color: #aaa;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.card h3 {
+    margin-top: 70px;
+
+    font-size: 25px;
+
+    letter-spacing: -.7px;
+}
+
+.card p {
+    margin-top: 12px;
+
+    color: #777;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+.card-link {
+    position: absolute;
+
+    left: 30px;
+    bottom: 28px;
+
+    color: #ff6a00;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    letter-spacing: 1px;
 }
 
 
@@ -928,84 +753,98 @@ nav a:hover::after {
    YOUTUBE
 ========================================================= */
 
-.youtube {
-
-    margin-top: 110px;
-}
-
 .youtube-grid {
-
     display: grid;
 
     grid-template-columns:
-        repeat(4,1fr);
+        repeat(4, minmax(0, 1fr));
 
-    gap: 15px;
+    gap: 18px;
 }
 
 .youtube-card {
+    position: relative;
 
-    background: #fff;
+    min-height: 230px;
 
-    border: 1px solid #e5e5e5;
+    padding: 28px;
 
-    border-radius: 14px;
+    border: 1px solid #e3e3e3;
+    border-radius: 20px;
+
+    background: #ffffff;
 
     overflow: hidden;
 
     transition:
-        transform .3s ease,
-        border-color .3s ease,
-        box-shadow .3s ease;
+        transform .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
 }
 
 .youtube-card:hover {
+    transform: translateY(-8px);
 
-    transform:
-        translateY(-6px);
-
-    border-color: #ff6900;
+    border-color: #ff6a00;
 
     box-shadow:
-        0 15px 35px rgba(0,0,0,.06);
+        0 18px 40px rgba(0, 0, 0, .08);
 }
 
-.youtube-image {
-
-    height: 145px;
-
-    background: #eee;
+.youtube-icon {
+    width: 45px;
+    height: 45px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
-    color: #aaa;
+    border-radius: 12px;
 
-    font-size: 10px;
+    background: #111;
+    color: #ffffff;
 
-    letter-spacing: 2px;
+    font-size: 13px;
+    font-weight: 900;
+
+    transition:
+        background .3s ease,
+        transform .3s ease;
 }
 
-.youtube-info {
+.youtube-card:hover .youtube-icon {
+    background: #ff6a00;
 
-    padding: 17px;
+    transform: rotate(-5deg) scale(1.05);
 }
 
-.youtube-info h3 {
+.youtube-card h3 {
+    margin-top: 60px;
 
-    font-size: 14px;
-
-    margin-bottom: 5px;
+    font-size: 19px;
 }
 
-.youtube-info p {
+.youtube-card p {
+    margin-top: 10px;
+
+    color: #777;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+.youtube-card a {
+    display: inline-block;
+
+    margin-top: 18px;
+
+    color: #ff6a00;
 
     font-size: 11px;
+    font-weight: 900;
 
-    color: #888;
+    letter-spacing: 1px;
 }
 
 
@@ -1013,77 +852,172 @@ nav a:hover::after {
    SCRIPT LIBRARY
 ========================================================= */
 
-.library {
+.library-banner {
+    position: relative;
 
-    margin-top: 110px;
-
-    border: 1px solid #e4e4e4;
-
-    border-radius: 18px;
-
-    padding: 45px;
+    min-height: 300px;
 
     display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-    justify-content: space-between;
+    padding: 55px;
 
-    align-items: center;
+    border-radius: 25px;
 
-    gap: 25px;
+    background: #111111;
 
-    background: #fff;
+    color: #ffffff;
 
-    opacity: 0;
-
-    transform: translateY(25px);
-
-    transition: .7s ease;
+    overflow: hidden;
 }
 
-.library.show {
+.library-banner::before {
+    content: "";
 
-    opacity: 1;
+    position: absolute;
 
-    transform: translateY(0);
+    width: 350px;
+    height: 350px;
+
+    right: -120px;
+    top: -150px;
+
+    border: 1px solid rgba(255, 106, 0, .6);
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 40px rgba(255, 106, 0, .05),
+        0 0 0 80px rgba(255, 106, 0, .03);
 }
 
-.library h2 {
+.library-banner::after {
+    content: "";
 
-    font-size: 27px;
+    position: absolute;
 
-    margin-bottom: 6px;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.035) 1px,
+            transparent 1px
+        );
+
+    background-size: 35px 35px;
 }
 
-.library p {
+.library-content {
+    position: relative;
 
-    color: #888;
+    z-index: 2;
 
-    font-size: 13px;
+    max-width: 650px;
 }
 
-.library button {
+.library-tag {
+    color: #ff6a00;
 
-    border: none;
+    font-size: 10px;
+    font-weight: 900;
 
-    background: #111;
+    letter-spacing: 2px;
+}
 
-    color: #fff;
+.library-banner h2 {
+    margin-top: 15px;
 
-    padding: 13px 22px;
+    font-size: clamp(35px, 5vw, 60px);
 
-    border-radius: 8px;
+    letter-spacing: -2px;
+}
+
+.library-banner p {
+    margin-top: 15px;
+
+    color: #aaa;
+
+    line-height: 1.7;
+}
+
+.library-button {
+    width: fit-content;
+
+    margin-top: 25px;
+
+    padding: 13px 20px;
+
+    border: 1px solid #444;
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #111;
+
+    font-size: 11px;
+    font-weight: 900;
 
     cursor: pointer;
 
-    transition: .25s ease;
+    transition:
+        background .25s ease,
+        color .25s ease,
+        transform .25s ease;
 }
 
-.library button:hover {
+.library-button:hover {
+    background: #ff6a00;
 
-    background: #ff6900;
+    color: #ffffff;
 
-    transform:
-        translateY(-3px);
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   ABOUT
+========================================================= */
+
+.about-box {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 60px;
+
+    align-items: center;
+}
+
+.about-large {
+    font-size: clamp(28px, 4vw, 52px);
+
+    line-height: 1;
+
+    letter-spacing: -2px;
+
+    font-weight: 800;
+}
+
+.about-large span {
+    color: #ff6a00;
+}
+
+.about-text {
+    color: #777;
+
+    line-height: 1.8;
+
+    font-size: 15px;
+}
+
+.about-text p + p {
+    margin-top: 20px;
 }
 
 
@@ -1092,116 +1026,141 @@ nav a:hover::after {
 ========================================================= */
 
 footer {
+    padding: 55px 7vw;
 
-    border-top: 1px solid #e7e7e7;
+    background: #111111;
 
-    background: #fff;
+    color: #ffffff;
 
-    padding: 35px 7%;
+    border-top: 1px solid #222;
+}
 
+.footer-inner {
     display: flex;
 
+    align-items: center;
     justify-content: space-between;
 
-    align-items: center;
-
-    font-size: 11px;
-
-    color: #888;
+    gap: 30px;
 }
 
 .footer-logo {
+    font-size: 18px;
+    font-weight: 900;
+}
 
-    color: #111;
+.footer-logo span {
+    color: #ff6a00;
+}
 
-    font-weight: bold;
+.footer-copy {
+    color: #777;
+
+    font-size: 11px;
+}
+
+.footer-links {
+    display: flex;
+
+    gap: 20px;
+}
+
+.footer-links a {
+    color: #aaa;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    transition: color .25s ease;
+}
+
+.footer-links a:hover {
+    color: #ff6a00;
 }
 
 
 /* =========================================================
-   INFO
+   INFO BUTTON
 ========================================================= */
 
 .info-button {
-
     position: fixed;
 
-    right: 24px;
+    right: 25px;
+    bottom: 25px;
 
-    bottom: 24px;
+    width: 48px;
+    height: 48px;
 
-    width: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    height: 45px;
-
-    border: none;
-
+    border: 1px solid #ddd;
     border-radius: 50%;
 
-    background: #111;
+    background: #ffffff;
 
-    color: #fff;
+    color: #111;
+
+    font-size: 15px;
+    font-weight: 900;
 
     cursor: pointer;
 
-    z-index: 1100;
+    z-index: 1000;
 
-    transition: .3s ease;
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.12);
+
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        color .25s ease;
 }
 
 .info-button:hover {
+    transform: scale(1.08);
 
-    background: #ff6900;
+    background: #ff6a00;
 
-    transform:
-        scale(1.08)
-        rotate(8deg);
-
-    box-shadow:
-        0 8px 25px rgba(255,105,0,.25);
+    color: #ffffff;
 }
 
-
-/* =========================================================
-   INFO BOX
-========================================================= */
-
 .info-box {
-
     position: fixed;
 
-    right: 24px;
+    right: 25px;
+    bottom: 85px;
 
-    bottom: 78px;
+    width: 300px;
 
-    width: 290px;
+    padding: 24px;
 
-    padding: 23px;
+    border: 1px solid #ddd;
+    border-radius: 18px;
 
-    background: #fff;
-
-    border: 1px solid #e5e5e5;
-
-    border-radius: 15px;
+    background: #ffffff;
 
     box-shadow:
-        0 20px 50px rgba(0,0,0,.12);
+        0 20px 50px rgba(0,0,0,.15);
 
-    z-index: 1099;
+    z-index: 999;
 
     opacity: 0;
-
     visibility: hidden;
 
     transform:
         translateY(15px)
         scale(.96);
 
-    transition: .3s ease;
+    transition:
+        opacity .25s ease,
+        visibility .25s ease,
+        transform .25s ease;
 }
 
-.info-box.open {
-
+.info-box.show {
     opacity: 1;
 
     visibility: visible;
@@ -1212,114 +1171,217 @@ footer {
 }
 
 .info-box h3 {
-
-    margin-bottom: 8px;
+    font-size: 18px;
 }
 
 .info-box p {
+    margin-top: 10px;
 
     color: #777;
 
-    font-size: 12px;
+    font-size: 13px;
 
     line-height: 1.6;
 }
 
 
 /* =========================================================
-   MOBILE
+   REVEAL ANIMATIONS
+========================================================= */
+
+.reveal {
+    opacity: 0;
+
+    transform: translateY(35px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE
 ========================================================= */
 
 @media (max-width: 1000px) {
 
-    .left-bar {
-        display: none;
-    }
-
     .square-grid {
-
         grid-template-columns:
-            repeat(4,1fr);
+            repeat(4, minmax(70px, 1fr));
     }
 
-    .content-grid {
-
+    .cards {
         grid-template-columns:
-            repeat(2,1fr);
+            repeat(2, minmax(0, 1fr));
     }
 
     .youtube-grid {
-
         grid-template-columns:
-            repeat(2,1fr);
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .about-box {
+        grid-template-columns: 1fr;
     }
 }
 
 
-@media (max-width: 650px) {
+@media (max-width: 700px) {
 
     header {
+        height: 68px;
 
         padding: 0 20px;
     }
 
-    nav {
+    header.scrolled {
+        height: 60px;
+    }
 
+    .nav {
+        display: none;
+    }
+
+    .side-bar {
+        left: 10px;
+    }
+
+    .side-button {
+        width: 36px;
+        height: 36px;
+
+        border-radius: 10px;
+    }
+
+    .hero {
+        padding:
+            110px
+            20px
+            110px;
+    }
+
+    .hero h1 {
+        letter-spacing: -4px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .hero-buttons {
+        gap: 8px;
+    }
+
+    .hero-button {
+        min-width: 95px;
+    }
+
+    .studio-image {
+        margin-top: 40px;
+    }
+
+    .studio-image img {
+        max-height: 210px;
+    }
+
+    .pattern-section {
+        padding:
+            70px
+            55px;
+    }
+
+    .square-grid {
+        grid-template-columns:
+            repeat(3, minmax(55px, 1fr));
+
+        gap: 10px;
+    }
+
+    .square {
+        border-radius: 13px;
+    }
+
+    .section {
+        padding:
+            80px
+            25px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .youtube-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .library-banner {
+        padding: 35px;
+
+        min-height: 350px;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .info-box {
+        right: 15px;
+        bottom: 75px;
+
+        width: calc(100% - 30px);
+    }
+}
+
+
+@media (max-width: 430px) {
+
+    .side-bar {
         display: none;
     }
 
     .hero h1 {
+        font-size: 50px;
+    }
 
-        font-size: 51px;
+    .hero-button {
+        min-width: 90px;
 
-        letter-spacing: -3px;
+        padding:
+            12px
+            14px;
     }
 
     .square-grid {
-
         grid-template-columns:
-            repeat(3,1fr);
-
-        gap: 9px;
-    }
-
-    .content {
-
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    .content-grid,
-    .youtube-grid {
-
-        grid-template-columns:
-            1fr;
-    }
-
-    .library {
-
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        padding: 28px;
-    }
-
-    footer {
-
-        flex-direction: column;
-
-        gap: 10px;
-
-        text-align: center;
+            repeat(3, 1fr);
     }
 }
-
-   img {
-      height: 50px;
-      width: auto;
-   }
-
 </style>
 </head>
 
@@ -1327,70 +1389,99 @@ footer {
 <body>
 
 
-<!-- =========================================================
+<!-- =======================================================
      HEADER
-========================================================= -->
+======================================================= -->
 
 <header id="header">
 
     <div class="logo">
-
-        <span class="logo-dot"></span>
-
-        CiphAnon Studios
-
+        CiphAnon <span>Studios</span>
     </div>
 
-
-    <nav>
+    <nav class="nav">
 
         <a href="#home">Home</a>
 
-        <a href="#pattern">Explore</a>
-
         <a href="#projects">Projects</a>
+
+        <a href="#games">Games</a>
 
         <a href="#videos">Videos</a>
 
         <a href="#scripts">Scripts</a>
+
+        <a href="#about">About</a>
 
     </nav>
 
 </header>
 
 
-<!-- =========================================================
-     LEFT BUTTON BAR
-========================================================= -->
+<!-- =======================================================
+     LEFT SIDE BAR
+======================================================= -->
 
-<div class="left-bar">
+<div class="side-bar">
 
-    <button onclick="go('home')">H</button>
+    <button
+        class="side-button active"
+        onclick="go('home')">
+        H
+    </button>
 
-    <button onclick="go('pattern')">01</button>
+    <button
+        class="side-button"
+        onclick="go('projects')">
+        01
+    </button>
 
-    <button onclick="go('projects')">02</button>
+    <button
+        class="side-button"
+        onclick="go('games')">
+        02
+    </button>
 
-    <button onclick="go('games')">03</button>
+    <button
+        class="side-button"
+        onclick="go('videos')">
+        03
+    </button>
 
-    <button onclick="go('videos')">04</button>
+    <button
+        class="side-button"
+        onclick="go('scripts')">
+        04
+    </button>
 
-    <button onclick="go('scripts')">05</button>
+    <button
+        class="side-button"
+        onclick="go('arcade')">
+        05
+    </button>
 
-    <button onclick="go('about')">06</button>
+    <button
+        class="side-button"
+        onclick="go('about')">
+        06
+    </button>
 
-    <button onclick="go('footer')">07</button>
+    <button
+        class="side-button"
+        onclick="go('contact')">
+        07
+    </button>
 
 </div>
 
 
-<!-- =========================================================
+<!-- =======================================================
      HERO
-========================================================= -->
+======================================================= -->
 
-<img src="CiphAnon Studios.png">
-   
-   <section class="hero" id="home">
+<section
+    class="hero"
+    id="home">
 
     <div class="hero-grid"></div>
 
@@ -1410,12 +1501,12 @@ footer {
 
 
         <p class="hero-description">
-
             Games, projects, videos, scripts and
             everything being created under CiphAnon Studios.
-
         </p>
 
+
+        <!-- EXACTLY 6 MAIN BUTTONS -->
 
         <div class="hero-buttons">
 
@@ -1457,8 +1548,21 @@ footer {
 
         </div>
 
+
+        <!-- CIPHANON STUDIOS IMAGE -->
+
+        <div class="studio-image">
+
+            <img
+                src="CiphAnon Studios.png"
+                alt="CiphAnon Studios">
+
+        </div>
+
     </div>
 
+
+    <!-- SCROLL INDICATOR -->
 
     <div class="scroll-indicator">
 
@@ -1471,25 +1575,13 @@ footer {
 </section>
 
 
-<!-- =========================================================
+<!-- =======================================================
      EMPTY SQUARE PATTERN
-========================================================= -->
+======================================================= -->
 
-<section class="pattern-section" id="pattern">
-
-    <div class="pattern-title reveal">
-
-        <h2>Explore CiphAnon Studios</h2>
-
-        <p>
-            Discover what's being created.
-        </p>
-
-    </div>
-
+<section class="pattern-section">
 
     <div class="square-grid">
-
 
         <div class="square"></div>
         <div class="square"></div>
@@ -1524,26 +1616,36 @@ footer {
 </section>
 
 
-<!-- =========================================================
-     CONTENT
-========================================================= -->
+<!-- =======================================================
+     PROJECTS
+======================================================= -->
 
-<main class="content" id="projects">
-
+<section
+    class="section"
+    id="projects">
 
     <div class="section-heading reveal">
 
-        <small>THE STUDIO</small>
+        <div class="section-number">
+            01 / PROJECTS
+        </div>
 
-        <h2>Everything CiphAnon.</h2>
+        <h2>
+            Things being<br>
+            built.
+        </h2>
+
+        <p>
+            A collection of projects, experiments and
+            creations developed under CiphAnon Studios.
+        </p>
 
     </div>
 
 
-    <div class="content-grid">
+    <div class="cards">
 
-
-        <div class="content-card reveal" id="games">
+        <div class="card reveal">
 
             <div class="card-number">
                 01
@@ -1554,18 +1656,18 @@ footer {
             </h3>
 
             <p>
-                Games and interactive experiences
-                created by CiphAnon Studios.
+                Original games and interactive
+                experiments.
             </p>
 
-            <span class="card-arrow">
-                →
-            </span>
+            <div class="card-link">
+                VIEW →
+            </div>
 
         </div>
 
 
-        <div class="content-card reveal">
+        <div class="card reveal">
 
             <div class="card-number">
                 02
@@ -1576,18 +1678,20 @@ footer {
             </h3>
 
             <p>
-                Websites, applications, experiments
-                and other things being built.
+                Websites, tools, applications and
+                other builds.
             </p>
 
-            <span class="card-arrow">
-                →
-            </span>
+            <div class="card-link">
+                EXPLORE →
+            </div>
 
         </div>
 
 
-        <div class="content-card reveal" id="arcade">
+        <div
+            class="card reveal"
+            id="arcade">
 
             <div class="card-number">
                 03
@@ -1598,40 +1702,42 @@ footer {
             </h3>
 
             <p>
-                Smaller games and experiments
-                from CiphAnon Arcade.
+                A collection of games and interactive
+                experiences.
             </p>
 
-            <span class="card-arrow">
-                →
-            </span>
+            <div class="card-link">
+                ENTER →
+            </div>
 
         </div>
 
 
-        <div class="content-card reveal" id="scripts">
+        <div
+            class="card reveal"
+            id="scripts">
 
             <div class="card-number">
                 04
             </div>
 
             <h3>
-                Script Library
+                Scripts
             </h3>
 
             <p>
-                Scripts, tools and development
-                resources created by the studio.
+                Useful scripts, experiments and
+                development tools.
             </p>
 
-            <span class="card-arrow">
-                →
-            </span>
+            <div class="card-link">
+                OPEN →
+            </div>
 
         </div>
 
 
-        <div class="content-card reveal">
+        <div class="card reveal">
 
             <div class="card-number">
                 05
@@ -1642,205 +1748,430 @@ footer {
             </h3>
 
             <p>
-                Random ideas, prototypes and
-                experimental creations.
+                Random ideas turned into working
+                prototypes.
             </p>
 
-            <span class="card-arrow">
-                →
-            </span>
+            <div class="card-link">
+                DISCOVER →
+            </div>
 
         </div>
 
 
-        <div class="content-card reveal" id="about">
+        <div class="card reveal">
 
             <div class="card-number">
                 06
             </div>
 
             <h3>
-                About
+                More
             </h3>
 
             <p>
-                Learn more about CiphAnon Studios
-                and what's being created.
+                More creations are constantly being
+                added.
             </p>
 
-            <span class="card-arrow">
-                →
+            <div class="card-link">
+                SOON →
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     GAMES
+======================================================= -->
+
+<section
+    class="section gray"
+    id="games">
+
+    <div class="section-heading reveal">
+
+        <div class="section-number">
+            02 / GAMES
+        </div>
+
+        <h2>
+            Play<br>
+            something.
+        </h2>
+
+        <p>
+            Games created and developed through
+            CiphAnon Studios.
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card reveal">
+
+            <div class="card-number">
+                GAME 01
+            </div>
+
+            <h3>
+                Coming Soon
+            </h3>
+
+            <p>
+                A new game is currently being worked on.
+            </p>
+
+            <div class="card-link">
+                SOON →
+            </div>
+
+        </div>
+
+
+        <div class="card reveal">
+
+            <div class="card-number">
+                GAME 02
+            </div>
+
+            <h3>
+                Prototype
+            </h3>
+
+            <p>
+                Experimental gameplay and mechanics.
+            </p>
+
+            <div class="card-link">
+                SOON →
+            </div>
+
+        </div>
+
+
+        <div class="card reveal">
+
+            <div class="card-number">
+                GAME 03
+            </div>
+
+            <h3>
+                Arcade
+            </h3>
+
+            <p>
+                Small games and quick experiences.
+            </p>
+
+            <div class="card-link">
+                SOON →
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     VIDEOS / YOUTUBE
+======================================================= -->
+
+<section
+    class="section"
+    id="videos">
+
+    <div class="section-heading reveal">
+
+        <div class="section-number">
+            03 / YOUTUBE
+        </div>
+
+        <h2>
+            Four channels.<br>
+            One studio.
+        </h2>
+
+        <p>
+            Follow the different sides of CiphAnon
+            Studios across YouTube.
+        </p>
+
+    </div>
+
+
+    <div class="youtube-grid">
+
+        <div class="youtube-card reveal">
+
+            <div class="youtube-icon">
+                YT
+            </div>
+
+            <h3>
+                Channel One
+            </h3>
+
+            <p>
+                Videos and content from CiphAnon Studios.
+            </p>
+
+            <a href="#" target="_blank">
+                YOUTUBE →
+            </a>
+
+        </div>
+
+
+        <div class="youtube-card reveal">
+
+            <div class="youtube-icon">
+                YT
+            </div>
+
+            <h3>
+                Channel Two
+            </h3>
+
+            <p>
+                More videos, projects and content.
+            </p>
+
+            <a href="#" target="_blank">
+                YOUTUBE →
+            </a>
+
+        </div>
+
+
+        <div class="youtube-card reveal">
+
+            <div class="youtube-icon">
+                YT
+            </div>
+
+            <h3>
+                Channel Three
+            </h3>
+
+            <p>
+                Another side of CiphAnon Studios.
+            </p>
+
+            <a href="#" target="_blank">
+                YOUTUBE →
+            </a>
+
+        </div>
+
+
+        <div class="youtube-card reveal">
+
+            <div class="youtube-icon">
+                YT
+            </div>
+
+            <h3>
+                Channel Four
+            </h3>
+
+            <p>
+                More content and future uploads.
+            </p>
+
+            <a href="#" target="_blank">
+                YOUTUBE →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     SCRIPT LIBRARY
+======================================================= -->
+
+<section
+    class="section gray"
+    id="script-library">
+
+    <div class="library-banner reveal">
+
+        <div class="library-content">
+
+            <div class="library-tag">
+                CIPHANON STUDIOS
+            </div>
+
+            <h2>
+                Script Library
+            </h2>
+
+            <p>
+                A growing collection of scripts,
+                experiments, tools and useful pieces
+                of code created for different projects.
+            </p>
+
+            <button
+                class="library-button"
+                onclick="go('scripts')">
+                OPEN SCRIPT LIBRARY
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     ABOUT
+======================================================= -->
+
+<section
+    class="section"
+    id="about">
+
+    <div class="section-heading reveal">
+
+        <div class="section-number">
+            06 / ABOUT
+        </div>
+
+        <h2>
+            What is<br>
+            CiphAnon?
+        </h2>
+
+    </div>
+
+
+    <div class="about-box">
+
+        <div class="about-large reveal">
+
+            One studio.<br>
+
+            <span>
+                Many ideas.
             </span>
 
         </div>
 
 
-    </div>
-
-
-    <!-- =====================================================
-         YOUTUBE
-    ===================================================== -->
-
-    <section class="youtube" id="videos">
-
-        <div class="section-heading reveal">
-
-            <small>CONTENT</small>
-
-            <h2>YouTube.</h2>
-
-        </div>
-
-
-        <div class="youtube-grid">
-
-
-            <a href="#" class="youtube-card reveal">
-
-                <div class="youtube-image">
-                    CHANNEL 01
-                </div>
-
-                <div class="youtube-info">
-
-                    <h3>
-                        Channel One
-                    </h3>
-
-                    <p>
-                        YouTube
-                    </p>
-
-                </div>
-
-            </a>
-
-
-            <a href="#" class="youtube-card reveal">
-
-                <div class="youtube-image">
-                    CHANNEL 02
-                </div>
-
-                <div class="youtube-info">
-
-                    <h3>
-                        Channel Two
-                    </h3>
-
-                    <p>
-                        YouTube
-                    </p>
-
-                </div>
-
-            </a>
-
-
-            <a href="#" class="youtube-card reveal">
-
-                <div class="youtube-image">
-                    CHANNEL 03
-                </div>
-
-                <div class="youtube-info">
-
-                    <h3>
-                        Channel Three
-                    </h3>
-
-                    <p>
-                        YouTube
-                    </p>
-
-                </div>
-
-            </a>
-
-
-            <a href="#" class="youtube-card reveal">
-
-                <div class="youtube-image">
-                    CHANNEL 04
-                </div>
-
-                <div class="youtube-info">
-
-                    <h3>
-                        Channel Four
-                    </h3>
-
-                    <p>
-                        YouTube
-                    </p>
-
-                </div>
-
-            </a>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         SCRIPT LIBRARY
-    ===================================================== -->
-
-    <section class="library reveal">
-
-        <div>
-
-            <h2>
-                CiphAnon Studios Script Library
-            </h2>
+        <div class="about-text reveal">
 
             <p>
-                Scripts and development resources.
+                CiphAnon Studios is a personal creative
+                studio focused on building games,
+                websites, tools, scripts, videos and
+                experimental projects.
+            </p>
+
+            <p>
+                The studio isn't limited to one type of
+                project. New ideas can become anything
+                from a small experiment to a complete
+                interactive experience.
             </p>
 
         </div>
 
-
-        <button>
-            Open Library →
-        </button>
-
-    </section>
-
-
-</main>
-
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
-<footer id="footer">
-
-    <div class="footer-logo">
-        CiphAnon Studios
     </div>
 
-    <div>
-        © 2026 CiphAnon Studios
+</section>
+
+
+<!-- =======================================================
+     CONTACT / EXTRA
+======================================================= -->
+
+<section
+    class="section gray"
+    id="contact">
+
+    <div class="section-heading reveal">
+
+        <div class="section-number">
+            07 / MORE
+        </div>
+
+        <h2>
+            More coming.
+        </h2>
+
+        <p>
+            CiphAnon Studios is always being updated
+            with new projects and ideas.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     FOOTER
+======================================================= -->
+
+<footer>
+
+    <div class="footer-inner">
+
+        <div class="footer-logo">
+            CiphAnon <span>Studios</span>
+        </div>
+
+        <div class="footer-copy">
+            © 2026 CiphAnon Studios
+        </div>
+
+        <div class="footer-links">
+
+            <a href="#home">
+                HOME
+            </a>
+
+            <a href="#projects">
+                PROJECTS
+            </a>
+
+            <a href="#videos">
+                YOUTUBE
+            </a>
+
+            <a href="#about">
+                ABOUT
+            </a>
+
+        </div>
+
     </div>
 
 </footer>
 
 
-<!-- =========================================================
+<!-- =======================================================
      INFO BUTTON
-========================================================= -->
+======================================================= -->
 
 <button
     class="info-button"
     id="infoButton">
-
     i
-
 </button>
 
 
@@ -1853,22 +2184,41 @@ footer {
     </h3>
 
     <p>
-        Games, software, videos, scripts,
-        experiments and projects created
-        under the CiphAnon Studios name.
+        Games, projects, videos, scripts,
+        experiments and more — all in one place.
     </p>
 
 </div>
 
 
+<!-- =======================================================
+     JAVASCRIPT
+======================================================= -->
+
 <script>
 
 /* =========================================================
-   HEADER
+   SMOOTH SCROLL
 ========================================================= */
 
-const header =
-    document.getElementById("header");
+function go(id) {
+
+    const element = document.getElementById(id);
+
+    if (!element) return;
+
+    element.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+
+/* =========================================================
+   HEADER SCROLL EFFECT
+========================================================= */
+
+const header = document.getElementById("header");
 
 window.addEventListener("scroll", () => {
 
@@ -1886,59 +2236,38 @@ window.addEventListener("scroll", () => {
 
 
 /* =========================================================
-   NAVIGATION
+   REVEAL ON SCROLL
 ========================================================= */
 
-function go(id) {
-
-    const element =
-        document.getElementById(id);
-
-    if (!element) return;
-
-    element.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
-
-}
-
-
-/* =========================================================
-   REVEAL OBSERVER
-========================================================= */
-
-const revealItems =
+const revealElements =
     document.querySelectorAll(".reveal");
 
 const revealObserver =
     new IntersectionObserver(
-
-        entries => {
+        (entries) => {
 
             entries.forEach(entry => {
 
                 if (entry.isIntersecting) {
 
-                    entry.target.classList.add("show");
+                    entry.target.classList.add("visible");
 
-                    revealObserver
-                        .unobserve(entry.target);
+                    revealObserver.unobserve(
+                        entry.target
+                    );
 
                 }
 
             });
 
         },
-
         {
             threshold: .12
         }
-
     );
 
 
-revealItems.forEach(element => {
+revealElements.forEach(element => {
 
     revealObserver.observe(element);
 
@@ -1946,54 +2275,22 @@ revealItems.forEach(element => {
 
 
 /* =========================================================
-   SQUARE ANIMATION
+   SQUARE STAGGER
 ========================================================= */
 
 const squares =
     document.querySelectorAll(".square");
 
-const squareObserver =
-    new IntersectionObserver(
+squares.forEach((square, index) => {
 
-        entries => {
+    square.style.transitionDelay =
+        `${(index % 6) * 35}ms`;
 
-            entries.forEach(entry => {
-
-                if (entry.isIntersecting) {
-
-                    squares.forEach((square, index) => {
-
-                        setTimeout(() => {
-
-                            square.classList.add("show");
-
-                        }, index * 45);
-
-                    });
-
-                    squareObserver
-                        .disconnect();
-
-                }
-
-            });
-
-        },
-
-        {
-            threshold: .08
-        }
-
-    );
-
-
-squareObserver.observe(
-    document.querySelector(".square-grid")
-);
+});
 
 
 /* =========================================================
-   INFO WINDOW
+   INFO BOX
 ========================================================= */
 
 const infoButton =
@@ -2005,19 +2302,19 @@ const infoBox =
 
 infoButton.addEventListener("click", () => {
 
-    infoBox.classList.toggle("open");
+    infoBox.classList.toggle("show");
 
 });
 
 
-document.addEventListener("click", event => {
+document.addEventListener("click", (event) => {
 
     if (
         !infoBox.contains(event.target) &&
         !infoButton.contains(event.target)
     ) {
 
-        infoBox.classList.remove("open");
+        infoBox.classList.remove("show");
 
     }
 
@@ -2025,25 +2322,86 @@ document.addEventListener("click", event => {
 
 
 /* =========================================================
-   CARD STAGGER
+   ACTIVE SIDE BAR BUTTON
 ========================================================= */
 
-document
-    .querySelectorAll(".content-card")
-    .forEach((card,index) => {
+const sections = document.querySelectorAll(
+    "section[id]"
+);
 
-        card.style.transitionDelay =
-            `${(index % 3) * .08}s`;
+const sideButtons =
+    document.querySelectorAll(".side-button");
+
+
+window.addEventListener("scroll", () => {
+
+    let current = "home";
+
+    sections.forEach(section => {
+
+        const sectionTop =
+            section.offsetTop - 250;
+
+        if (window.scrollY >= sectionTop) {
+
+            current = section.id;
+
+        }
 
     });
 
 
+    sideButtons.forEach(button => {
+
+        button.classList.remove("active");
+
+    });
+
+
+    const matchingButton =
+        Array.from(sideButtons).find(
+            button =>
+                button.getAttribute("onclick") ===
+                `go('${current}')`
+        );
+
+
+    if (matchingButton) {
+
+        matchingButton.classList.add("active");
+
+    }
+
+});
+
+
+/* =========================================================
+   CARD MICRO ANIMATION
+========================================================= */
+
 document
-    .querySelectorAll(".youtube-card")
-    .forEach((card,index) => {
+    .querySelectorAll(".card, .youtube-card")
+    .forEach((card, index) => {
 
         card.style.transitionDelay =
-            `${index * .08}s`;
+            `${(index % 3) * 60}ms`;
+
+    });
+
+
+/* =========================================================
+   PREVENT PLACEHOLDER YOUTUBE LINKS
+========================================================= */
+
+document
+    .querySelectorAll('.youtube-card a[href="#"]')
+    .forEach(link => {
+
+        link.addEventListener("click", event => {
+
+            event.preventDefault();
+
+        });
 
     });
 
