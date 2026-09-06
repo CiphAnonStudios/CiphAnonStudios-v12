@@ -3,47 +3,543 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CiphAnon Studios</title>
+<title>Student Learning Portal</title>
 </head>
 
 <body style="
 margin:0;
-background:black;
-color:white;
-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-overflow:hidden;
-font-family:Arial,sans-serif;
+background:#f4f6f9;
+color:#172033;
+font-family:Arial,Helvetica,sans-serif;
 ">
 
-<h1>Best Student Education Program</h1>
+<!-- TOP BAR -->
 
-<div id="screen">
-
-    <button
-        id="launch"
-        onclick="launch()"
-        style="
-        display:none;
-        padding:10px 25px;
-        cursor:pointer;
-        "
-    >
-        LAUNCH
-    </button>
-
+<div style="
+height:32px;
+background:#172033;
+color:#d9dee8;
+display:flex;
+align-items:center;
+padding:0 6%;
+font-size:12px;
+box-sizing:border-box;
+">
+    Student Learning Portal
 </div>
 
+
+<!-- NAVIGATION -->
+
+<header style="
+height:72px;
+background:white;
+border-bottom:1px solid #e5e7eb;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 6%;
+box-sizing:border-box;
+">
+
+    <div style="
+    display:flex;
+    align-items:center;
+    gap:12px;
+    ">
+
+        <div style="
+        width:38px;
+        height:38px;
+        background:#172033;
+        color:white;
+        border-radius:8px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-weight:bold;
+        ">
+            SP
+        </div>
+
+        <div>
+            <div style="
+            font-size:16px;
+            font-weight:bold;
+            ">
+                Student Portal
+            </div>
+
+            <div style="
+            font-size:11px;
+            color:#7b8494;
+            margin-top:3px;
+            ">
+                Education & Learning
+            </div>
+        </div>
+
+    </div>
+
+
+    <nav style="
+    display:flex;
+    gap:28px;
+    font-size:14px;
+    color:#586174;
+    ">
+
+        <span>Home</span>
+        <span>Resources</span>
+        <span>Programs</span>
+        <span>About</span>
+
+    </nav>
+
+</header>
+
+
+<!-- HERO -->
+
+<section style="
+background:#172033;
+color:white;
+padding:80px 6%;
+">
+
+    <div style="
+    max-width:1050px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:60px;
+    ">
+
+        <div style="
+        max-width:650px;
+        ">
+
+            <div style="
+            font-size:12px;
+            letter-spacing:2px;
+            color:#aeb8c9;
+            margin-bottom:18px;
+            ">
+                STUDENT LEARNING ENVIRONMENT
+            </div>
+
+            <h1 style="
+            font-size:48px;
+            line-height:1.1;
+            margin:0;
+            letter-spacing:-1px;
+            ">
+                Learn with purpose.<br>
+                Build with confidence.
+            </h1>
+
+            <p style="
+            color:#c5ccd8;
+            font-size:16px;
+            line-height:1.7;
+            max-width:590px;
+            margin-top:22px;
+            ">
+                A centralized learning environment for
+                educational resources, projects, tools,
+                and interactive experiences.
+            </p>
+
+            <button
+                onclick="launch()"
+                style="
+                margin-top:25px;
+                background:white;
+                color:#172033;
+                border:0;
+                border-radius:6px;
+                padding:14px 28px;
+                font-size:14px;
+                font-weight:bold;
+                cursor:pointer;
+                "
+            >
+                LAUNCH PORTAL
+            </button>
+
+        </div>
+
+
+        <div style="
+        width:270px;
+        height:220px;
+        border:1px solid #3d4658;
+        border-radius:12px;
+        background:#202a3c;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        box-sizing:border-box;
+        ">
+
+            <div style="
+            text-align:center;
+            ">
+
+                <div style="
+                font-size:42px;
+                font-weight:bold;
+                ">
+                    01
+                </div>
+
+                <div style="
+                color:#aeb8c9;
+                font-size:13px;
+                margin-top:8px;
+                ">
+                    Learning Hub
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- STATS -->
+
+<section style="
+background:white;
+border-bottom:1px solid #e5e7eb;
+">
+
+    <div style="
+    max-width:1050px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    ">
+
+        <div style="
+        padding:28px;
+        text-align:center;
+        border-right:1px solid #e5e7eb;
+        ">
+
+            <div style="
+            font-size:26px;
+            font-weight:bold;
+            ">
+                01
+            </div>
+
+            <div style="
+            color:#737d8e;
+            font-size:13px;
+            margin-top:6px;
+            ">
+                Central Portal
+            </div>
+
+        </div>
+
+
+        <div style="
+        padding:28px;
+        text-align:center;
+        border-right:1px solid #e5e7eb;
+        ">
+
+            <div style="
+            font-size:26px;
+            font-weight:bold;
+            ">
+                24/7
+            </div>
+
+            <div style="
+            color:#737d8e;
+            font-size:13px;
+            margin-top:6px;
+            ">
+                Access
+            </div>
+
+        </div>
+
+
+        <div style="
+        padding:28px;
+        text-align:center;
+        ">
+
+            <div style="
+            font-size:26px;
+            font-weight:bold;
+            ">
+                ∞
+            </div>
+
+            <div style="
+            color:#737d8e;
+            font-size:13px;
+            margin-top:6px;
+            ">
+                Possibilities
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONTENT -->
+
+<main style="
+max-width:1050px;
+margin:auto;
+padding:65px 25px;
+">
+
+    <div style="
+    margin-bottom:30px;
+    ">
+
+        <div style="
+        font-size:12px;
+        color:#657084;
+        letter-spacing:1.5px;
+        ">
+            EXPLORE
+        </div>
+
+        <h2 style="
+        margin:8px 0 0;
+        font-size:30px;
+        ">
+            Learning Resources
+        </h2>
+
+        <p style="
+        color:#737d8e;
+        font-size:14px;
+        margin-top:10px;
+        ">
+            Everything organized in one simple environment.
+        </p>
+
+    </div>
+
+
+    <!-- CARDS -->
+
+    <div style="
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    ">
+
+
+        <div style="
+        background:white;
+        border:1px solid #e1e5eb;
+        border-radius:10px;
+        padding:28px;
+        ">
+
+            <div style="
+            font-size:24px;
+            margin-bottom:18px;
+            ">
+                ◈
+            </div>
+
+            <h3 style="
+            margin:0;
+            font-size:18px;
+            ">
+                Study Resources
+            </h3>
+
+            <p style="
+            color:#737d8e;
+            font-size:14px;
+            line-height:1.6;
+            ">
+                Organized resources designed to
+                support independent learning.
+            </p>
+
+        </div>
+
+
+        <div style="
+        background:white;
+        border:1px solid #e1e5eb;
+        border-radius:10px;
+        padding:28px;
+        ">
+
+            <div style="
+            font-size:24px;
+            margin-bottom:18px;
+            ">
+                ◇
+            </div>
+
+            <h3 style="
+            margin:0;
+            font-size:18px;
+            ">
+                Projects
+            </h3>
+
+            <p style="
+            color:#737d8e;
+            font-size:14px;
+            line-height:1.6;
+            ">
+                Explore practical projects and
+                creative learning experiences.
+            </p>
+
+        </div>
+
+
+        <div style="
+        background:white;
+        border:1px solid #e1e5eb;
+        border-radius:10px;
+        padding:28px;
+        ">
+
+            <div style="
+            font-size:24px;
+            margin-bottom:18px;
+            ">
+                ◎
+            </div>
+
+            <h3 style="
+            margin:0;
+            font-size:18px;
+            ">
+                Learning Tools
+            </h3>
+
+            <p style="
+            color:#737d8e;
+            font-size:14px;
+            line-height:1.6;
+            ">
+                Useful tools for experimentation,
+                studying, and creating.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- NOTICE -->
+
+    <div style="
+    margin-top:35px;
+    background:white;
+    border:1px solid #e1e5eb;
+    border-radius:10px;
+    padding:25px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:25px;
+    ">
+
+        <div>
+
+            <div style="
+            font-size:12px;
+            color:#657084;
+            letter-spacing:1px;
+            ">
+                GET STARTED
+            </div>
+
+            <h3 style="
+            margin:7px 0;
+            ">
+                Ready to begin?
+            </h3>
+
+            <p style="
+            margin:0;
+            color:#737d8e;
+            font-size:14px;
+            ">
+                Open the student learning environment.
+            </p>
+
+        </div>
+
+
+        <button
+            onclick="launch()"
+            style="
+            background:#172033;
+            color:white;
+            border:0;
+            border-radius:6px;
+            padding:12px 22px;
+            cursor:pointer;
+            font-weight:bold;
+            white-space:nowrap;
+            "
+        >
+            OPEN PORTAL
+        </button>
+
+    </div>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer style="
+background:#172033;
+color:#aeb8c9;
+padding:35px 6%;
+font-size:12px;
+">
+
+    <div style="
+    max-width:1050px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    ">
+
+        <div>
+            Student Learning Portal
+        </div>
+
+        <div>
+            Educational Resources
+        </div>
+
+    </div>
+
+</footer>
+
+
 <script>
-
-setTimeout(() => {
-
-    document.getElementById("launch").style.display = "block";
-
-}, 3000);
-
 
 function launch() {
 
@@ -78,8 +574,8 @@ function launch() {
                     width:100%;
                     height:100%;
                     border:0;
-                "
-            ></iframe>
+                ">
+            </iframe>
 
         </body>
         </html>
