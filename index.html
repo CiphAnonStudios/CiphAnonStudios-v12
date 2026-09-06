@@ -4,22 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CiphAnon Studios</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<title>CiphAnon Studios — Games</title>
 
 <style>
 
 /* =========================================================
-   RESET
+   CIPHANON STUDIOS — GAMES
+   ALL HTML / CSS / JS IN ONE FILE
 ========================================================= */
 
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+}
+
+:root {
+    --bg: #050505;
+    --bg2: #090909;
+    --panel: #0d0d0d;
+    --panel2: #111111;
+
+    --border: rgba(255,255,255,.09);
+    --border-hover: rgba(255,255,255,.22);
+
+    --text: #f5f5f5;
+    --muted: #858585;
+    --dim: #4d4d4d;
+
+    --accent: #ffffff;
 }
 
 html {
@@ -27,45 +40,225 @@ html {
 }
 
 body {
-    background: #f1f0eb;
-    color: #121212;
-    font-family: "DM Sans", sans-serif;
-    overflow-x: hidden;
-}
+    background: var(--bg);
+    color: var(--text);
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
 
-body.no-scroll {
-    overflow: hidden;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-button {
-    font: inherit;
+    min-height: 100vh;
 }
 
 
 /* =========================================================
-   NAVIGATION
+   LOADING SCREEN
 ========================================================= */
 
-.nav {
+#loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #151515 0%,
+            #070707 45%,
+            #020202 100%
+        );
+
+    transition:
+        opacity .7s ease,
+        visibility .7s ease;
+}
+
+#loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-grid {
     position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+
+    mask-image:
+        radial-gradient(
+            circle,
+            black 0%,
+            transparent 75%
+        );
+}
+
+.loader-content {
+    position: relative;
+
+    width: min(650px, 88%);
+
+    text-align: center;
+}
+
+.loader-logo {
+    width: 105px;
+    height: 105px;
+
+    margin: 0 auto 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #3b3b3b;
+
+    background:
+        linear-gradient(
+            145deg,
+            #151515,
+            #080808
+        );
+
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: -2px;
+
+    animation:
+        logoPulse 2s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+    0%, 100% {
+        box-shadow:
+            0 0 0 rgba(255,255,255,0);
+    }
+
+    50% {
+        box-shadow:
+            0 0 45px rgba(255,255,255,.08);
+    }
+}
+
+.loader-brand {
+    font-size: 40px;
+    font-weight: 900;
+
+    letter-spacing: 9px;
+}
+
+.loader-subtitle {
+    margin-top: 6px;
+
+    color: #666;
+
+    font-size: 10px;
+    letter-spacing: 7px;
+}
+
+.loader-status {
+    margin-top: 55px;
+    margin-bottom: 13px;
+
+    color: #777;
+
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+
+.loader-track {
+    height: 3px;
+    width: 100%;
+
+    background: #202020;
+
+    overflow: hidden;
+}
+
+.loader-bar {
+    height: 100%;
+    width: 0%;
+
+    background: #fff;
+
+    transition:
+        width .12s linear;
+}
+
+.loader-percent {
+    margin-top: 10px;
+
+    color: #444;
+
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.loader-error {
+    display: none;
+
+    margin-top: 25px;
+}
+
+.loader-error button {
+    padding: 13px 25px;
+
+    border: 1px solid #444;
+
+    background: #fff;
+    color: #000;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+    position: sticky;
+    top: 0;
     z-index: 100;
 
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 88px;
-
-    padding: 0 6%;
+    height: 76px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    padding: 0 38px;
+
+    border-bottom: 1px solid var(--border);
+
+    background:
+        rgba(5,5,5,.88);
+
+    backdrop-filter:
+        blur(18px);
 }
 
 .brand {
@@ -73,62 +266,96 @@ button {
     align-items: center;
     gap: 12px;
 
-    font-family: "Space Grotesk", sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: -.6px;
+    cursor: pointer;
 }
 
-.brand img {
-    width: 42px;
-    height: 42px;
+.brand-symbol {
+    width: 36px;
+    height: 36px;
 
-    object-fit: contain;
-
-    transition:
-        transform .35s cubic-bezier(.2,.8,.2,1);
-}
-
-.brand:hover img {
-    transform: rotate(-8deg) translateY(-2px);
-}
-
-.nav-links {
     display: flex;
     align-items: center;
-    gap: 30px;
+    justify-content: center;
+
+    border: 1px solid #3b3b3b;
+
+    font-size: 10px;
+    font-weight: 900;
 }
 
-.nav-links a {
-    font-size: 13px;
-    font-weight: 600;
+.brand-text strong {
+    display: block;
 
-    transition:
-        opacity .2s ease;
+    font-size: 12px;
+    letter-spacing: 3px;
 }
 
-.nav-links a:hover {
-    opacity: .45;
+.brand-text span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #555;
+
+    font-size: 8px;
+    letter-spacing: 3px;
 }
 
-.nav-youtube {
-    padding: 11px 17px;
 
-    border: 1px solid #151515;
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
-.menu-button {
-    display: none;
-
-    width: 40px;
-    height: 40px;
+.nav-btn {
+    padding: 10px 14px;
 
     border: 0;
+
     background: transparent;
+
+    color: #686868;
+
+    font-size: 9px;
+    letter-spacing: 2px;
 
     cursor: pointer;
 
-    font-size: 23px;
+    transition:
+        color .2s ease,
+        background .2s ease;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+    color: #fff;
+
+    background: rgba(255,255,255,.04);
+}
+
+.header-search {
+    width: 38px;
+    height: 38px;
+
+    border: 1px solid var(--border);
+
+    background: #0a0a0a;
+
+    color: #aaa;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.header-search:hover {
+    color: #fff;
+    border-color: var(--border-hover);
 }
 
 
@@ -139,625 +366,417 @@ button {
 .hero {
     position: relative;
 
-    min-height: 100vh;
-
-    padding: 155px 6% 100px;
+    min-height: 570px;
 
     display: flex;
     align-items: center;
+    justify-content: center;
+
+    text-align: center;
 
     overflow: hidden;
+
+    border-bottom: 1px solid var(--border);
 }
 
-.hero-background {
+.hero::before {
+    content: "";
+
     position: absolute;
-    z-index: 0;
 
     width: 650px;
     height: 650px;
-
-    right: -180px;
-    top: 80px;
 
     border-radius: 50%;
 
     background:
         radial-gradient(
-            circle at center,
-            #dedbd2 0%,
-            #e8e6df 38%,
-            transparent 70%
+            circle,
+            rgba(255,255,255,.055),
+            transparent 65%
         );
-}
 
-.hero-lines {
-    position: absolute;
-    z-index: 0;
-
-    right: 8%;
-    top: 19%;
-
-    width: 390px;
-    height: 390px;
-
-    border: 1px solid rgba(0,0,0,.08);
-    border-radius: 50%;
-}
-
-.hero-lines::before,
-.hero-lines::after {
-    content: "";
-
-    position: absolute;
-
-    inset: 35px;
-
-    border: 1px solid rgba(0,0,0,.07);
-    border-radius: 50%;
-}
-
-.hero-lines::after {
-    inset: 75px;
+    pointer-events: none;
 }
 
 .hero-content {
     position: relative;
-    z-index: 5;
 
-    width: 100%;
+    width: min(900px, 90%);
 }
 
-.hero-top {
-    display: flex;
-    align-items: center;
-    gap: 11px;
+.eyebrow {
+    margin-bottom: 22px;
 
-    margin-bottom: 27px;
+    color: #666;
 
-    font-size: 10px;
-    font-weight: 700;
-
-    letter-spacing: 2.2px;
-    text-transform: uppercase;
+    font-size: 9px;
+    letter-spacing: 5px;
 }
 
-.hero-top::before {
-    content: "";
+.hero h1 {
+    font-size:
+        clamp(58px, 11vw, 125px);
 
-    width: 34px;
-    height: 1px;
+    line-height: .82;
 
-    background: #111;
+    letter-spacing: -7px;
+
+    font-weight: 950;
 }
 
-.hero-title {
-    max-width: 1080px;
+.hero h1 span {
+    display: block;
 
-    font-family: "Space Grotesk", sans-serif;
-
-    font-size: clamp(64px, 10.2vw, 148px);
-
-    line-height: .84;
-
-    letter-spacing: -8px;
-
-    font-weight: 700;
+    color: #555;
 }
 
-.hero-title .muted {
-    color: #88857e;
-}
+.hero-description {
+    width: min(520px, 90%);
 
-.hero-bottom {
-    max-width: 940px;
+    margin: 36px auto;
 
-    margin-top: 60px;
+    color: #777;
 
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
+    font-size: 14px;
 
-    gap: 50px;
-}
-
-.hero-copy {
-    max-width: 420px;
-
-    color: #66645e;
-
-    font-size: 15px;
-    line-height: 1.75;
+    line-height: 1.8;
 }
 
 .hero-actions {
     display: flex;
+    justify-content: center;
+
     gap: 10px;
+
+    flex-wrap: wrap;
 }
 
-.button {
-    padding: 15px 22px;
+.btn-primary,
+.btn-secondary {
+    padding: 14px 24px;
 
-    font-size: 13px;
-    font-weight: 700;
+    border: 1px solid;
 
-    transition:
-        transform .25s ease,
-        background .25s ease,
-        color .25s ease;
-}
-
-.button-dark {
-    background: #111;
-    color: #fff;
-}
-
-.button-dark:hover {
-    transform: translateY(-3px);
-}
-
-.button-outline {
-    border: 1px solid #b8b5ae;
-}
-
-.button-outline:hover {
-    background: #111;
-    border-color: #111;
-    color: #fff;
-}
-
-
-/* =========================================================
-   MASOC HERO CHARACTER
-========================================================= */
-
-.masoc-hero {
-    position: absolute;
-    z-index: 4;
-
-    right: 8%;
-    bottom: 8%;
-
-    width: min(25vw, 330px);
-
-    pointer-events: none;
-
-    animation: masocFloat 5s ease-in-out infinite;
-}
-
-.masoc-hero img {
-    width: 100%;
-    height: auto;
-
-    object-fit: contain;
-
-    filter:
-        drop-shadow(0 25px 25px rgba(0,0,0,.12));
-}
-
-@keyframes masocFloat {
-
-    0%,
-    100% {
-        transform: translateY(0) rotate(2deg);
-    }
-
-    50% {
-        transform: translateY(-12px) rotate(-2deg);
-    }
-
-}
-
-
-/* =========================================================
-   MARQUEE
-========================================================= */
-
-.marquee {
-    background: #111;
-    color: #fff;
-
-    overflow: hidden;
-
-    padding: 17px 0;
-
-    white-space: nowrap;
-}
-
-.marquee-track {
-    width: max-content;
-
-    display: flex;
-    align-items: center;
-
-    animation: marquee 27s linear infinite;
-}
-
-.marquee-item {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-
-    margin: 0 28px;
-
-    font-family: "Space Grotesk", sans-serif;
-
-    font-size: 11px;
-    font-weight: 600;
+    font-size: 9px;
+    font-weight: 800;
 
     letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: .2s ease;
 }
 
-.marquee-item b {
-    color: #777;
-    font-weight: 500;
+.btn-primary {
+    border-color: #fff;
+
+    background: #fff;
+    color: #000;
 }
 
-@keyframes marquee {
+.btn-primary:hover {
+    background: #ccc;
+    border-color: #ccc;
+}
 
-    from {
-        transform: translateX(0);
-    }
+.btn-secondary {
+    border-color: #292929;
 
-    to {
-        transform: translateX(-50%);
-    }
+    background: transparent;
+    color: #aaa;
+}
 
+.btn-secondary:hover {
+    border-color: #555;
+    color: #fff;
 }
 
 
 /* =========================================================
-   SECTION BASICS
+   CONTENT
 ========================================================= */
 
-section {
-    padding: 135px 6%;
+.container {
+    width: min(1200px, 90%);
+
+    margin: 0 auto;
 }
 
-.section-head {
+.section {
+    padding: 100px 0;
+}
+
+.section-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: end;
 
-    gap: 40px;
+    gap: 20px;
 
-    margin-bottom: 70px;
+    margin-bottom: 35px;
 }
 
 .section-label {
-    margin-bottom: 17px;
+    color: #555;
 
-    color: #87847d;
-
-    font-size: 10px;
-    font-weight: 700;
-
-    letter-spacing: 2px;
+    font-size: 9px;
+    letter-spacing: 4px;
 }
 
 .section-title {
-    font-family: "Space Grotesk", sans-serif;
+    margin-top: 9px;
 
-    font-size: clamp(45px, 6vw, 78px);
+    font-size: 36px;
 
-    line-height: .9;
-
-    letter-spacing: -4px;
+    letter-spacing: -1.5px;
 }
 
-.section-description {
-    max-width: 350px;
+.section-link {
+    border: 0;
 
-    color: #68665f;
+    background: transparent;
 
-    font-size: 14px;
-
-    line-height: 1.7;
-}
-
-
-/* =========================================================
-   PROJECT WALL
-========================================================= */
-
-.work {
-    position: relative;
-
-    overflow: hidden;
-
-    padding-left: 0;
-    padding-right: 0;
-}
-
-.work .section-head {
-    padding-left: 6%;
-    padding-right: 6%;
-}
-
-.project-area {
-    position: relative;
-
-    width: 100%;
-
-    overflow: hidden;
-
-    padding: 30px 0 75px;
-}
-
-.project-row {
-    width: max-content;
-
-    display: flex;
-    align-items: center;
-
-    gap: 25px;
-
-    margin-bottom: 30px;
-
-    will-change: transform;
-}
-
-.project-row.one {
-    animation: rowLeft 34s linear infinite;
-}
-
-.project-row.two {
-    animation: rowRight 39s linear infinite;
-}
-
-.project-row.three {
-    animation: rowLeft 43s linear infinite;
-}
-
-@keyframes rowLeft {
-
-    from {
-        transform: translateX(-2%);
-    }
-
-    to {
-        transform: translateX(-31%);
-    }
-
-}
-
-@keyframes rowRight {
-
-    from {
-        transform: translateX(-31%);
-    }
-
-    to {
-        transform: translateX(-2%);
-    }
-
-}
-
-
-/* =========================================================
-   PROJECT TILES
-========================================================= */
-
-.project {
-    position: relative;
-
-    width: 245px;
-    height: 245px;
-
-    flex-shrink: 0;
-
-    overflow: hidden;
-
-    border-radius: 31px;
-
-    background: #222;
-
-    transform: rotate(var(--tilt));
-
-    box-shadow:
-        0 16px 35px rgba(0,0,0,.09);
-
-    transition:
-        transform .5s cubic-bezier(.2,.8,.2,1),
-        box-shadow .5s ease;
-}
-
-.project.big {
-    width: 295px;
-    height: 295px;
-}
-
-.project:hover {
-    z-index: 20;
-
-    transform:
-        rotate(0deg)
-        scale(1.08);
-
-    box-shadow:
-        0 30px 55px rgba(0,0,0,.2);
-}
-
-.project-image {
-    position: absolute;
-    inset: 0;
-
-    background-size: cover;
-    background-position: center;
-
-    transition:
-        transform .7s cubic-bezier(.2,.8,.2,1);
-}
-
-.project:hover .project-image {
-    transform: scale(1.09);
-}
-
-
-/* IMAGE SOURCES */
-
-.project-pet {
-    background-image:
-        linear-gradient(
-            180deg,
-            transparent 35%,
-            rgba(0,0,0,.8)
-        ),
-        url("Images/PetClicker.png");
-}
-
-.project-geometry {
-    background-image:
-        linear-gradient(
-            180deg,
-            transparent 35%,
-            rgba(0,0,0,.82)
-        ),
-        url("Images/MyGeometryDash.png");
-}
-
-.project-masoc {
-    background-image:
-        linear-gradient(
-            180deg,
-            rgba(0,0,0,.05),
-            rgba(0,0,0,.82)
-        ),
-        url("Images/Masoc.png");
-
-    background-color: #171717;
-}
-
-.project-scripts {
-    background:
-        linear-gradient(
-            135deg,
-            #181818,
-            #3d3d3d
-        );
-}
-
-.project-code {
-    background:
-        linear-gradient(
-            135deg,
-            #222,
-            #666
-        );
-}
-
-.project-experiment {
-    background:
-        linear-gradient(
-            135deg,
-            #151515,
-            #4b4b4b
-        );
-}
-
-
-/* TILE CONTENT */
-
-.project-overlay {
-    position: absolute;
-    inset: 0;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-
-    padding: 25px;
-
-    color: #fff;
-
-    opacity: 0;
-
-    background:
-        linear-gradient(
-            180deg,
-            transparent 25%,
-            rgba(0,0,0,.86)
-        );
-
-    transition: opacity .3s ease;
-}
-
-.project:hover .project-overlay {
-    opacity: 1;
-}
-
-.project-category {
-    margin-bottom: 6px;
+    color: #777;
 
     font-size: 9px;
 
-    text-transform: uppercase;
-
     letter-spacing: 2px;
 
-    opacity: .65;
+    cursor: pointer;
 }
 
-.project-name {
-    font-family: "Space Grotesk", sans-serif;
-
-    font-size: 24px;
-
-    letter-spacing: -1px;
-}
-
-.project-arrow {
-    position: absolute;
-
-    top: 18px;
-    right: 18px;
-
-    width: 38px;
-    height: 38px;
-
-    display: grid;
-    place-items: center;
-
-    border: 1px solid rgba(255,255,255,.5);
-
-    border-radius: 50%;
-
-    color: white;
-
-    font-size: 15px;
-
-    opacity: 0;
-
-    transition: opacity .3s ease;
-}
-
-.project:hover .project-arrow {
-    opacity: 1;
+.section-link:hover {
+    color: #fff;
 }
 
 
 /* =========================================================
-   WORK FOOTER
+   GAME GRID
 ========================================================= */
 
-.work-footer {
-    display: flex;
-    justify-content: center;
+.game-grid {
+    display: grid;
 
-    margin-top: 10px;
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(270px, 1fr)
+        );
+
+    gap: 18px;
 }
 
-.work-footer span {
-    padding: 12px 19px;
+.game-card {
+    overflow: hidden;
 
-    border: 1px solid #c5c2ba;
-    border-radius: 100px;
+    border: 1px solid var(--border);
 
-    color: #77746e;
+    background:
+        linear-gradient(
+            145deg,
+            #101010,
+            #080808
+        );
 
-    font-size: 10px;
-    font-weight: 700;
+    transition:
+        transform .3s ease,
+        border-color .3s ease;
+}
 
-    letter-spacing: 1.7px;
+.game-card:hover {
+    transform: translateY(-6px);
+
+    border-color:
+        var(--border-hover);
+}
+
+.game-cover {
+    height: 235px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #242424,
+            #080808 70%
+        );
+
+    overflow: hidden;
+}
+
+.game-cover::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            transparent 45%,
+            rgba(255,255,255,.035) 50%,
+            transparent 55%
+        );
+
+    transform:
+        translateX(-100%);
+
+    transition:
+        transform .7s ease;
+}
+
+.game-card:hover
+.game-cover::after {
+    transform:
+        translateX(100%);
+}
+
+.game-icon {
+    position: relative;
+    z-index: 2;
+
+    font-size: 75px;
+
+    filter:
+        grayscale(.3);
+
+    transition:
+        transform .3s ease;
+}
+
+.game-card:hover .game-icon {
+    transform:
+        scale(1.08)
+        rotate(-2deg);
+}
+
+.game-details {
+    padding: 24px;
+}
+
+.game-type {
+    margin-bottom: 9px;
+
+    color: #555;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+}
+
+.game-name {
+    font-size: 20px;
+
+    margin-bottom: 10px;
+}
+
+.game-description {
+    min-height: 45px;
+
+    color: #707070;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+.play-btn {
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 12px;
+
+    border: 1px solid #292929;
+
+    background: #0b0b0b;
+
+    color: #aaa;
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+.play-btn:hover {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+}
+
+
+/* =========================================================
+   CATEGORIES
+========================================================= */
+
+.category-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(220px, 1fr)
+        );
+
+    gap: 15px;
+}
+
+.category-card {
+    padding: 35px;
+
+    border: 1px solid var(--border);
+
+    background: #090909;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    color: #fff;
+
+    transition: .25s ease;
+}
+
+.category-card:hover {
+    border-color: #444;
+
+    transform:
+        translateY(-4px);
+}
+
+.category-icon {
+    font-size: 34px;
+
+    display: block;
+
+    margin-bottom: 25px;
+}
+
+.category-card strong {
+    display: block;
+
+    font-size: 17px;
+}
+
+.category-card span {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #666;
+
+    font-size: 11px;
 }
 
 
@@ -765,317 +784,182 @@ section {
    ABOUT
 ========================================================= */
 
-.about {
-    background: #121212;
+.about-panel {
+    padding: 45px;
 
-    color: #fff;
+    border: 1px solid var(--border);
+
+    background:
+        linear-gradient(
+            145deg,
+            #0d0d0d,
+            #070707
+        );
 }
 
-.about .section-label {
+.about-panel p {
+    width: min(750px, 100%);
+
+    margin-bottom: 17px;
+
     color: #777;
-}
-
-.about .section-description {
-    color: #999;
-}
-
-.about-grid {
-    display: grid;
-
-    grid-template-columns: 1.1fr .9fr;
-
-    gap: 110px;
-}
-
-.about-heading {
-    max-width: 700px;
-
-    font-family: "Space Grotesk", sans-serif;
-
-    font-size: clamp(38px, 5vw, 69px);
-
-    line-height: .98;
-
-    letter-spacing: -3.5px;
-}
-
-.about-heading span {
-    color: #777;
-}
-
-.about-copy {
-    max-width: 490px;
-
-    color: #999;
-
-    font-size: 16px;
-
-    line-height: 1.85;
-}
-
-.about-copy p + p {
-    margin-top: 27px;
-}
-
-
-/* =========================================================
-   MASOC FEATURE
-========================================================= */
-
-.masoc-section {
-    position: relative;
-
-    min-height: 570px;
-
-    background: #dedbd3;
-
-    overflow: hidden;
-}
-
-.masoc-section-inner {
-    position: relative;
-    z-index: 3;
-}
-
-.masoc-section-title {
-    max-width: 700px;
-
-    font-family: "Space Grotesk", sans-serif;
-
-    font-size: clamp(55px, 8vw, 110px);
-
-    line-height: .85;
-
-    letter-spacing: -6px;
-}
-
-.masoc-section-title span {
-    color: #7e7b74;
-}
-
-.masoc-description {
-    max-width: 400px;
-
-    margin-top: 35px;
-
-    color: #65635e;
-
-    line-height: 1.7;
-
-    font-size: 14px;
-}
-
-.masoc-large {
-    position: absolute;
-
-    right: 7%;
-    bottom: -20px;
-
-    width: min(32vw, 430px);
-
-    z-index: 2;
-
-    animation: masocLarge 6s ease-in-out infinite;
-}
-
-.masoc-large img {
-    width: 100%;
-
-    filter:
-        drop-shadow(0 30px 25px rgba(0,0,0,.14));
-}
-
-@keyframes masocLarge {
-
-    0%,
-    100% {
-        transform: rotate(4deg) translateY(0);
-    }
-
-    50% {
-        transform: rotate(-3deg) translateY(-14px);
-    }
-
-}
-
-
-/* =========================================================
-   SERVICES
-========================================================= */
-
-.services {
-    background: #f1f0eb;
-}
-
-.services-list {
-    border-top: 1px solid #bdbbb4;
-}
-
-.service {
-    display: grid;
-
-    grid-template-columns: 65px 1fr 1fr;
-
-    align-items: center;
-
-    gap: 35px;
-
-    padding: 31px 0;
-
-    border-bottom: 1px solid #bdbbb4;
-}
-
-.service-number {
-    color: #89867f;
-
-    font-size: 11px;
-}
-
-.service-title {
-    font-family: "Space Grotesk", sans-serif;
-
-    font-size: 28px;
-
-    letter-spacing: -1px;
-}
-
-.service-description {
-    max-width: 390px;
-
-    color: #6d6a63;
 
     font-size: 14px;
 
-    line-height: 1.65;
+    line-height: 1.9;
 }
-
-
-/* =========================================================
-   STATS
-========================================================= */
 
 .stats {
-    display: grid;
+    display: flex;
 
-    grid-template-columns: repeat(3, 1fr);
+    gap: 70px;
 
-    padding-top: 0;
-    padding-bottom: 0;
+    margin-top: 50px;
+
+    flex-wrap: wrap;
 }
 
-.stat {
-    padding: 70px 25px;
+.stat strong {
+    display: block;
 
-    border-left: 1px solid #cfccc4;
+    font-size: 35px;
 }
 
-.stat:last-child {
-    border-right: 1px solid #cfccc4;
-}
+.stat span {
+    color: #555;
 
-.stat-number {
-    font-family: "Space Grotesk", sans-serif;
+    font-size: 8px;
 
-    font-size: 70px;
-
-    letter-spacing: -5px;
-}
-
-.stat-label {
-    margin-top: 7px;
-
-    color: #79766f;
-
-    font-size: 11px;
+    letter-spacing: 3px;
 }
 
 
 /* =========================================================
-   CTA
+   SEARCH
 ========================================================= */
 
-.cta {
-    position: relative;
+.search-overlay {
+    position: fixed;
+    inset: 0;
 
-    min-height: 650px;
+    z-index: 500;
 
-    display: flex;
+    display: none;
+
     align-items: center;
+    justify-content: center;
 
-    overflow: hidden;
+    background:
+        rgba(0,0,0,.88);
 
-    background: #121212;
-
-    color: #fff;
+    backdrop-filter:
+        blur(20px);
 }
 
-.cta::after {
-    content: "";
+.search-overlay.open {
+    display: flex;
+}
 
+.search-box {
+    width: min(650px, 90%);
+
+    position: relative;
+
+    padding: 35px;
+
+    border: 1px solid #292929;
+
+    background: #0b0b0b;
+}
+
+.search-close {
     position: absolute;
 
-    width: 550px;
-    height: 550px;
+    top: 12px;
+    right: 15px;
 
-    right: -200px;
-    bottom: -250px;
+    border: 0;
 
-    border: 1px solid #2d2d2d;
-
-    border-radius: 50%;
-}
-
-.cta-content {
-    position: relative;
-    z-index: 3;
-}
-
-.cta-label {
-    margin-bottom: 25px;
+    background: transparent;
 
     color: #777;
 
-    font-size: 10px;
-    font-weight: 700;
+    font-size: 25px;
 
-    letter-spacing: 2px;
+    cursor: pointer;
 }
 
-.cta h2 {
-    max-width: 1000px;
+.search-label {
+    margin-bottom: 18px;
 
-    font-family: "Space Grotesk", sans-serif;
-
-    font-size: clamp(65px, 10vw, 145px);
-
-    line-height: .84;
-
-    letter-spacing: -7px;
-}
-
-.cta h2 span {
     color: #666;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
 }
 
-.cta-link {
-    display: inline-block;
+.search-input {
+    width: 100%;
 
-    margin-top: 58px;
+    padding: 16px;
 
-    padding-bottom: 9px;
+    border: 1px solid #292929;
 
-    border-bottom: 1px solid #555;
+    outline: none;
+
+    background: #050505;
+
+    color: white;
+
+    font-size: 14px;
+}
+
+.search-input:focus {
+    border-color: #555;
+}
+
+.search-results {
+    margin-top: 15px;
+
+    max-height: 300px;
+
+    overflow-y: auto;
+}
+
+.search-result {
+    width: 100%;
+
+    padding: 15px;
+
+    margin-bottom: 5px;
+
+    border: 1px solid #1d1d1d;
+
+    background: #0f0f0f;
 
     color: #fff;
 
-    font-size: 14px;
+    text-align: left;
 
-    transition:
-        border-color .2s ease;
+    cursor: pointer;
 }
 
-.cta-link:hover {
-    border-color: #fff;
+.search-result:hover {
+    background: #181818;
+}
+
+
+/* =========================================================
+   PAGE SWITCHING
+========================================================= */
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
 }
 
 
@@ -1084,74 +968,18 @@ section {
 ========================================================= */
 
 footer {
-    display: flex;
+    padding: 30px 5%;
 
+    display: flex;
     justify-content: space-between;
-    align-items: center;
 
-    padding: 32px 6%;
+    border-top: 1px solid var(--border);
 
-    background: #121212;
+    color: #3f3f3f;
 
-    color: #fff;
+    font-size: 8px;
 
-    border-top: 1px solid #292929;
-}
-
-.footer-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    font-family: "Space Grotesk", sans-serif;
-
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.footer-brand img {
-    width: 30px;
-    height: 30px;
-
-    object-fit: contain;
-}
-
-.footer-links {
-    display: flex;
-    gap: 24px;
-}
-
-.footer-links a {
-    color: #777;
-
-    font-size: 11px;
-
-    transition: color .2s ease;
-}
-
-.footer-links a:hover {
-    color: #fff;
-}
-
-
-/* =========================================================
-   SCROLL REVEAL
-========================================================= */
-
-.reveal {
-    opacity: 0;
-
-    transform: translateY(30px);
-
-    transition:
-        opacity .8s ease,
-        transform .8s cubic-bezier(.2,.7,.2,1);
-}
-
-.reveal.visible {
-    opacity: 1;
-
-    transform: translateY(0);
+    letter-spacing: 3px;
 }
 
 
@@ -1159,220 +987,49 @@ footer {
    MOBILE
 ========================================================= */
 
-@media (max-width: 850px) {
+@media (max-width: 750px) {
 
-    .nav {
-        height: 72px;
-
-        padding: 0 5%;
+    header {
+        padding: 0 15px;
     }
 
-    .brand {
-        font-size: 14px;
-    }
-
-    .brand img {
-        width: 37px;
-        height: 37px;
-    }
-
-    .menu-button {
-        display: block;
-    }
-
-    .nav-links {
-        position: fixed;
-
-        top: 0;
-        right: -100%;
-
-        width: 80%;
-        height: 100vh;
-
-        padding: 110px 35px 40px;
-
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-
-        gap: 25px;
-
-        background: #111;
-        color: #fff;
-
-        transition: right .35s ease;
-    }
-
-    .nav-links.active {
-        right: 0;
-    }
-
-    .nav-links a {
-        color: #fff;
-
-        font-size: 19px;
-    }
-
-    .nav-youtube {
-        border-color: #444;
-    }
-
-
-    .hero {
-        min-height: 850px;
-
-        padding:
-            130px
-            5%
-            80px;
-    }
-
-    .hero-title {
-        font-size: clamp(58px, 16vw, 100px);
-
-        letter-spacing: -5px;
-    }
-
-    .hero-bottom {
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        gap: 32px;
-
-        margin-top: 50px;
-    }
-
-    .masoc-hero {
-        width: 190px;
-
-        right: -15px;
-        bottom: 5%;
-    }
-
-    .hero-background {
-        width: 480px;
-        height: 480px;
-
-        right: -280px;
-    }
-
-    .hero-lines {
+    nav {
         display: none;
     }
 
-
-    section {
-        padding: 100px 5%;
+    .hero {
+        min-height: 500px;
     }
 
+    .hero h1 {
+        letter-spacing: -4px;
+    }
 
-    .section-head {
+    .section {
+        padding: 70px 0;
+    }
+
+    .section-header {
+        align-items: start;
         flex-direction: column;
-
-        align-items: flex-start;
-
-        margin-bottom: 55px;
     }
 
-
-    .project {
-        width: 190px;
-        height: 190px;
-
-        border-radius: 23px;
+    .about-panel {
+        padding: 28px;
     }
-
-    .project.big {
-        width: 225px;
-        height: 225px;
-    }
-
-    .project-row {
-        gap: 17px;
-
-        margin-bottom: 20px;
-    }
-
-
-    .about-grid {
-        grid-template-columns: 1fr;
-
-        gap: 55px;
-    }
-
-
-    .masoc-section {
-        min-height: 650px;
-    }
-
-    .masoc-section-title {
-        font-size: clamp(52px, 14vw, 85px);
-
-        letter-spacing: -5px;
-    }
-
-    .masoc-large {
-        width: 290px;
-
-        right: -20px;
-        bottom: -10px;
-    }
-
-
-    .service {
-        grid-template-columns: 40px 1fr;
-
-        gap: 18px;
-    }
-
-    .service-description {
-        grid-column: 2;
-    }
-
 
     .stats {
-        grid-template-columns: 1fr;
+        gap: 35px;
     }
-
-    .stat {
-        border-right: 1px solid #cfccc4;
-    }
-
-
-    .cta {
-        min-height: 530px;
-    }
-
-    .cta h2 {
-        letter-spacing: -5px;
-    }
-
 
     footer {
         flex-direction: column;
-
-        align-items: flex-start;
-
-        gap: 24px;
+        gap: 10px;
     }
 
-}
-
-
-/* =========================================================
-   REDUCED MOTION
-========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-        transition-duration: .01ms !important;
+    .loader-brand {
+        font-size: 28px;
+        letter-spacing: 6px;
     }
 
 }
@@ -1384,183 +1041,60 @@ footer {
 <body>
 
 
-<!-- =======================================================
-     NAV
-======================================================= -->
+<!-- =====================================================
+     LOADING SCREEN
+===================================================== -->
 
-<nav class="nav">
+<div id="loader">
 
-    <a href="index.html" class="brand">
+    <div class="loader-grid"></div>
 
-        <img
-            src="11.png"
-            alt="Masoc"
+    <div class="loader-content">
+
+        <div class="loader-logo">
+            CA
+        </div>
+
+        <div class="loader-brand">
+            CIPHANON
+        </div>
+
+        <div class="loader-subtitle">
+            STUDIOS
+        </div>
+
+        <div
+            class="loader-status"
+            id="loaderStatus"
+        >
+            INITIALIZING GAMES...
+        </div>
+
+        <div class="loader-track">
+
+            <div
+                class="loader-bar"
+                id="loaderBar"
+            ></div>
+
+        </div>
+
+        <div
+            class="loader-percent"
+            id="loaderPercent"
+        >
+            0%
+        </div>
+
+        <div
+            class="loader-error"
+            id="loaderError"
         >
 
-        CIPHANON STUDIOS
+            <button id="launchButton">
+                LAUNCH GAMES
+            </button>
 
-    </a>
-
-
-    <button
-        class="menu-button"
-        id="menuButton"
-        aria-label="Open menu"
-    >
-        ☰
-    </button>
-
-
-    <div class="nav-links" id="navLinks">
-
-        <a href="#work">
-            Work
-        </a>
-
-        <a href="#about">
-            About
-        </a>
-
-        <a href="scripts.html">
-            Scripts
-        </a>
-
-        <a href="Gm.html">
-            Games
-        </a>
-
-        <a
-            href="https://youtube.com/@ItsToonyTime"
-            target="_blank"
-            class="nav-youtube"
-        >
-            YouTube ↗
-        </a>
-
-    </div>
-
-</nav>
-
-
-
-<!-- =======================================================
-     HERO
-======================================================= -->
-
-<header class="hero">
-
-    <div class="hero-background"></div>
-
-    <div class="hero-lines"></div>
-
-
-    <div class="hero-content reveal">
-
-        <div class="hero-top">
-            CiphAnon Studios
-        </div>
-
-
-        <h1 class="hero-title">
-
-            BUILDING<br>
-
-            <span class="muted">
-                WHAT'S
-            </span><br>
-
-            NEXT.
-
-        </h1>
-
-
-        <div class="hero-bottom">
-
-            <p class="hero-copy">
-
-                Games, websites, scripts and experiments.
-                CiphAnon Studios is where ideas turn into
-                things you can actually use, play and explore.
-
-            </p>
-
-
-            <div class="hero-actions">
-
-                <a
-                    href="#work"
-                    class="button button-dark"
-                >
-                    See our work
-                </a>
-
-                <a
-                    href="Gm.html"
-                    class="button button-outline"
-                >
-                    Enter the games
-                </a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- MASOC -->
-
-    <div class="masoc-hero">
-
-        <img
-            src="11.png"
-            alt="Masoc"
-        >
-
-    </div>
-
-</header>
-
-
-
-<!-- =======================================================
-     MARQUEE
-======================================================= -->
-
-<div class="marquee">
-
-    <div class="marquee-track">
-
-        <div class="marquee-item">
-            GAMES <b>•</b>
-            WEB <b>•</b>
-            SCRIPTS <b>•</b>
-            EXPERIMENTS <b>•</b>
-            CREATIVITY <b>•</b>
-        </div>
-
-        <div class="marquee-item">
-            GAMES <b>•</b>
-            WEB <b>•</b>
-            SCRIPTS <b>•</b>
-            EXPERIMENTS <b>•</b>
-            CREATIVITY <b>•</b>
-        </div>
-
-        <div class="marquee-item">
-            GAMES <b>•</b>
-            WEB <b>•</b>
-            SCRIPTS <b>•</b>
-            EXPERIMENTS <b>•</b>
-            CREATIVITY <b>•</b>
-        </div>
-
-        <div class="marquee-item">
-            GAMES <b>•</b>
-            WEB <b>•</b>
-            SCRIPTS <b>•</b>
-            EXPERIMENTS <b>•</b>
-            CREATIVITY <b>•</b>
         </div>
 
     </div>
@@ -1568,448 +1102,294 @@ footer {
 </div>
 
 
+<!-- =====================================================
+     MAIN WEBSITE
+===================================================== -->
 
-<!-- =======================================================
-     WORK
-======================================================= -->
-
-<section class="work" id="work">
+<div id="mainSite">
 
 
-    <div class="section-head reveal">
+<header>
 
-        <div>
+    <div
+        class="brand"
+        onclick="showPage('home')"
+    >
 
-            <div class="section-label">
-                01 / THE PLAYGROUND
+        <div class="brand-symbol">
+            CA
+        </div>
+
+        <div class="brand-text">
+
+            <strong>
+                CIPHANON
+            </strong>
+
+            <span>
+                STUDIOS
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <button
+            class="nav-btn active"
+            data-page="home"
+        >
+            HOME
+        </button>
+
+        <button
+            class="nav-btn"
+            data-page="games"
+        >
+            GAMES
+        </button>
+
+        <button
+            class="nav-btn"
+            data-page="categories"
+        >
+            CATEGORIES
+        </button>
+
+        <button
+            class="nav-btn"
+            data-page="about"
+        >
+            ABOUT
+        </button>
+
+    </nav>
+
+
+    <button
+        class="header-search"
+        id="searchOpen"
+        aria-label="Search"
+    >
+        ⌕
+    </button>
+
+</header>
+
+
+<main>
+
+
+<!-- =====================================================
+     HOME
+===================================================== -->
+
+<section
+    id="home"
+    class="page active"
+>
+
+    <div class="hero">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                CIPHANON STUDIOS
             </div>
 
-            <h2 class="section-title">
-                Made to<br>
-                be explored.
-            </h2>
+            <h1>
+                CIPHANON
+                <span>GAMES</span>
+            </h1>
+
+            <p class="hero-description">
+                A collection of games, experiments
+                and interactive experiences created
+                by CiphAnon Studios.
+            </p>
+
+            <div class="hero-actions">
+
+                <button
+                    class="btn-primary"
+                    onclick="showPage('games')"
+                >
+                    EXPLORE GAMES
+                </button>
+
+                <button
+                    class="btn-secondary"
+                    onclick="showPage('about')"
+                >
+                    ABOUT THE STUDIO
+                </button>
 
-        </div>
-
-
-        <p class="section-description">
-
-            A constantly changing collection of games,
-            experiments, tools and projects from
-            CiphAnon Studios.
-
-        </p>
-
-    </div>
-
-
-
-    <div class="project-area">
-
-
-        <!-- ROW 1 -->
-
-        <div class="project-row one">
-
-
-            <a
-                href="Gm.html"
-                class="project big"
-                style="--tilt:-5deg"
-            >
-
-                <div class="project-image project-pet"></div>
-
-                <div class="project-overlay">
-
-                    <div class="project-category">
-                        Game
-                    </div>
-
-                    <div class="project-name">
-                        Pet Clicker
-                    </div>
-
-                </div>
-
-                <div class="project-arrow">
-                    ↗
-                </div>
-
-            </a>
-
-
-
-            <a
-                href="Gm.html"
-                class="project"
-                style="--tilt:4deg"
-            >
-
-                <div class="project-image project-geometry"></div>
-
-                <div class="project-overlay">
-
-                    <div class="project-category">
-                        Game
-                    </div>
-
-                    <div class="project-name">
-                        Geometry Dash
-                    </div>
-
-                </div>
-
-                <div class="project-arrow">
-                    ↗
-                </div>
-
-            </a>
-
-
-
-            <a
-                href="scripts.html"
-                class="project"
-                style="--tilt:-3deg"
-            >
-
-                <div class="project-image project-scripts"></div>
-
-                <div class="project-overlay">
-
-                    <div class="project-category">
-                        Scripts
-                    </div>
-
-                    <div class="project-name">
-                        Script Library
-                    </div>
-
-                </div>
-
-                <div class="project-arrow">
-                    ↗
-                </div>
-
-            </a>
-
-
-
-            <a
-                href="Gm.html"
-                class="project big"
-                style="--tilt:5deg"
-            >
-
-                <div class="project-image project-masoc"></div>
-
-                <div class="project-overlay">
-
-                    <div class="project-category">
-                        Character
-                    </div>
-
-                    <div class="project-name">
-                        Masoc
-                    </div>
-
-                </div>
-
-                <div class="project-arrow">
-                    ↗
-                </div>
-
-            </a>
-
-
-        </div>
-
-
-
-        <!-- ROW 2 -->
-
-        <div class="project-row two">
-
-
-            <a
-                href="scripts.html"
-                class="project"
-                style="--tilt:4deg"
-            >
-
-                <div class="project-image project-code"></div>
-
-                <div class="project-overlay">
-
-                    <div class="project-category">
-                        Development
-                    </div>
-
-                    <div class="project-name">
-                        Creative Code
-                    </div>
-
-                </div>
-
-                <div class="project-arrow">
-                    ↗
-                </div>
-
-            </a>
-
-
-
-            <a
-                href="Gm.html"
-                class="project big"
-                style="--tilt:-4deg"
-            >
-
-                <div class="project-image project-pet"></div>
-
-                <div class="project-overlay">
-
-                    <div class="project-category">
-                        Games
-                    </div>
-
-                    <div class="project-name">
-                        More Games
-                    </div>
-
-                </div>
-
-                <div class="project-arrow">
-                    ↗
-                </div>
-
-            </a>
-
-
-
-            <a
-                href="Gm.html"
-                class="project"
-                style="--tilt:6deg"
-            >
-
-                <div class="project-image project-experiment"></div>
-
-                <div class="project-overlay">
-
-                    <div class="project-category">
-                        Experiment
-                    </div>
-
-                    <div class="project-name">
-                        Experiments
-                    </div>
-
-                </div>
-
-                <div class="project-arrow">
-                    ↗
-                </div>
-
-            </a>
-
-
-
-            <a
-                href="scripts.html"
-                class="project"
-                style="--tilt:-5deg"
-            >
-
-                <div class="project-image project-scripts"></div>
-
-                <div class="project-overlay">
-
-                    <div class="project-category">
-                        Tools
-                    </div>
-
-                    <div class="project-name">
-                        Scripts
-                    </div>
-
-                </div>
-
-                <div class="project-arrow">
-                    ↗
-                </div>
-
-            </a>
-
-
-        </div>
-
-
-
-        <!-- ROW 3 -->
-
-        <div class="project-row three">
-
-
-            <a
-                href="Gm.html"
-                class="project"
-                style="--tilt:-4deg"
-            >
-
-                <div class="project-image project-masoc"></div>
-
-                <div class="project-overlay">
-
-                    <div class="project-category">
-                        CiphAnon
-                    </div>
-
-                    <div class="project-name">
-                        Masoc
-                    </div>
-
-                </div>
-
-                <div class="project-arrow">
-                    ↗
-                </div>
-
-            </a>
-
-
-
-            <a
-                href="Gm.html"
-                class="project big"
-                style="--tilt:5deg"
-            >
-
-                <div class="project-image project-geometry"></div>
-
-                <div class="project-overlay">
-
-                    <div class="project-category">
-                        Game
-                    </div>
-
-                    <div class="project-name">
-                        Projects
-                    </div>
-
-                </div>
-
-                <div class="project-arrow">
-                    ↗
-                </div>
-
-            </a>
-
-
-
-            <a
-                href="scripts.html"
-                class="project"
-                style="--tilt:-6deg"
-            >
-
-                <div class="project-image project-code"></div>
-
-                <div class="project-overlay">
-
-                    <div class="project-category">
-                        Code
-                    </div>
-
-                    <div class="project-name">
-                        Tools
-                    </div>
-
-                </div>
-
-                <div class="project-arrow">
-                    ↗
-                </div>
-
-            </a>
-
-        </div>
-
-    </div>
-
-
-
-    <div class="work-footer reveal">
-
-        <span>
-            HOVER TO DISCOVER
-        </span>
-
-    </div>
-
-
-</section>
-
-
-
-<!-- =======================================================
-     ABOUT
-======================================================= -->
-
-<section class="about" id="about">
-
-
-    <div class="section-head reveal">
-
-        <div>
-
-            <div class="section-label">
-                02 / WHO WE ARE
             </div>
 
-            <h2 class="section-title">
-                Small studio.<br>
-                Big ideas.
-            </h2>
-
         </div>
 
     </div>
 
 
-    <div class="about-grid">
+    <div class="container section">
 
+        <div class="section-header">
 
-        <div class="about-heading reveal">
+            <div>
 
-            CiphAnon is built around
-            <span>making things</span>
-            instead of just talking
-            about them.
+                <div class="section-label">
+                    FEATURED
+                </div>
+
+                <h2 class="section-title">
+                    Games
+                </h2>
+
+            </div>
+
+            <button
+                class="section-link"
+                onclick="showPage('games')"
+            >
+                VIEW ALL →
+            </button>
 
         </div>
 
 
-        <div class="about-copy reveal">
+        <div class="game-grid">
 
-            <p>
-                CiphAnon Studios is an independent creative
-                studio focused on building games, websites,
-                scripts and experimental projects.
-            </p>
 
-            <p>
-                Some projects are polished. Some start as
-                completely ridiculous ideas. That's part
-                of the fun.
-            </p>
+            <!-- GAME -->
 
-            <p>
-                The goal is simple: build things that are
-                fun to use, interesting to look at and
-                worth coming back to.
-            </p>
+            <article
+                class="game-card"
+                data-name="Chicken Jukes"
+                data-category="Arcade"
+            >
+
+                <div class="game-cover">
+
+                    <div class="game-icon">
+                        🐔
+                    </div>
+
+                </div>
+
+                <div class="game-details">
+
+                    <div class="game-type">
+                        ARCADE
+                    </div>
+
+                    <h3 class="game-name">
+                        Chicken Jukes
+                    </h3>
+
+                    <p class="game-description">
+                        Dodge the foxes, make crazy
+                        jukes and survive.
+                    </p>
+
+                    <button
+                        class="play-btn"
+                        onclick="launchGame('chicken-jukes.html')"
+                    >
+                        PLAY GAME
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- GAME -->
+
+            <article
+                class="game-card"
+                data-name="Pumpkin Adventure"
+                data-category="Adventure"
+            >
+
+                <div class="game-cover">
+
+                    <div class="game-icon">
+                        🎃
+                    </div>
+
+                </div>
+
+                <div class="game-details">
+
+                    <div class="game-type">
+                        ADVENTURE
+                    </div>
+
+                    <h3 class="game-name">
+                        Pumpkin Adventure
+                    </h3>
+
+                    <p class="game-description">
+                        Explore a mysterious world
+                        and find what's missing.
+                    </p>
+
+                    <button
+                        class="play-btn"
+                        onclick="launchGame('pumpkin-adventure.html')"
+                    >
+                        PLAY GAME
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <!-- GAME -->
+
+            <article
+                class="game-card"
+                data-name="CiphAnon Racer"
+                data-category="Racing"
+            >
+
+                <div class="game-cover">
+
+                    <div class="game-icon">
+                        🏎️
+                    </div>
+
+                </div>
+
+                <div class="game-details">
+
+                    <div class="game-type">
+                        RACING
+                    </div>
+
+                    <h3 class="game-name">
+                        CiphAnon Racer
+                    </h3>
+
+                    <p class="game-description">
+                        Race through challenging
+                        tracks and beat your records.
+                    </p>
+
+                    <button
+                        class="play-btn"
+                        onclick="launchGame('ciph-racer.html')"
+                    >
+                        PLAY GAME
+                    </button>
+
+                </div>
+
+            </article>
+
 
         </div>
 
@@ -2018,395 +1398,1029 @@ footer {
 </section>
 
 
+<!-- =====================================================
+     GAMES PAGE
+===================================================== -->
 
-<!-- =======================================================
-     MASOC
-======================================================= -->
+<section
+    id="games"
+    class="page"
+>
 
-<section class="masoc-section">
-
-
-    <div class="masoc-section-inner reveal">
+    <div class="container section">
 
         <div class="section-label">
-            03 / THE FACE OF CIPHANON
+            GAME LIBRARY
         </div>
 
+        <h2 class="section-title">
+            All Games
+        </h2>
 
-        <h2 class="masoc-section-title">
+        <div class="game-grid" style="margin-top:40px;">
 
-            MEET<br>
 
-            <span>MASOC.</span>
+            <article
+                class="game-card"
+                data-name="Chicken Jukes"
+                data-category="Arcade"
+            >
 
+                <div class="game-cover">
+                    <div class="game-icon">
+                        🐔
+                    </div>
+                </div>
+
+                <div class="game-details">
+
+                    <div class="game-type">
+                        ARCADE
+                    </div>
+
+                    <h3 class="game-name">
+                        Chicken Jukes
+                    </h3>
+
+                    <p class="game-description">
+                        Dodge the foxes and survive.
+                    </p>
+
+                    <button
+                        class="play-btn"
+                        onclick="launchGame('chicken-jukes.html')"
+                    >
+                        PLAY GAME
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <article
+                class="game-card"
+                data-name="Pumpkin Adventure"
+                data-category="Adventure"
+            >
+
+                <div class="game-cover">
+                    <div class="game-icon">
+                        🎃
+                    </div>
+                </div>
+
+                <div class="game-details">
+
+                    <div class="game-type">
+                        ADVENTURE
+                    </div>
+
+                    <h3 class="game-name">
+                        Pumpkin Adventure
+                    </h3>
+
+                    <p class="game-description">
+                        Explore the unknown.
+                    </p>
+
+                    <button
+                        class="play-btn"
+                        onclick="launchGame('pumpkin-adventure.html')"
+                    >
+                        PLAY GAME
+                    </button>
+
+                </div>
+
+            </article>
+
+
+            <article
+                class="game-card"
+                data-name="CiphAnon Racer"
+                data-category="Racing"
+            >
+
+                <div class="game-cover">
+                    <div class="game-icon">
+                        🏎️
+                    </div>
+                </div>
+
+                <div class="game-details">
+
+                    <div class="game-type">
+                        RACING
+                    </div>
+
+                    <h3 class="game-name">
+                        CiphAnon Racer
+                    </h3>
+
+                    <p class="game-description">
+                        Race and beat your records.
+                    </p>
+
+                    <button
+                        class="play-btn"
+                        onclick="launchGame('ciph-racer.html')"
+                    >
+                        PLAY GAME
+                    </button>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CATEGORIES
+===================================================== -->
+
+<section
+    id="categories"
+    class="page"
+>
+
+    <div class="container section">
+
+        <div class="section-label">
+            BROWSE
+        </div>
+
+        <h2 class="section-title">
+            Categories
         </h2>
 
 
-        <p class="masoc-description">
-
-            The pumpkin behind CiphAnon Studios.
-            Masoc isn't just a logo — he's part of
-            the world we're building.
-
-        </p>
-
-    </div>
-
-
-    <div class="masoc-large">
-
-        <img
-            src="Images/Masoc.png"
-            alt="Masoc the pumpkin character"
+        <div
+            class="category-grid"
+            style="margin-top:40px;"
         >
 
-    </div>
+            <button
+                class="category-card"
+                onclick="filterGames('Arcade')"
+            >
 
-</section>
+                <span class="category-icon">
+                    🕹️
+                </span>
 
+                <strong>
+                    Arcade
+                </strong>
 
+                <span>
+                    Fast and challenging games.
+                </span>
 
-<!-- =======================================================
-     SERVICES
-======================================================= -->
-
-<section class="services">
-
-
-    <div class="section-head reveal">
-
-        <div>
-
-            <div class="section-label">
-                04 / WHAT WE BUILD
-            </div>
-
-            <h2 class="section-title">
-                More than<br>
-                one thing.
-            </h2>
-
-        </div>
-
-    </div>
+            </button>
 
 
-    <div class="services-list">
+            <button
+                class="category-card"
+                onclick="filterGames('Adventure')"
+            >
+
+                <span class="category-icon">
+                    🗺️
+                </span>
+
+                <strong>
+                    Adventure
+                </strong>
+
+                <span>
+                    Explore new worlds.
+                </span>
+
+            </button>
 
 
-        <div class="service reveal">
+            <button
+                class="category-card"
+                onclick="filterGames('Racing')"
+            >
 
-            <div class="service-number">
-                01
-            </div>
+                <span class="category-icon">
+                    🏎️
+                </span>
 
-            <div class="service-title">
-                Games
-            </div>
+                <strong>
+                    Racing
+                </strong>
 
-            <div class="service-description">
-                Small games, experiments and interactive
-                experiences built to be played.
-            </div>
+                <span>
+                    Speed, tracks and competition.
+                </span>
 
-        </div>
-
-
-
-        <div class="service reveal">
-
-            <div class="service-number">
-                02
-            </div>
-
-            <div class="service-title">
-                Websites
-            </div>
-
-            <div class="service-description">
-                Custom websites with their own identity,
-                rather than another generic template.
-            </div>
+            </button>
 
         </div>
-
-
-
-        <div class="service reveal">
-
-            <div class="service-number">
-                03
-            </div>
-
-            <div class="service-title">
-                Scripts
-            </div>
-
-            <div class="service-description">
-                Useful scripts and tools collected in
-                the CiphAnon Script Library.
-            </div>
-
-        </div>
-
-
-
-        <div class="service reveal">
-
-            <div class="service-number">
-                04
-            </div>
-
-            <div class="service-title">
-                Experiments
-            </div>
-
-            <div class="service-description">
-                Strange ideas, prototypes and projects
-                that don't fit neatly anywhere else.
-            </div>
-
-        </div>
-
 
     </div>
 
 </section>
 
 
+<!-- =====================================================
+     ABOUT
+===================================================== -->
 
-<!-- =======================================================
-     STATS
-======================================================= -->
+<section
+    id="about"
+    class="page"
+>
 
-<section class="stats">
+    <div class="container section">
 
-
-    <div class="stat reveal">
-
-        <div class="stat-number">
-            01
+        <div class="section-label">
+            THE STUDIO
         </div>
 
-        <div class="stat-label">
-            Independent studio
-        </div>
-
-    </div>
-
-
-
-    <div class="stat reveal">
-
-        <div class="stat-number">
-            ∞
-        </div>
-
-        <div class="stat-label">
-            Ideas to build
-        </div>
-
-    </div>
-
-
-
-    <div class="stat reveal">
-
-        <div class="stat-number">
-            24/7
-        </div>
-
-        <div class="stat-label">
-            Always creating
-        </div>
-
-    </div>
-
-
-</section>
-
-
-
-<!-- =======================================================
-     CTA
-======================================================= -->
-
-<section class="cta">
-
-
-    <div class="cta-content reveal">
-
-        <div class="cta-label">
-            CIPHANON STUDIOS
-        </div>
-
-
-        <h2>
-
-            SEE WHAT<br>
-
-            <span>WE'RE MAKING.</span>
-
+        <h2 class="section-title">
+            About CiphAnon
         </h2>
 
 
-        <a
-            href="Gm.html"
-            class="cta-link"
+        <div
+            class="about-panel"
+            style="margin-top:40px;"
         >
-            Explore the studio ↗
-        </a>
+
+            <p>
+                CiphAnon Studios is an independent
+                development studio focused on creating
+                games, scripts, tools, experiments and
+                interactive digital experiences.
+            </p>
+
+            <p>
+                CiphAnon Games is the studio's gaming
+                division, bringing together current
+                releases and experimental projects.
+            </p>
+
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <strong>
+                        03
+                    </strong>
+
+                    <span>
+                        GAMES
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong>
+                        01
+                    </strong>
+
+                    <span>
+                        STUDIO
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <strong>
+                        ∞
+                    </strong>
+
+                    <span>
+                        IDEAS
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
 </section>
 
 
+</main>
 
-<!-- =======================================================
-     FOOTER
-======================================================= -->
 
 <footer>
 
+    <span>
+        © 2026 CIPHANON STUDIOS
+    </span>
 
-    <div class="footer-brand">
-
-        <img
-            src="Images/Masoc.png"
-            alt="Masoc"
-        >
-
-        CiphAnon Studios
-
-    </div>
-
-
-    <div class="footer-links">
-
-        <a href="index.html">
-            Home
-        </a>
-
-        <a href="scripts.html">
-            Scripts
-        </a>
-
-        <a href="Gm.html">
-            Games
-        </a>
-
-        <a
-            href="https://youtube.com/@ItsToonyTime"
-            target="_blank"
-        >
-            YouTube ↗
-        </a>
-
-    </div>
+    <span>
+        CIPHANON GAMES
+    </span>
 
 </footer>
 
+
+</div>
+
+
+<!-- =====================================================
+     SEARCH OVERLAY
+===================================================== -->
+
+<div
+    class="search-overlay"
+    id="searchOverlay"
+>
+
+    <div class="search-box">
+
+        <button
+            class="search-close"
+            id="searchClose"
+        >
+            ×
+        </button>
+
+        <div class="search-label">
+            SEARCH CIPHANON GAMES
+        </div>
+
+        <input
+            class="search-input"
+            id="searchInput"
+            type="text"
+            placeholder="Search games..."
+            autocomplete="off"
+        >
+
+        <div
+            class="search-results"
+            id="searchResults"
+        ></div>
+
+    </div>
+
+</div>
 
 
 <script>
 
 /* =========================================================
-   MOBILE MENU
+   CIPHANON STUDIOS — JAVASCRIPT
 ========================================================= */
 
-const menuButton =
-    document.getElementById("menuButton");
 
-const navLinks =
-    document.getElementById("navLinks");
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
 
+const pages =
+    document.querySelectorAll(".page");
 
-menuButton.addEventListener("click", () => {
-
-    navLinks.classList.toggle("active");
-
-});
+const navButtons =
+    document.querySelectorAll(".nav-btn");
 
 
-document.querySelectorAll(".nav-links a")
-.forEach(link => {
+function showPage(pageName) {
 
-    link.addEventListener("click", () => {
+    pages.forEach(page => {
 
-        navLinks.classList.remove("active");
+        page.classList.remove("active");
 
     });
+
+
+    const target =
+        document.getElementById(pageName);
+
+
+    if (target) {
+
+        target.classList.add("active");
+
+    }
+
+
+    navButtons.forEach(button => {
+
+        button.classList.toggle(
+            "active",
+            button.dataset.page === pageName
+        );
+
+    });
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+
+navButtons.forEach(button => {
+
+    button.addEventListener(
+        "click",
+        () => {
+
+            showPage(
+                button.dataset.page
+            );
+
+        }
+    );
 
 });
 
 
 /* =========================================================
-   SCROLL REVEAL
+   SEARCH
 ========================================================= */
 
-const revealObserver =
-    new IntersectionObserver(
+const searchOpen =
+    document.getElementById("searchOpen");
 
-        entries => {
+const searchClose =
+    document.getElementById("searchClose");
 
-            entries.forEach(entry => {
+const searchOverlay =
+    document.getElementById("searchOverlay");
 
-                if (entry.isIntersecting) {
+const searchInput =
+    document.getElementById("searchInput");
 
-                    entry.target.classList.add("visible");
+const searchResults =
+    document.getElementById("searchResults");
 
-                    revealObserver.unobserve(
-                        entry.target
+
+searchOpen.addEventListener(
+    "click",
+    () => {
+
+        searchOverlay.classList.add("open");
+
+        setTimeout(
+            () => searchInput.focus(),
+            100
+        );
+
+    }
+);
+
+
+searchClose.addEventListener(
+    "click",
+    () => {
+
+        searchOverlay.classList.remove("open");
+
+    }
+);
+
+
+searchOverlay.addEventListener(
+    "click",
+    event => {
+
+        if (
+            event.target ===
+            searchOverlay
+        ) {
+
+            searchOverlay.classList.remove(
+                "open"
+            );
+
+        }
+
+    }
+);
+
+
+searchInput.addEventListener(
+    "input",
+    () => {
+
+        const query =
+            searchInput.value
+                .toLowerCase()
+                .trim();
+
+
+        searchResults.innerHTML = "";
+
+
+        if (!query) {
+
+            return;
+
+        }
+
+
+        const cards =
+            document.querySelectorAll(
+                ".game-card"
+            );
+
+
+        let found = false;
+
+
+        cards.forEach(card => {
+
+            const name =
+                (
+                    card.dataset.name || ""
+                ).toLowerCase();
+
+
+            if (
+                name.includes(query)
+            ) {
+
+                found = true;
+
+
+                const result =
+                    document.createElement(
+                        "button"
                     );
+
+
+                result.className =
+                    "search-result";
+
+
+                result.textContent =
+                    card.dataset.name;
+
+
+                result.onclick = () => {
+
+                    searchOverlay.classList.remove(
+                        "open"
+                    );
+
+                    showPage("games");
+
+                };
+
+
+                searchResults.appendChild(
+                    result
+                );
+
+            }
+
+        });
+
+
+        if (!found) {
+
+            const none =
+                document.createElement(
+                    "div"
+                );
+
+            none.style.color =
+                "#666";
+
+            none.style.padding =
+                "15px 0";
+
+            none.textContent =
+                "No games found.";
+
+            searchResults.appendChild(
+                none
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   CATEGORY FILTER
+========================================================= */
+
+function filterGames(category) {
+
+    showPage("games");
+
+
+    const cards =
+        document.querySelectorAll(
+            "#games .game-card"
+        );
+
+
+    cards.forEach(card => {
+
+        if (
+            card.dataset.category ===
+            category
+        ) {
+
+            card.style.display =
+                "block";
+
+        } else {
+
+            card.style.display =
+                "none";
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   OPEN A GAME IN ABOUT:BLANK
+========================================================= */
+
+function launchGame(gameURL) {
+
+    const gameWindow =
+        window.open(
+            "about:blank",
+            "_blank"
+        );
+
+
+    if (!gameWindow) {
+
+        alert(
+            "Your browser blocked the game window. Please allow popups for CiphAnon Studios."
+        );
+
+        return;
+
+    }
+
+
+    gameWindow.document.open();
+
+
+    gameWindow.document.write(`
+
+        <!DOCTYPE html>
+
+        <html>
+
+        <head>
+
+            <meta charset="UTF-8">
+
+            <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1.0"
+            >
+
+            <title>
+                CiphAnon Game
+            </title>
+
+            <style>
+
+                html,
+                body {
+
+                    width: 100%;
+                    height: 100%;
+
+                    margin: 0;
+
+                    overflow: hidden;
+
+                    background: #000;
 
                 }
 
-            });
+                iframe {
 
-        },
+                    width: 100%;
+                    height: 100%;
 
-        {
-            threshold: .12
-        }
+                    border: 0;
 
-    );
+                    display: block;
+
+                }
+
+            </style>
+
+        </head>
+
+        <body>
+
+            <iframe
+                src="${gameURL}"
+                allowfullscreen
+            ></iframe>
+
+        </body>
+
+        </html>
+
+    `);
 
 
-document
-    .querySelectorAll(".reveal")
-    .forEach(element => {
+    gameWindow.document.close();
 
-        revealObserver.observe(element);
-
-    });
+}
 
 
 /* =========================================================
-   PROJECT ROW PAUSE
+   LOADING → ABOUT:BLANK GAMES HOME
 ========================================================= */
 
-document
-    .querySelectorAll(".project-row")
-    .forEach(row => {
+const loader =
+    document.getElementById("loader");
 
-        row.addEventListener("mouseenter", () => {
+const loaderBar =
+    document.getElementById("loaderBar");
 
-            row.style.animationPlayState = "paused";
+const loaderPercent =
+    document.getElementById("loaderPercent");
 
-        });
+const loaderStatus =
+    document.getElementById("loaderStatus");
+
+const loaderError =
+    document.getElementById("loaderError");
+
+const launchButton =
+    document.getElementById("launchButton");
 
 
-        row.addEventListener("mouseleave", () => {
+const loadingMessages = [
 
-            row.style.animationPlayState = "running";
+    "INITIALIZING GAMES...",
 
-        });
+    "LOADING CIPHANON SYSTEMS...",
 
-    });
+    "CHECKING GAME LIBRARY...",
+
+    "PREPARING ENVIRONMENT...",
+
+    "LOADING GAME DATA...",
+
+    "ALMOST READY..."
+
+];
+
+
+let progressValue = 0;
+
+
+function updateLoader(value) {
+
+    loaderBar.style.width =
+        value + "%";
+
+    loaderPercent.textContent =
+        value + "%";
+
+
+    const index =
+        Math.min(
+            loadingMessages.length - 1,
+
+            Math.floor(
+                value /
+                (
+                    100 /
+                    loadingMessages.length
+                )
+            )
+        );
+
+
+    loaderStatus.textContent =
+        loadingMessages[index];
+
+}
+
+
+/* =========================================================
+   CREATE ABOUT:BLANK GAMES PAGE
+========================================================= */
+
+function launchGamesPortal() {
+
+    const blank =
+        window.open(
+            "about:blank",
+            "_blank"
+        );
+
+
+    if (!blank) {
+
+        loaderStatus.textContent =
+            "POPUP BLOCKED";
+
+        loaderError.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    /*
+        The iframe loads THIS PAGE
+        inside the about:blank document.
+
+        ?games=1 tells the page that it
+        is being displayed inside the portal.
+    */
+
+    const portalURL =
+        window.location.href.split("#")[0] +
+        "?games=1";
+
+
+    blank.document.open();
+
+
+    blank.document.write(`
+
+        <!DOCTYPE html>
+
+        <html>
+
+        <head>
+
+            <meta charset="UTF-8">
+
+            <meta
+                name="viewport"
+                content="width=device-width, initial-scale=1.0"
+            >
+
+            <title>
+                CiphAnon Games
+            </title>
+
+            <style>
+
+                html,
+                body {
+
+                    margin: 0;
+
+                    width: 100%;
+                    height: 100%;
+
+                    background: #000;
+
+                    overflow: hidden;
+
+                }
+
+                iframe {
+
+                    display: block;
+
+                    width: 100%;
+                    height: 100%;
+
+                    border: 0;
+
+                }
+
+            </style>
+
+        </head>
+
+        <body>
+
+            <iframe
+                src="${portalURL}"
+                allowfullscreen
+            ></iframe>
+
+        </body>
+
+        </html>
+
+    `);
+
+
+    blank.document.close();
+
+
+    /*
+        Hide the original launcher.
+    */
+
+    loader.classList.add("hidden");
+
+}
+
+
+/* =========================================================
+   START LOADING
+========================================================= */
+
+const loadingTimer =
+    setInterval(() => {
+
+        progressValue +=
+            Math.floor(
+                Math.random() * 5
+            ) + 1;
+
+
+        if (progressValue >= 100) {
+
+            progressValue = 100;
+
+            clearInterval(
+                loadingTimer
+            );
+
+
+            updateLoader(100);
+
+
+            setTimeout(
+                launchGamesPortal,
+                700
+            );
+
+
+            return;
+
+        }
+
+
+        updateLoader(
+            progressValue
+        );
+
+    }, 100);
+
+
+/* =========================================================
+   MANUAL FALLBACK
+========================================================= */
+
+launchButton.addEventListener(
+    "click",
+    launchGamesPortal
+);
+
+
+/* =========================================================
+   IF THIS PAGE IS ALREADY INSIDE THE PORTAL
+========================================================= */
+
+if (
+    new URLSearchParams(
+        window.location.search
+    ).has("games")
+) {
+
+    /*
+        Don't launch another about:blank
+        when the iframe loads this page.
+    */
+
+    clearInterval(
+        loadingTimer
+    );
+
+    loader.classList.add(
+        "hidden"
+    );
+
+}
 
 </script>
-
 
 </body>
 </html>
