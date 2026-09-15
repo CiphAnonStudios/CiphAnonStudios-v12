@@ -2749,7 +2749,18 @@ footer {
     left: 150px;
     opacity: 60%;
 }
-    
+
+
+    .side-button i {
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+
+.side-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
     
 
 </style>
@@ -2893,60 +2904,39 @@ footer {
 <div class="side-bar">
 
     <button
-        class="side-button active"
-        data-label="HOME"
-        onclick="go('home')">
-        H
-    </button>
+  class="side-button active"
+  data-label="HOME"
+  onclick="go('home')">
+  <i class="fa-solid fa-house"></i>
+</button>
 
-    <button
-        class="side-button"
-        data-label="INFO"
-        onclick="go('projects')">
-        01
-    </button>
+    <button class="side-button" data-label="INFO" onclick="go('projects')">
+  <i class="fa-solid fa-circle-info"></i>
+</button>
 
-    <button
-        class="side-button"
-        data-label="GAMES"
-        onclick="go('games')">
-        02
-    </button>
+<button class="side-button" data-label="GAMES" onclick="go('games')">
+  <i class="fa-solid fa-gamepad"></i>
+</button>
 
-    <button
-        class="side-button"
-        data-label="VIDEOS"
-        onclick="go('videos')">
-        03
-    </button>
+<button class="side-button" data-label="VIDEOS" onclick="go('videos')">
+  <i class="fa-solid fa-video"></i>
+</button>
 
-    <button
-        class="side-button"
-        data-label="SCRIPTS"
-        onclick="go('scripts')">
-        04
-    </button>
+<button class="side-button" data-label="SCRIPTS" onclick="go('scripts')">
+  <i class="fa-solid fa-scroll"></i>
+</button>
 
-    <button
-        class="side-button"
-        data-label="LINKS"
-        onclick="go('arcade')">
-        05
-    </button>
+  <button class="side-button" data-label="LINKS" onclick="go('arcade')">
+  <i class="fa-solid fa-link"></i>
+</button>
 
-     <button
-        class="side-button"
-        data-label="CHEATS"
-        onclick="go('cheats')">
-        06
-    </button>
+     <button class="side-button" data-label="CHEATS" onclick="go('cheats')">
+  <i class="fa-solid fa-flask"></i>
+</button>
 
-    <button
-        class="side-button"
-        data-label="ABOUT"
-        onclick="go('about')">
-        07
-    </button>
+    <button class="side-button" data-label="ABOUT" onclick="go('about')">
+  <i class="fa-solid fa-user"></i>
+</button>
 
 </div>
 
